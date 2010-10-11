@@ -77,6 +77,10 @@ $(window).load(function() {
 		$('html').width(320).height(480);
 		$('#ConfigWindowOptions').width(320*.85);
 	}
+
+	if( deck.load('lastDeck') ) {
+		$('#Deck').empty().append(deck.buildDeckHTML()).show();
+	}
 });
 		</script>
 	</head>

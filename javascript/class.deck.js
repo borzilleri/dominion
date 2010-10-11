@@ -284,9 +284,66 @@ var deck = (function() {
 
 		}
 
+		// Perform the random check to see if we should include the Colony/Platinum 
+		// basic cards from prosperity.
+		// NOTE: We do this check regardless of whether prosperity was actually
+		// used. The check itself is cheap, and works fine regardless.
 		prosperityBasics = chooseProsperityBasics();
 
+		api.save('lastDeck');
 		return api.buildDeckHTML();
+	}
+
+	/**
+	 * Save a deck to localstorage
+	 *
+	 * The current deck is saved to localstorage, using the name passed in as a
+	 * key. A wrapper object is built to contain not merely the set of cards in
+	 * the deck, but the "prosperityBasics" property as well. Hopefully this will
+	 * be future-proof enough to work for later additions.
+	 *
+	 * @param string deckName Name to use for this saved deck.
+	 */
+	api.save = function(deckName) {
+		if( 'string' != typeof deckName ) return;
+
+		var savedDeck = {};
+		savedDeck.cards = cards;
+		savedDeck.prosperityBasics = prosperityBasics;
+
+		config.set(deckName, savedDeck);
+	}
+
+	/**
+	 * Load a deck saved deck from localstorage
+	 *
+	 * This takes a string deck name, and loads that config value from storage.
+	 * Some basic validity checking is done to ensure the data is not
+	 * significantly mangled, but it is not (yet) terribly robust.
+	 *
+	 * @param string deckName the name of the deck to load.
+	 * @return boolean Success of the load operation.
+	 */
+	api.load = function(deckName) {
+		// Make sure our deck name is actually a string.
+		if( 'string' != typeof deckName ) return;
+
+		// Load the deck from the config, and check to make sure we got something
+		var savedDeck = config.get(deckName);
+		if( null == savedDeck ) return;
+		
+		// Make sure we HAVE a set of cards
+		if( !('cards' in savedDeck) ) return false;
+		// Make sure that set of cards is actually an array
+		if( !(savedDeck.cards instanceof Array) ) return false;
+		// Make sure we have [deckSize] cards.
+		if( savedDeck.cards.length < deckSize ) return false;
+
+		cards = savedDeck.cards;
+		prosperityBasics = ('prosperityBasics' in savedDeck) 
+			? savedDeck.prosperityBasics : false;
+
+		return true;
 	}
 
 	/**

@@ -7,6 +7,7 @@ var CONFIG_DEFAULTS = {
 	'display_Cost': false,          // Display the Cost (coin,potion) of a card in the deck list.
 	'display_Type': false,          // Display the Type (Attack, Defense, etc) of a card in the deck list.
 	'sort': 'name',                 // How to sort the deck list ('name', 'cost', 'set')
-	'deck_RequireDefense': false    // Require a Defense card if an Attack card was selected.
+	'deck_RequireDefense': false,   // Require a Defense card if an Attack card was selected.
+	'deck_ChooseProsperityBasics': true // Auto-Choose Colony/Platinum cards based on % of prosperity cards in deck.
 };
 

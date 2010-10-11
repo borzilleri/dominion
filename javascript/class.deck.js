@@ -1,5 +1,6 @@
 var deck = (function() {
 	var api = {},
+		prosperityBasics = false,
 		cards = [],
 		deckSize = 10,
 		cardSelection = []
@@ -9,6 +10,11 @@ var deck = (function() {
 		for(i in replacementCards) {
 			replacementCards[i].replacement = false;
 		}
+	}
+
+	function chooseProsperityBasics() {
+		var randomCard = getRandomCard(cards, false);
+		return ('Prosperity' == randomCard.set);
 	}
 
 	/**
@@ -70,12 +76,13 @@ var deck = (function() {
 	 * @param array cardArray An array of cards to select from.
 	 * @return object The card selected from cardArray
 	 */
-	function getRandomCard(cardArray) {
+	function getRandomCard(cardArray, forceNotInDeck) {
+		if( undefined===forceNotInDeck ) forceNotInDeck = true;
 		var card;
 		do {
 			card = cardArray[Math.floor(Math.random()*cardArray.length)];
 		}
-		while (0 < JSONQuery("[?name=$1]", cards, card.name).length);
+		while( forceNotInDeck && 0 < JSONQuery("[?name=$1]", cards, card.name).length);
 
 		return card;
 	}
@@ -101,7 +108,8 @@ var deck = (function() {
 		}
 
 		//$(document.createElement('button')).text('X').bind('click',replaceSingleCard).appendTo(li);
-		$(document.createElement('span')).addClass('cardName').text(card.name).appendTo(li);
+		$(document.createElement('span')).addClass('cardName')
+			.text(card.name).appendTo(li);
 
 		if( config.get('display_Cost') ) {
 			$(document.createElement('span')).addClass('cardCost')
@@ -276,6 +284,8 @@ var deck = (function() {
 
 		}
 
+		prosperityBasics = chooseProsperityBasics();
+
 		return api.buildDeckHTML();
 	}
 
@@ -308,6 +318,15 @@ var deck = (function() {
 		}
 
 		var ul = $(document.createElement('ul'));
+		if( config.get('deck_ChooseProsperityBasics') ) {
+			var li = $(document.createElement('li'));
+			$(document.createElement('span')).addClass('cardName')
+				.text('Include Colony/Platinum?').appendTo(li);
+			$(document.createElement('span')).addClass('cardCost')
+				.text('['+(prosperityBasics?'YES':'NO')+']').appendTo(li);
+			$(ul).append(li);
+		}
+
 		for(i in cards) {
 			$(ul).append(buildCardHTML(cards[i]));
 		}

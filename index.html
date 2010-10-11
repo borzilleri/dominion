@@ -41,6 +41,7 @@ window.applicationCache.addEventListener('updateready', function() {
 function BlockMove(event) { if( ! $('#ConfigWindow').is(':visible') ) event.preventDefault(); }
 
 var ACTIVE_TIP = false;
+var DEBUG_MODE = false;
 
 function showConfigPanel() {
 	config.updateConfigWindow();
@@ -60,6 +61,9 @@ function generateDeck() {
 	$('#Deck').empty().append(deck.generateDeck()).show();
 }
 $(window).load(function() {
+	// Toggle debug mode on if neccessary.
+	DEBUG_MODE = ('#debug' == window.location.hash);
+
 	// Button Bindings
 	$('#showConfig').click(showConfigPanel);
 	$('#generateDeck').click(generateDeck);
@@ -68,6 +72,11 @@ $(window).load(function() {
 	$('#ConfigWindow input').change(config.cacheSetting);
 	$('.OptionsCancel').click(function() { hideConfigPanel(); });
 	$('.OptionsSave').click(function() { hideConfigPanel(true); });
+
+	if( DEBUG_MODE ) {
+		$('html').width(320).height(480);
+		$('#ConfigWindowOptions').width(320*.85);
+	}
 });
 		</script>
 	</head>
@@ -84,19 +93,19 @@ $(window).load(function() {
 				<fieldset>
 					<legend>Sets Included</legend>
 					<div>
-						<input type="checkbox" id="set_Dominion" name="sets" value="Dominion" />
+						<input type="checkbox" id="set_Dominion" name="sets" value="Dominion">
 						<label for="set_Dominion">Dominion</label>
 					</div>
 					<div>
-						<input type="checkbox" id="set_Intrigue" name="sets" value="Intrigue" />
+						<input type="checkbox" id="set_Intrigue" name="sets" value="Intrigue">
 						<label for="set_Intrigue">Intrigue</label>
 					</div>
 					<div>
-						<input type="checkbox" id="set_Seaside" name="sets" value="Seaside" />
+						<input type="checkbox" id="set_Seaside" name="sets" value="Seaside">
 						<label for="set_Seaside">Seaside</label>
 					</div>
 					<div>
-						<input type="checkbox" id="set_Alchemy" name="sets" value="Alchemy" />
+						<input type="checkbox" id="set_Alchemy" name="sets" value="Alchemy">
 						<label for="set_Alchemy">Alchemy</label>
 						<fieldset id="set_Alchemy_Options">
 							<legend>Alchemy Config</legend>
@@ -108,22 +117,25 @@ $(window).load(function() {
 						</fieldset>
 					</div>
 					<div>
-						<input type="checkbox" id="set_Prosperity" name="sets" value="Prosperity" />
+						<input type="checkbox" id="set_Prosperity" name="sets" value="Prosperity">
 						<label for="set_Prosperity">Prosperity</label>
 					</div>
 					<div>
 						<fieldset>
 							<legend>Promo</legend>
 							<div>
-								<input type="checkbox" id="set_Promo_BlackMarket" name="sets_Promo" value="Black Market" />
+								<input type="checkbox" id="set_Promo_BlackMarket"
+									name="sets_Promo" value="Black Market">
 								<label for="set_Promo_BlackMarket">Black Market</label>
 							</div>
 							<div>
-								<input type="checkbox" id="set_Promo_Envoy" name="sets_Promo" value="Envoy" />
+								<input type="checkbox" id="set_Promo_Envoy" 
+									name="sets_Promo" value="Envoy">
 								<label for="set_Promo_Envoy">Envoy</label>
 							</div>
 							<div>
-								<input type="checkbox" id="set_Promo_Stash" name="sets_Promo" value="Stash" />
+								<input type="checkbox" id="set_Promo_Stash"
+									name="sets_Promo" value="Stash">
 								<label for="set_Promo_Stash">Stash</label>
 							</div>
 						</fieldset>
@@ -132,24 +144,33 @@ $(window).load(function() {
 				<fieldset>
 					<legend>Deck Composition</legend>
 					<div>
-						<input type="checkbox" id="deck_RequireDefense" name="deck_RequireDefense"
-							value="deck_RequireDefense" />
-						<label for="deck_RequireDefense">Require Defense</label>
+						<input type="checkbox" id="deck_RequireDefense"
+							name="deck_RequireDefense" value="deck_RequireDefense">
+						<label for="deck_RequireDefense">Require Defense for Attack</label>
+					</div>
+					<div>
+						<input type="checkbox" id="deck_ChooseProsperityBasics"
+							name="deck_ChooseProsperityBasics"
+							value="deck_ChooseProsperityBasics">
+						<label for="deck_ChooseProsperityBasics">Randomize Colony/Platinum</label>
 					</div>
 				</fieldset>
 				<fieldset>
 					<legend>Display</legend>
 
 					<div>
-						<input type="checkbox" id="display_Set" name="display_Set" value="display_Set" />
+						<input type="checkbox" id="display_Set" name="display_Set"
+							value="display_Set">
 						<label for="display_Set">Show Set</label>
 					</div>
 					<div>
-						<input type="checkbox" id="display_Cost" name="display_Cost" value="display_Cost" />
+						<input type="checkbox" id="display_Cost" name="display_Cost"
+							value="display_Cost">
 						<label for="display_Cost">Show Cost</label>
 					</div>
 					<div>
-						<input type="checkbox" id="display_Type" name="display_Type" value="display_Type" />
+						<input type="checkbox" id="display_Type" name="display_Type"
+							value="display_Type">
 						<label for="display_Type">Show Card Type</label>
 					</div>
 					<fieldset>

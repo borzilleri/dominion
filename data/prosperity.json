@@ -1,0 +1,351 @@
+if( undefined == LIBRARY ) var LIBRARY = [];
+LIBRARY = LIBRARY.concat([
+	{
+		name: 'Bank',
+		cost: 7,
+		potion: false,
+		set: 'Prosperity',
+		type: {
+			action: false,
+			attack: false,
+			defense: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: 'Bishop',
+		cost: 4,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'City',
+		cost: 5,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Contraband',
+		cost: 5,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: 'Counting House',
+		cost: 5,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Expand',
+		cost: 7,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Forge',
+		cost: 7,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Goons',
+		cost: 6,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: true,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Grand Market',
+		cost: 6,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Hoard',
+		cost: 6,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: "King's Court",
+		cost: 7,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Loan',
+		cost: 3,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: 'Mint',
+		cost: 8,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Monument',
+		cost: 4,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Mountebank',
+		cost: 5,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: true,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Peddler',
+		cost: 8,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Quarry',
+		cost: 4,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: 'Rabble',
+		cost: 5,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: true,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Royal Seal',
+		cost: 5,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: 'Talisman',
+		cost: 4,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: 'Trade Route',
+		cost: 3,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Vault',
+		cost: 5,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Venture',
+		cost: 5,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: 'Watchtower',
+		cost: 3,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: true,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: "Worker's Village",
+		cost: 4,
+		potion: false,
+		set: 'Prosperity',
+	  type: {
+			action: true,
+			attack: false,
+			defense: false,
+			treasure: false,
+			victory: false
+		}
+	}
+]);

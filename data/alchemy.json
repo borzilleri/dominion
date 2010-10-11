@@ -1,0 +1,183 @@
+if( undefined == LIBRARY ) var LIBRARY = [];
+LIBRARY = LIBRARY.concat([
+	{
+		name: 'Alchemist',
+		cost: 3,
+		potion: true,
+		set: 'Alchemy',
+		image: 'alchemist.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Apothecary',
+		cost: 2,
+		potion: true,
+		set: 'Alchemy',
+		image: 'apothecary.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Apprentice',
+		cost: 5,
+		potion: false,
+		set: 'Alchemy',
+		image: 'apprentice.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Familiar',
+		cost: 3,
+		potion: true,
+		set: 'Alchemy',
+		image: 'familiar.jpg',
+		type: {
+			action: true,
+			attack: true,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Golem',
+		cost: 4,
+		potion: true,
+		set: 'Alchemy',
+		image: 'golem.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Herbalist',
+		cost: 2,
+		potion: false,
+		set: 'Alchemy',
+		image: 'herbalist.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Philosopher\'s Stone',
+		cost: 3,
+		potion: true,
+		set: 'Alchemy',
+		image: 'philosophersstone.jpg',
+		type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: true,
+			victory: false
+		}
+	},
+	{
+		name: 'Possession',
+		cost: 6,
+		potion: true,
+		set: 'Alchemy',
+		image: 'possession.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Scrying Pool',
+		cost: 2,
+		potion: true,
+		set: 'Alchemy',
+		image: 'scryingpool.jpg',
+		type: {
+			action: true,
+			attack: true,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Transmute',
+		cost: 0,
+		potion: true,
+		set: 'Alchemy',
+		image: 'transmute.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'University',
+		cost: 2,
+		potion: true,
+		set: 'Alchemy',
+		image: 'university.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Vineyard',
+		cost: 0,
+		potion: true,
+		set: 'Alchemy',
+		image: 'vineyard.jpg',
+		type: {
+			action: false,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: true
+		}
+	}
+]);

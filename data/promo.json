@@ -1,0 +1,48 @@
+if( undefined == LIBRARY ) var LIBRARY = [];
+LIBRARY = LIBRARY.concat([
+	{
+		name: 'Black Market',
+		cost: 3,
+		potion: false,
+		set: 'Promo',
+		image: 'blackmarket.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Envoy',
+		cost: 4,
+		potion: false,
+		set: 'Promo',
+		image: 'envoy.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	},
+	{
+		name: 'Stash',
+		cost: 5,
+		potion: false,
+		set: 'Promo',
+		image: 'stash.jpg',
+		type: {
+			action: true,
+			attack: false,
+			defense: false,
+			duration: false,
+			treasure: false,
+			victory: false
+		}
+	}
+]);

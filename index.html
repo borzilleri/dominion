@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cache-manifest.manifest">
+	<head>
+		<title>Dominion</title>
+
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1; user-scalable=0;" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- CSS Files -->
+		<link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" media="screen" />
+
+		<!-- Third Party Library Files -->
+		<script src="javascript/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/json.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="javascript/lib/jsonquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/store.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/qtip.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- Data Files -->
+		<script src="data/defaults.json" type="text/javascript" charset="utf-8"></script>
+		<script src="data/basic.json" type="text/javascript" charset="utf-8"></script>
+		<script src="data/intrigue.json" type="text/javascript" charset="utf-8"></script>
+		<script src="data/seaside.json" type="text/javascript" charset="utf-8"></script>
+		<script src="data/alchemy.json" type="text/javascript" charset="utf-8"></script>
+		<script src="data/prosperity.json" type="text/javascript" charset="utf-8"></script>
+		<script src="data/promo.json" type="text/javascript" charset="utf-8"></script>
+
+		<!-- Classes/Libraries -->
+		<script src="javascript/class.deck.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/class.config.js" type="text/javascript" charset="utf-8"></script>
+
+		<script type="text/javascript" charset="utf-8">
+// If we have a new manifest, swap over to the new data when it's ready.
+window.applicationCache.addEventListener('updateready', function() {
+	console.log('Update Ready, swapping cache.');
+	window.applicationCache.swapCache();
+}, false);
+// Prevent scrolling for touch move events.
+function BlockMove(event) { if( ! $('#ConfigWindow').is(':visible') ) event.preventDefault(); }
+
+var ACTIVE_TIP = false;
+
+function showConfigPanel() {
+	config.updateConfigWindow();
+	$('#ConfigWindow').show();
+}
+function hideConfigPanel(save) {
+	if( Boolean(save) ) config.saveSettings();
+	$('#ConfigWindow').hide();
+}
+function replaceSingleCard(cardLi) {
+	deck.replaceCard(cardLi);
+	$(cardLi).qtip('hide');
+	ACTIVE_TIP = false;
+	$('#Deck').empty().append(deck.buildDeckHTML()).show();
+}
+function generateDeck() {
+	$('#Deck').empty().append(deck.generateDeck()).show();
+}
+$(window).load(function() {
+	// Button Bindings
+	$('#showConfig').click(showConfigPanel);
+	$('#generateDeck').click(generateDeck);
+
+	// Config Window bindings
+	$('#ConfigWindow input').change(config.cacheSetting);
+	$('.OptionsCancel').click(function() { hideConfigPanel(); });
+	$('.OptionsSave').click(function() { hideConfigPanel(true); });
+});
+		</script>
+	</head>
+	<body ontouchmove="BlockMove(event);">
+		<div id="Main">
+			<div id="Buttons">
+				<ul>
+					<li><button id="generateDeck">New Deck</button></li>
+					<li><button id="showConfig">Config</button></li>
+				</ul>
+			</div>
+
+			<div id="ConfigWindow"><div id="ConfigWindowOptions">
+				<fieldset>
+					<legend>Sets Included</legend>
+					<div>
+						<input type="checkbox" id="set_Dominion" name="sets" value="Dominion" />
+						<label for="set_Dominion">Dominion</label>
+					</div>
+					<div>
+						<input type="checkbox" id="set_Intrigue" name="sets" value="Intrigue" />
+						<label for="set_Intrigue">Intrigue</label>
+					</div>
+					<div>
+						<input type="checkbox" id="set_Seaside" name="sets" value="Seaside" />
+						<label for="set_Seaside">Seaside</label>
+					</div>
+					<div>
+						<input type="checkbox" id="set_Alchemy" name="sets" value="Alchemy" />
+						<label for="set_Alchemy">Alchemy</label>
+						<fieldset id="set_Alchemy_Options">
+							<legend>Alchemy Config</legend>
+							<label># Potion Cards:</label><br />
+							<input type="number" min="0" max="10" size="3" maxlength="2"
+								id="set_Alchemy_MinCards" name="set_Alchemy_MinCards"/>&ndash;
+								<input type="number" min="0" max="10" size="3" maxlength="2"
+								id="set_Alchemy_MaxCards" name="set_Alchemy_MaxCards" />
+						</fieldset>
+					</div>
+					<div>
+						<input type="checkbox" id="set_Prosperity" name="sets" value="Prosperity" />
+						<label for="set_Prosperity">Prosperity</label>
+					</div>
+					<div>
+						<fieldset>
+							<legend>Promo</legend>
+							<div>
+								<input type="checkbox" id="set_Promo_BlackMarket" name="sets_Promo" value="Black Market" />
+								<label for="set_Promo_BlackMarket">Black Market</label>
+							</div>
+							<div>
+								<input type="checkbox" id="set_Promo_Envoy" name="sets_Promo" value="Envoy" />
+								<label for="set_Promo_Envoy">Envoy</label>
+							</div>
+							<div>
+								<input type="checkbox" id="set_Promo_Stash" name="sets_Promo" value="Stash" />
+								<label for="set_Promo_Stash">Stash</label>
+							</div>
+						</fieldset>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Deck Composition</legend>
+					<div>
+						<input type="checkbox" id="deck_RequireDefense" name="deck_RequireDefense"
+							value="deck_RequireDefense" />
+						<label for="deck_RequireDefense">Require Defense</label>
+					</div>
+				</fieldset>
+				<fieldset>
+					<legend>Display</legend>
+
+					<div>
+						<input type="checkbox" id="display_Set" name="display_Set" value="display_Set" />
+						<label for="display_Set">Show Set</label>
+					</div>
+					<div>
+						<input type="checkbox" id="display_Cost" name="display_Cost" value="display_Cost" />
+						<label for="display_Cost">Show Cost</label>
+					</div>
+					<div>
+						<input type="checkbox" id="display_Type" name="display_Type" value="display_Type" />
+						<label for="display_Type">Show Card Type</label>
+					</div>
+					<fieldset>
+						<legend>Sort By</legend>
+						<input type="radio" name="sort" id="sort_Name" value="name" />
+						<label for="sort_Name">Card Name</label><br>
+						<input type="radio" name="sort" id="sort_Set" value="set" />
+						<label for="sort_Set">Set</label><br>
+						<input type="radio" name="sort" id="sort_Cost" value="cost" />
+						<label for="sort_Cost">Cost</label><br>
+					</fieldset>
+				</fieldset>
+
+				<div class="ConfigButtons">
+					<button class="OptionsCancel">Cancel</button>
+					<button class="OptionsSave">Save</button>
+				</div>
+			</div></div>
+
+			<div id="Deck"></div>
+		</div>
+	</body>
+</html>
+

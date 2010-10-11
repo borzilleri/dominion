@@ -1,0 +1,12 @@
+var CONFIG_DEFAULTS = {
+	'sets': ['Dominion','Intrigue','Seaside','Alchemy','Prosperity'], // Dominion Sets to include
+	'sets_Promo': [],               // Promo cards to include
+	'set_Alchemy_MinCards': 3,      // Minimum number of Alchemy cards to use.
+	'set_Alchemy_MaxCards': 5,      // Maximum number of Alchemy cards to use.
+	'display_Set': true,            // Display the Set a card belongs to in the deck list.
+	'display_Cost': false,          // Display the Cost (coin,potion) of a card in the deck list.
+	'display_Type': false,          // Display the Type (Attack, Defense, etc) of a card in the deck list.
+	'sort': 'name',                 // How to sort the deck list ('name', 'cost', 'set')
+	'deck_RequireDefense': false    // Require a Defense card if an Attack card was selected.
+};
+

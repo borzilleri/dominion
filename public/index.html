@@ -52,6 +52,7 @@ function hideConfigPanel(save) {
 	$('#ConfigWindow').hide();
 }
 function showSets() {
+	$('#SetList').empty().append(deck.buildSetListHTML()).show();
 	$('#SetWindow').show();
 }
 function hideSetPanel() {
@@ -112,6 +113,7 @@ $(window).load(function() {
 					<div id="NewSet">
 						<input type="text" id="newSet_name"/>
 					</div>
+					<div id="SetList"></div>
 				</div>
 			</div>
 			<div id="ConfigWindow">

@@ -64,6 +64,7 @@ button:active {
 
 
 /*** Config Window Styles ***/
+#SetWindow, 
 #ConfigWindow {
 	position: absolute;
 	left: 0px;
@@ -74,6 +75,7 @@ button:active {
 	z-index: 1000;
 	display: none;
 }
+#SetWindowList, 
 #ConfigWindowOptions {
 	border: 3px double black;
 	background-color: white;
@@ -96,17 +98,35 @@ button:active {
 }
 .ConfigButtons {
 	width: 100%;
-	text-align: right;
 	margin: auto;
 }
+.ConfigButtons .OptionsSave {
+	float: right;
+}
+.SetButtons button
 .ConfigButtons button {
 	padding: 2px;
-	margin: 10px 20px;
+	margin: 10px;
 }
 #set_Alchemy_Options {
 	margin-left: 20px;
 }
 
+.SetButtons {
+	margin: auto;
+}
+.SetButtons .SetSave {
+	float: right;
+}
+#NewSet {
+	width: 100%;
+	margin: 0;
+	padding: 4px;
+	text-align: center;
+}
+#NewSet input {
+	width: 90%;
+}
 /*** Deck Display Styles ***/
 #Deck {
 	margin: 0 auto;

@@ -3,7 +3,11 @@ var deck = (function() {
 		prosperityBasics = false,
 		cards = [],
 		deckSize = 10,
-		cardSelection = []
+		cardSelection = [],
+		savedDecks = config.get('saved_decks')
+
+	// Pubilc Variables/Constants
+	api.LAST_DECK = '_lastDeck';
 
 	function resetLibrary() {
 		var replacementCards = JSONQuery("[?replacement]", LIBRARY);
@@ -290,7 +294,7 @@ var deck = (function() {
 		// used. The check itself is cheap, and works fine regardless.
 		prosperityBasics = chooseProsperityBasics();
 
-		api.save('lastDeck');
+		api.save(api.LAST_DECK);
 		return api.buildDeckHTML();
 	}
 
@@ -307,11 +311,17 @@ var deck = (function() {
 	api.save = function(deckName) {
 		if( 'string' != typeof deckName ) return;
 
-		var savedDeck = {};
-		savedDeck.cards = cards;
-		savedDeck.prosperityBasics = prosperityBasics;
+		var deck = {};
+		deck.cards = cards;
+		deck.prosperityBasics = prosperityBasics;
 
-		config.set(deckName, savedDeck);
+		savedDecks[deckName] = deck;
+		config.set('saved_decks', savedDecks);
+	}
+
+	api.clearSavedDeck = function(deckName) {
+		delete savedDecks[deckName];
+		config.set('saved_decks', savedDecks);
 	}
 
 	/**
@@ -328,20 +338,22 @@ var deck = (function() {
 		// Make sure our deck name is actually a string.
 		if( 'string' != typeof deckName ) return;
 
-		// Load the deck from the config, and check to make sure we got something
-		var savedDeck = config.get(deckName);
-		if( null == savedDeck ) return;
-		
-		// Make sure we HAVE a set of cards
-		if( !('cards' in savedDeck) ) return false;
-		// Make sure that set of cards is actually an array
-		if( !(savedDeck.cards instanceof Array) ) return false;
-		// Make sure we have [deckSize] cards.
-		if( savedDeck.cards.length < deckSize ) return false;
+		// Check to see if the deck is in the savedDecks array.
+		if( !(deckName in savedDecks) ) return; 
+		var deck = savedDecks[deckName];
 
-		cards = savedDeck.cards;
-		prosperityBasics = ('prosperityBasics' in savedDeck) 
-			? savedDeck.prosperityBasics : false;
+		// Make sure we HAVE a set of cards
+		// Make sure that set of cards is actually an array
+		// Make sure we have [deckSize] cards.
+		if( !('cards' in deck) || !(deck.cards instanceof Array) ||
+				deck.cards.length < deckSize ) {
+			api.clear(deckName);
+			return false;
+		}
+
+		cards = deck.cards;
+		prosperityBasics = ('prosperityBasics' in deck) 
+			? deck.prosperityBasics : false;
 
 		return true;
 	}

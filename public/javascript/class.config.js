@@ -82,8 +82,10 @@ var config = (function() {
 	api.updateConfigWindow = function() {
 		cache = {};
 		for( key in defaults ) {
-			var setFormFunction = 'setForm_'+$('#ConfigWindow input[name="'+key+'"]').attr('type');
-			eval(setFormFunction)(key, api.get(key));
+			if( $('#ConfigWindow input[name="'+key+'"]').length > 0 ) {
+				var setFormFunction = 'setForm_'+$('#ConfigWindow input[name="'+key+'"]').attr('type');
+				eval(setFormFunction)(key, api.get(key));
+			}
 		}
 	}
 

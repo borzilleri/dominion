@@ -127,11 +127,11 @@ var deck = (function() {
 		return card;
 	}
 
-	function buildSingleDeckHTML(deckName,deck) {
+	function buildSetListItemHTML(deckName,deck) {
 		var li = $(document.createElement('li'));
 
-		$(document.createElement('span')).addClass('setName')
-			.text(deckName).appendTo(li);
+		$(document.createElement('a')).addClass('setName')
+			.attr('href','javascript:;').text(deckName).appendTo(li);
 
 		return li;
 	}
@@ -145,7 +145,7 @@ var deck = (function() {
 	 * @param object card The Card object to use.
 	 * @return object JQuery DOM object
 	 */
-	function buildCardHTML(card) {
+	function buildCardListItemHTML(card) {
 		var li = $(document.createElement('li'));
 
 		if( card.replacement ) $(li).addClass('replacementCard');
@@ -419,7 +419,7 @@ var deck = (function() {
 		}
 		keys.sort( function(a,b){ return (a>b) - (a<b); } );
 		for(var i=0; i<keys.length; i++) {
-			$(ul).append(buildSingleDeckHTML(keys[i], savedDecks[keys[i]]));
+			$(ul).append(buildSetListItemHTML(keys[i], savedDecks[keys[i]]));
 		}
 
 		return ul;
@@ -430,7 +430,7 @@ var deck = (function() {
 	 * This simply creates an unordered list element, and iterates over the list,
 	 * appending the individual card list items to it.
 	 *
-	 * Individual card items are built using buildCardHTML.
+	 * Individual card items are built using buildCardListItemHTML.
 	 *
 	 * NOTE: This is a public method and does NOT regenerate the deck,
 	 * so we can rebuild the deck html at any time if we need.
@@ -463,7 +463,7 @@ var deck = (function() {
 		}
 
 		for(i in cards) {
-			$(ul).append(buildCardHTML(cards[i]));
+			$(ul).append(buildCardListItemHTML(cards[i]));
 		}
 		return ul;
 	}

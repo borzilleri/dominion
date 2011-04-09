@@ -22,6 +22,32 @@ var deck = (function() {
 	}
 
 	/**
+	 * Generates a string abbreviation of a card's set.
+	 *
+	 * In general, the single-letter set abbreviation is simply that set's first
+	 * letter. (Hopefully future expansions do not make this obnoxious).
+	 *
+	 * The notable exception, is Promo cards. To avoid being confused with the
+	 * Prosperity expansion, promo cards have been given the abbreviation of
+	 * and asterisk ('*').
+	 *
+	 * This also represents their not-entirely-part-of-a-set nature.
+	 *
+	 * @param object A card object.
+	 * @return string
+	 */
+	function getCardSetAbbrevition(card) {
+		var cardSet = $(document.createElement('span'))
+			.addClass('cardSet').addClass(card.set);
+
+		var setAbbr = 'Promo'==card.set ? '*' : card.set.substring(0,1);
+
+		$(cardSet).text('['+setAbbr+']');
+
+		return cardSet;
+	}
+
+	/**
 	 * Generates an string abbreviation of a card's type.
 	 *
 	 * This string is divided into three sections:
@@ -29,41 +55,51 @@ var deck = (function() {
 	 * Action/Treasure/Victory
 	 * Duration
 	 *
-	 * In general, the single-letter abbreviation for a given type is that type's first letter.
-	 * the exception to this is Defense cards, the abbreviation is "R", for "Reaction".
+	 * In general, the single-letter abbreviation for a given type is that type's 
+	 * first letter. The exception to this is Defense cards, the abbreviation is 
+	 * "R", for "Reaction". This is for two reasons: to avoid confusion with 
+	 * Duration cards, and because the in-game name for these cards is officially
+	 * 'Reaction' cards.
 	 *
 	 * @param object A card object
 	 * @return string
 	 */
 	function getCardTypeAbbreviation(card) {
-		var cardType = $(document.createElement('span')).addClass('cardType').append('[');
+		var cardType = $(document.createElement('span')).addClass('cardType')
+			.append('[');
 
 		// Action/Treasure/Victory cards
 		// We're going to assume that any card MUST at least one of an Action card,
 		// Treasure card, or Victory card.
 		if( card.type.action ) {
-			$(document.createElement('span')).addClass('type_Action').text('A').appendTo(cardType);
+			$(document.createElement('span')).addClass('type_Action')
+				.text('A').appendTo(cardType);
 		}
 		if( card.type.treasure ) {
-			$(document.createElement('span')).addClass('type_Treasure').text('T').appendTo(cardType);
+			$(document.createElement('span')).addClass('type_Treasure')
+				.text('T').appendTo(cardType);
 		}
 		if( card.type.victory ) {
-			$(document.createElement('span')).addClass('type_Victory').text('V').appendTo(cardType);
+			$(document.createElement('span')).addClass('type_Victory')
+				.text('V').appendTo(cardType);
 		}
 
 		// Attack/Reaction (Defense) cards.
 		if( card.type.attack || card.type.defense ) $(cardType).append('-');
 		if( card.type.attack ) {
-			$(document.createElement('span')).addClass('type_Attack').text('A').appendTo(cardType);
+			$(document.createElement('span')).addClass('type_Attack')
+				.text('A').appendTo(cardType);
 		}
 		if( card.type.defense ) {
-			$(document.createElement('span')).addClass('type_Defense').text('R').appendTo(cardType);
+			$(document.createElement('span')).addClass('type_Defense')
+				.text('R').appendTo(cardType);
 		}
 
 		// Duration cards
 		if( card.type.duration ) {
 			$(cardType).append('-');
-			$(document.createElement('span')).addClass('type_Duration').text('D').appendTo(cardType);
+			$(document.createElement('span')).addClass('type_Duration')
+				.text('D').appendTo(cardType);
 		}
 		$(cardType).append(']');
 
@@ -86,9 +122,18 @@ var deck = (function() {
 		do {
 			card = cardArray[Math.floor(Math.random()*cardArray.length)];
 		}
-		while( forceNotInDeck && 0 < JSONQuery("[?name=$1]", cards, card.name).length);
+		while(forceNotInDeck && 0 < JSONQuery("[?name=$1]",cards,card.name).length);
 
 		return card;
+	}
+
+	function buildSetListItemHTML(deckName,deck) {
+		var li = $(document.createElement('li'));
+
+		$(document.createElement('a')).addClass('setName')
+			.attr('href','javascript:;').text(deckName).appendTo(li);
+
+		return li;
 	}
 
 	/**
@@ -100,18 +145,15 @@ var deck = (function() {
 	 * @param object card The Card object to use.
 	 * @return object JQuery DOM object
 	 */
-	function buildCardHTML(card) {
+	function buildCardListItemHTML(card) {
 		var li = $(document.createElement('li'));
 
 		if( card.replacement ) $(li).addClass('replacementCard');
 
 		if( config.get('display_Set') ) {
-			var setAbbr = 'Promo'==card.set ? '*' : card.set.substring(0,1);
-			$(document.createElement('span')).addClass('cardSet').addClass(card.set)
-				.text('['+setAbbr+']').appendTo(li);
+			$(li).append(getCardSetAbbrevition(card));
 		}
 
-		//$(document.createElement('button')).text('X').bind('click',replaceSingleCard).appendTo(li);
 		$(document.createElement('span')).addClass('cardName')
 			.text(card.name).appendTo(li);
 
@@ -192,23 +234,29 @@ var deck = (function() {
 		var prunedCards = JSONQuery("[?name!=$1]", cards, cardName);
 		var newCard;
 
-		if( card.type.defense && config.get('deck_RequireDefense') && JSONQuery("[?type.attack]", cards).length > 0 ) {
-			// This is a defense card AND we have an attack card AND deck_RequireDefense is set to true
-			// So force the replaced card to be a defense card.
-			newCard = getRandomCard(JSONQuery("[?type.defense&name!=$1]", cardSelection, cardName));
+		if( card.type.defense && config.get('deck_RequireDefense') && 
+				JSONQuery("[?type.attack]", cards).length > 0 ) {
+			// This is a defense card AND we have an attack card AND 
+			// deck_RequireDefense is set to true, So force the replaced card to 
+			// be a defense card.
+			newCard = getRandomCard(
+				JSONQuery("[?type.defense&name!=$1]", cardSelection, cardName));
 			newCard.replacement = true;
 			prunedCards.push(newCard);
 		}
-		else if( card.potion && JSONQuery("[?potion]",prunedCards).length < config.get('set_Alchemy_MinCards') ) {
-			// This is a Potion card, and we're now below the minimum number of Potion Cards.
-			// So force choosing another potion card.
-			newCard = getRandomCard(JSONQuery("[?potion&name!=$1]", cardSelection, cardName));
+		else if( card.potion &&
+				JSONQuery("[?potion]",prunedCards).length<config.get('set_Alchemy_MinCards') ) {
+			// This is a Potion card, and we're now below the minimum number of 
+			// Potion Cards. So force choosing another potion card.
+			newCard = getRandomCard(
+				JSONQuery("[?potion&name!=$1]", cardSelection, cardName));
 			newCard.replacement = true;
 			prunedCards.push(newCard);
 		}
 		else {
 			// Just choose any other card.
-			// NOTE: THis really needs to respect the requiredefnse and max-potion-card settings.
+			// NOTE: This really needs to respect the requireDefense and
+			// Alchemy_MaxCards
 			newCard = getRandomCard(JSONQuery("[?name!=$1]", cardSelection, cardName));
 			newCard.replacement = true;
 			prunedCards.push(newCard);
@@ -268,12 +316,14 @@ var deck = (function() {
 			// We should now have a valid card, so push it to our cards array
 			cards.push(card);
 
-			// If this is an attack card.. check to see if we're requiring a defense card
+			// If this is an attack card,
+			// check to see if we're requiring a defense card
 			if( card.type.attack && config.get('deck_RequireDefense') ) {
 				if( 0 == JSONQuery("[?type.defense=true]", cards).length ) {
 					// We don't already have a defense card,
 					// So randomly select one and push it into our card array.
-					cards.push(getRandomCard(JSONQuery("[?type.defense=true]",cardSelection)));
+					cards.push(getRandomCard(
+						JSONQuery("[?type.defense=true]",cardSelection)));
 				}
 
 				if( cards.length > deckSize ) {
@@ -358,13 +408,29 @@ var deck = (function() {
 		return true;
 	}
 
+	api.buildSetListHTML = function() {
+		var ul = $(document.createElement('ul'));
+
+		// Sort our saved deck keys.
+		var keys = [];
+		for(k in savedDecks) {
+			//if( k != api.LAST_DECK )
+				keys.push(k);
+		}
+		keys.sort( function(a,b){ return (a>b) - (a<b); } );
+		for(var i=0; i<keys.length; i++) {
+			$(ul).append(buildSetListItemHTML(keys[i], savedDecks[keys[i]]));
+		}
+
+		return ul;
+	}
 	/**
 	 * Build an HTML structure for the entire deck (as an Unordered List)
 	 *
 	 * This simply creates an unordered list element, and iterates over the list,
 	 * appending the individual card list items to it.
 	 *
-	 * Individual card items are built using buildCardHTML.
+	 * Individual card items are built using buildCardListItemHTML.
 	 *
 	 * NOTE: This is a public method and does NOT regenerate the deck,
 	 * so we can rebuild the deck html at any time if we need.
@@ -397,7 +463,7 @@ var deck = (function() {
 		}
 
 		for(i in cards) {
-			$(ul).append(buildCardHTML(cards[i]));
+			$(ul).append(buildCardListItemHTML(cards[i]));
 		}
 		return ul;
 	}

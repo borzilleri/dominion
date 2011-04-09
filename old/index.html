@@ -53,6 +53,7 @@ function hideConfigPanel(save) {
 	$('#ConfigWindow').hide();
 }
 function showSets() {
+	$('#SetList').empty().append(deck.buildSetListHTML()).show();
 	$('#SetWindow').show();
 }
 function hideSetPanel() {
@@ -66,6 +67,9 @@ function replaceSingleCard(cardLi) {
 }
 function generateDeck() {
 	$('#Deck').empty().append(deck.generateDeck()).show();
+}
+function loadDeck() {
+	alert(this.innerText);
 }
 $(window).load(function() {
 	// Toggle debug mode on if neccessary.
@@ -83,6 +87,7 @@ $(window).load(function() {
 	$('.SetCancel').click(function() { hideSetPanel(); });
 	$('.SetSave').click(function() { hideSetPanel(); });
 
+	$('#SetList a').live('click', loadDeck);
 	if( DEBUG_MODE ) {
 		$('html').width(320).height(480);
 		$('#ConfigWindowOptions, #SetWindowList').width(320*.85);
@@ -113,6 +118,7 @@ $(window).load(function() {
 					<div id="NewSet">
 						<input type="text" id="newSet_name"/>
 					</div>
+					<div id="SetList"></div>
 				</div>
 			</div>
 			<div id="ConfigWindow">

@@ -1,5 +1,4 @@
-if( undefined == LIBRARY ) var LIBRARY = [];
-LIBRARY = LIBRARY.concat([
+[
 	{
 		name: 'Adventurer',
 		cost: 6,
@@ -375,4 +374,4 @@ LIBRARY = LIBRARY.concat([
 			victory: false
 		}
 	}
-]);
+]

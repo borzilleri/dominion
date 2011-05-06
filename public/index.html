@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" manifest="cache-manifest.manifest">
+	<head>
+		<title>Dominion</title>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=devicewidth; 
+			initial-scale=1.0; maximum-scale=1; user-scalable=0;">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+		<!-- CSS Files -->
+		<link rel="stylesheet" href="css/jquery.mobile-1.0a4.1.min.css" 
+			type="text/css" charset="utf-8" media="screen">
+		
+		<!-- Third Party Library Files -->
+		<script src="js/lib/jquery-1.5.2.min.js" type="text/javascript" 
+			charset="utf-8"></script>
+		<script src="js/lib/jquery.mobile-1.0a4.1.min.js" type="text/javascript"
+			charset="utf-8"></script>
+		<script src="js/lib/underscore-min.js" type="text/javascript"
+			charset="utf-8"></script>
+		<script src="js/lib/backbone-min.js" type="text/javascript"
+			charset="utf-8"></script>
+
+		<!-- Our own classes/libraries -->
+		<!-- models -->
+		<script src="js/models/card.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/models/deck.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- views -->
+		<script src="js/views/options.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- controller -->
+		<script src="js/controllers/app.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- Data files -->
+		<script src="js/data.js" type="text/javascript" 
+			charset="utf-8"></script>
+
+		<script type="text/javascript" charset="utf-8">
+			$(function() {
+				window.LIBRARY = new Deck(CARD_MODELS);
+				window.app = new Dominion();
+			});
+		</script>
+	</head>
+	<body>
+		<div data-role="page" id="home">
+			<div data-role="header">
+				<h1>Dominion</h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar"><ul>
+					<li><a href="#home" data-role="button" data-icon="refresh" 
+						data-iconpos="top" id="home-newDeck" class="newDeck">New</a></li>
+					<li><a href="#decks" data-role="button" data-icon="grid"
+						data-iconpos="top" id="home-deckList">List</a></li>
+					<li><a href="#options" data-role="button" data-icon="gear"
+						data-iconpos="top" id="home-options">Options</a></li>
+				</ul></div>
+			</div>
+		</div>
+
+		<div data-role="page" id="decks">
+			<div data-role="header">
+				<h1>Saved Decks</h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar"><ul>
+					<li><a data-role="button" data-icon="refresh" 
+						data-iconpos="top" id="deck-newDeck" class="newDeck">New</a></li>
+					<li><a href="#decks" data-role="button" data-icon="grid"
+						data-iconpos="top" id="deck-deckList" class="ui-btn-active"
+						>List</a></li>
+					<li><a href="#options" data-role="button" data-icon="gear"
+						data-iconpos="top" id="deck-options">Options</a></li>
+				</ul></div>
+			</div>
+		</div>
+
+		<div data-role="page" id="options">
+			<div data-role="header">
+				<h1>Options</h1>
+			</div>
+			<div data-role="content">
+			<h2>Deck Composition</h2>
+			<ul data-role="listview" data-inset="true">
+				<li data-role="fieldcontain">
+				<label for="deck_requireDefense">Require Defense</label>
+				<select name="deck_requireDefense" id="deck_requireDefense"
+					data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+				<li data-role="fieldcontain">
+				<label for="deck_chooseProsperityBasics">Random Prosperity Basics</label>
+				<select name="de
+					el: $('k_chooseProsperityBasics" id="deck_chooseProsperityBasics"
+					data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+			</ul>
+
+			<h2>Display</h2>
+			<ul data-role="listview" data-inset="true">
+				<li data-role="fieldcontain">
+				<label for="display_Set">Show Set</label>
+				<select name="display_Set" id="display_Set" data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+				<li data-role="fieldcontain">
+				<label for="display_Cost">Show Cost</label>
+				<select name="display_Cost" id="display_Cost" data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+				<li data-role="fieldcontain">
+				<label for="display_Type">Show Type</label>
+				<select name="display_Type" id="display_Type" data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+			</ul>
+			</div>
+			<div data-role="footer" data-position="fixed">
+				<div data-role="navbar"><ul>
+					<li><a href="#home" data-role="button" data-icon="refresh" 
+						data-iconpos="top" id="opt-newDeck" class="newDeck">New</a></li>
+					<li><a href="#decks" data-role="button" data-icon="grid"
+						data-iconpos="top" id="opt-deckList">List</a></li>
+					<li><a href="#options" data-role="button" data-icon="gear"
+						data-iconpos="top" id="opt-options" class="ui-btn-active"
+						>Options</a></li>
+				</ul></div>
+		</div>
+
+		<script id="template-options" type="text/x-underscore-template">
+			<h2>Deck Composition</h2>
+			<ul data-role="listview" data-inset="true">
+				<li data-role="fieldcontain">
+				<label for="deck_requireDefense">Require Defense</label>
+				<select name="deck_requireDefense" id="deck_requireDefense"
+					data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+				<li data-role="fieldcontain">
+				<label for="deck_chooseProsperityBasics">Random Prosperity Basics</label>
+				<select name="de
+					el: $('k_chooseProsperityBasics" id="deck_chooseProsperityBasics"
+					data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+			</ul>
+
+			<h2>Display</h2>
+			<ul data-role="listview" data-inset="true">
+				<li data-role="fieldcontain">
+				<label for="display_Set">Show Set</label>
+				<select name="display_Set" id="display_Set" data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+				<li data-role="fieldcontain">
+				<label for="display_Cost">Show Cost</label>
+				<select name="display_Cost" id="display_Cost" data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+				<li data-role="fieldcontain">
+				<label for="display_Type">Show Type</label>
+				<select name="display_Type" id="display_Type" data-role="slider">
+					<option value="off">No</option>
+					<option value="on">Yes</option>
+				</select>
+				</li>
+			</ul>
+		</script>
+	</body>
+</html>
+

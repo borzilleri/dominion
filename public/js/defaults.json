@@ -11,4 +11,3 @@ var CONFIG_DEFAULTS = {
 	'deck_ChooseProsperityBasics': true, // Auto-Choose Colony/Platinum cards based on % of prosperity cards in deck.
 	'saved_decks': {}               // Array of saved deck objects.
 };
-

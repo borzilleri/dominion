@@ -1,14 +1,9 @@
-window.Options_View = Backbone.View.extend({
+window.Options_View = Base_View.extend({
 	tagName: 'form',
-	className: '',
 	id: '#options-content',
-	template: null,
 	initialize: function(options) {
-		_(this).bindAll(
-			'render'
-		);
 		this.template = _.template($('#template-options').html());
-
+		Base_View.prototype.call(this,options);
 		this.render();
 	},
 	render: function() {

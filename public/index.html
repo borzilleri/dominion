@@ -47,12 +47,12 @@
 	</head>
 	<body>
 		<div data-role="page" id="home">
-			<div data-role="header">
+			<div data-role="header" data-backbtn="false">
 				<h1>Dominion</h1>
 			</div>
 			<div data-role="content">
 			</div>
-			<div data-role="footer" data-position="fixed">
+			<div data-role="footer">
 				<div data-role="navbar"><ul>
 					<li><a href="#home" data-role="button" data-icon="refresh" 
 						data-iconpos="top" id="home-newDeck" class="newDeck">New</a></li>
@@ -65,12 +65,24 @@
 		</div>
 
 		<div data-role="page" id="decks">
-			<div data-role="header">
+			<div data-role="header" data-backbtn="false">
 				<h1>Saved Decks</h1>
 			</div>
 			<div data-role="content">
+				<ul data-role="listview">
+					<li data-role="list-divider">Your Sets</li>
+					<li>Set 1</li>
+					<li data-role="list-divider">Dominion Sets</li>
+					<li>First Game</li>
+					<li>Big Money</li>
+					<li>Interaction</li>
+					<li data-role="list-divider">Intrigue Sets</li>
+					<li>Victory Dance</li>
+					<li>Secret Schemes</li>
+					<li>Best Wishes</li>
+				</ul>
 			</div>
-			<div data-role="footer" data-position="fixed">
+			<div data-role="footer">
 				<div data-role="navbar"><ul>
 					<li><a data-role="button" data-icon="refresh" 
 						data-iconpos="top" id="deck-newDeck" class="newDeck">New</a></li>
@@ -84,7 +96,7 @@
 		</div>
 
 		<div data-role="page" id="options">
-			<div data-role="header">
+			<div data-role="header" data-backbtn="false">
 				<h1>Options</h1>
 			</div>
 			<div data-role="content">
@@ -134,7 +146,7 @@
 				</li>
 			</ul>
 			</div>
-			<div data-role="footer" data-position="fixed">
+			<div data-role="footer">
 				<div data-role="navbar"><ul>
 					<li><a href="#home" data-role="button" data-icon="refresh" 
 						data-iconpos="top" id="opt-newDeck" class="newDeck">New</a></li>

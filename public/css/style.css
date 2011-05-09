@@ -213,3 +213,10 @@ div.qtip-content {
 	cursor: pointer;
 }
 
+#SaveBox {
+	display: none;
+}
+
+#SaveBox input {
+	width:80%;
+}

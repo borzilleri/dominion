@@ -70,6 +70,14 @@ function generateDeck() {
 function loadDeck() {
 	alert(this.innerText);
 }
+function showSave() {
+	$('#SaveBox').slideDown();
+}
+function hideSave() {
+	$('#SaveBox').slideUp();
+}
+
+
 $(window).load(function() {
 	// Toggle debug mode on if neccessary.
 	DEBUG_MODE = ('#debug' == window.location.hash);
@@ -78,6 +86,7 @@ $(window).load(function() {
 	$('#showConfig').click(showConfigPanel);
 	$('#generateDeck').click(generateDeck);
 	$('#showSets').click(showSets);
+	$('#saveDeck').click(showSave);
 
 	// Config Window bindings
 	$('#ConfigWindow input').change(config.cacheSetting);
@@ -85,6 +94,9 @@ $(window).load(function() {
 	$('.OptionsSave').click(function() { hideConfigPanel(true); });
 	$('.SetCancel').click(function() { hideSetPanel(); });
 	$('.SetSave').click(function() { hideSetPanel(); });
+
+	// Save Box Bindings
+	$('#saveDeckCancel').click(hideSave);
 
 	$('#SetList a').live('click', loadDeck);
 	if( DEBUG_MODE ) {
@@ -102,10 +114,17 @@ $(window).load(function() {
 		<div id="Main">
 			<div id="Buttons">
 				<ul>
-					<li><button id="generateDeck">New Deck</button></li>
+					<li><button id="generateDeck">New</button></li>
+					<li><button id="saveDeck">Save</button></li>
+					<li><button id="showSets">List</button</li>
 					<li><button id="showConfig">Config</button></li>
-					<li><button id="showSets">Decks</button</li>
 				</ul>
+			</div>
+
+			<div id="SaveBox">
+				<input id="saveDeckName" type="text">
+				<button id="saveDeckCancel">Cancel</button>
+				<button id="saveDeckCommit">Save</button>
 			</div>
 
 			<div id="SetWindow">

@@ -13,25 +13,27 @@
 
 		<!-- Third Party Library Files -->
 		<script src="javascript/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/json.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/json2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/backbone-min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="javascript/lib/jsonquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="javascript/lib/store.js" type="text/javascript" charset="utf-8"></script>
 		<script src="javascript/lib/qtip.jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
 		<!-- Data Files -->
 		<script src="data/defaults.json" type="text/javascript" charset="utf-8"></script>
-		<script src="data/basic.json" type="text/javascript" charset="utf-8"></script>
-		<script src="data/intrigue.json" type="text/javascript" charset="utf-8"></script>
-		<script src="data/seaside.json" type="text/javascript" charset="utf-8"></script>
-		<script src="data/alchemy.json" type="text/javascript" charset="utf-8"></script>
-		<script src="data/prosperity.json" type="text/javascript" charset="utf-8"></script>
-		<script src="data/promo.json" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/data.js" type="text/javascript" charset="utf-8"></script>
 
 		<!-- Classes/Libraries -->
+		<script src="javascript/model.card.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/collection.library.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/view.options.js" type="text/javascript" charset="utf-8"></script>
 		<script src="javascript/class.config.js" type="text/javascript" charset="utf-8"></script>
 		<script src="javascript/class.deck.js" type="text/javascript" charset="utf-8"></script>
 
 		<script type="text/javascript" charset="utf-8">
+window.Options = new Options_View();
+
 // If we have a new manifest, swap over to the new data when it's ready.
 window.applicationCache.addEventListener('updateready', function() {
 	console.log('Update Ready, swapping cache.');
@@ -83,7 +85,7 @@ $(window).load(function() {
 	DEBUG_MODE = ('#debug' == window.location.hash);
 
 	// Button Bindings
-	$('#showConfig').click(showConfigPanel);
+	//$('#showConfig').click(showConfigPanel);
 	$('#generateDeck').click(generateDeck);
 	$('#showSets').click(showSets);
 	$('#saveDeck').click(showSave);

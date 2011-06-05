@@ -1,12 +1,20 @@
 window.App_Controller = Backbone.Controller.extend({
+	routes: {
+		'options': 'showOptions',
+		'*default': 'defaultAction'
+	},
   initialize: function(options) {
-    this.route('options', this.showOptions);
-    _(this).bindAll('showOptions','showDeck');
+    _(this).bindAll(
+    	'showOptions',
+    	'defaultAction'
+    );
+    _(this
+    this.library = new Library_Collection(window.LIBRARY);
   },
   showOptions: function() {
-    alert('opts');
+  	var options = new Options_View();
   },
-  showDeck: function() {
-    alert('deck');
-  }
+	defaultAction: function(path) {
+		$('#content').empty();
+	}
 });

@@ -1,0 +1,244 @@
+@import "compass/reset";
+
+$bg-color: #ffffff;
+$text-color: #000000;
+$button-bg: #000000;
+$button-border: #777777;
+$button-text: #dddddd;
+
+html {
+	background-color: $bg-color;
+}
+body {
+	color: $text-color;
+	font-size: 100%;
+	font-family: Helvetica, Verdana, sans-serif;
+	text-rendering: optimizeLegibility;
+	width: 100%;
+	height: 460px;
+	max-height: 460px;
+}
+
+.button {
+  color: $button-text;
+  background-color: $button-bg;
+  border: 1px solid $button-border;
+	text-decoration: none;
+	padding: 5px 10px;
+}
+.button:active {
+	color: $button-bg;
+	background-color: $button-text;
+}
+
+nav {
+	text-align: center;
+	margin-top: 5px;
+	a {
+		margin: 0 -2px;
+		&:first-child {
+			border-bottom-left-radius: 5px;
+		}
+		&:last-child {
+			border-bottom-right-radius: 5px;
+		}
+	}
+}
+
+#main {
+	background-color: whiute;
+	border: 1px solid #aaa;
+	margin: 2px;
+	padding: 2px;
+}
+
+#Footer {
+	color: gray;
+	font-size: .3em;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+	font-size: 1em;
+	margin: 0 20px;
+	padding: 0;
+	border-bottom: 1px solid black;
+}
+
+
+/*** Buttons Styles ***/
+#Buttons {
+	text-align: center;
+	margin: 3px 0;
+}
+#Buttons ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#Buttons li {
+	display: inline;
+}
+
+
+#options {
+
+}
+/*** Config Window Styles ***/
+#SetWindow, 
+#ConfigWindow {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 1000;
+	display: none;
+}
+#SetWindowList, 
+#ConfigWindowOptions {
+	border: 3px double black;
+	background-color: white;
+	width: 85%;
+	margin: 20px auto;
+	padding: 10px;
+	text-align: left;
+}
+#ConfigWindow fieldset {
+	border: 1px solid black;
+}
+#ConfigWindow fieldset fieldset {
+	border: 1px dashed grey;
+	padding: 1px 3px;
+}
+#ConfigWindow input[type="number"] {
+	border: 1px solid grey;
+	font-family: monospace;
+	padding: 2px;
+}
+.ConfigButtons {
+	width: 100%;
+	margin: auto;
+}
+.ConfigButtons .OptionsSave {
+	float: right;
+}
+.SetButtons button
+.ConfigButtons button {
+	padding: 2px;
+	margin: 10px;
+}
+#set_Alchemy_Options {
+	margin-left: 20px;
+}
+
+.SetButtons {
+	margin: auto;
+}
+.SetButtons .SetSave {
+	float: right;
+}
+#NewSet {
+	width: 100%;
+	margin: 0;
+	padding: 4px;
+	text-align: center;
+}
+#NewSet input {
+	width: 90%;
+}
+/*** Deck Display Styles ***/
+#Deck {
+	margin: 0 auto;
+}
+#Deck ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+#Deck li {
+	border-top: 1px dotted grey;
+	padding: 7px 0;
+}
+#Deck li:first-child {
+	border-top: none;
+}
+#Deck li.hilight {
+	background-color: lightgreen;
+}
+#Deck button {
+	padding: 0 4px;
+	margin: 0 3px;
+}
+#Deck .replacementCard {
+	background-color: lightblue;
+}
+#Deck .cardName {
+}
+#Deck .cardSet {
+	font-family: monospace;
+	font-weight: bold;
+	text-align: right;
+	margin-right: 2px;
+	display: block;
+	float: left;
+}
+
+#Deck .cardCost {
+	font-family: monospace;
+	margin-left: 1px;
+	float: right;
+	text-align: right;
+}
+#Deck .cardType {
+	font-family: monospace;
+	margin-left: 1px;
+	float: right;
+}
+
+#Deck .Intrigue {
+	color: #00f;
+}
+#Deck .Seaside {
+	color: #ff4500;
+}
+#Deck .Alchemy {
+	color: #A0A;
+}
+#Deck .Promo {
+	color: #888;
+}
+#Deck .Prosperity {
+	color: #050;
+}
+#Deck .type_Action {
+}
+#Deck .type_Attack {
+	color: red;
+}
+#Deck .type_Defense {
+	color: blue;
+}
+#Deck .type_Duration {
+	color: #ff4500;
+}
+#Deck .type_Treasure {
+	color: #ac853f;
+}
+#Deck .type_Victory {
+	color: #006400;
+}
+
+div.qtip-content {
+	cursor: pointer;
+}
+
+#SaveBox {
+	display: none;
+}
+
+#SaveBox input {
+	width:80%;
+}

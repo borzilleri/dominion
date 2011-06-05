@@ -2,6 +2,7 @@ var deck = (function() {
 	var api = {},
 		prosperityBasics = false,
 		cards = [],
+		currentDeckName = null,
 		deckSize = 10,
 		cardSelection = [],
 		savedDecks = config.get('saved_decks')
@@ -466,6 +467,15 @@ var deck = (function() {
 			$(ul).append(buildCardListItemHTML(cards[i]));
 		}
 		return ul;
+	}
+
+	api.saveCurrent = function(name) {
+		name = $.trim(name);
+		if( undefined == name || null == name || '' == name ) return false;
+
+
+
+		return true;
 	}
 
 	return api;

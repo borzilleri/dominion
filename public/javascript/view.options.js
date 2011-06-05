@@ -1,13 +1,22 @@
 window.Options_View = Backbone.View.extend({
-  el: $('#ConfigWindow'),
+	id: 'options',
   events: {
-    'click #showConfig': 'showOptions',
+  	'click .cancel': 'close',
+		'click .save': 'save'
   },
-  initialize: function(options) {
-    _(this).bindAll('showOptions');
-  },
-  showOptions: function(e) {
-    $(this.el).show();
-    e.preventDefault();
-  }
+	initialize: function(options) {
+		_(this).bindAll('render');
+		this.template = _.template($('#template-options').html());
+		this.render();
+	},
+	render: function() {
+		$(this.el).html(this.template({})).appendTo($('#content'));
+	},
+	close: function(e) {
+		window.location.hash = '';
+		e.preventDefault();
+	},
+	save: function(e) {
+		this.close(e);
+	}
 });

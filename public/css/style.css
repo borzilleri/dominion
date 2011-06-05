@@ -1,222 +1,376 @@
-html {
-	background-color: #ddd;
+/* line 17, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
+
+/* line 20, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
-	color: black;
-	font-size: 100%;
-	font-family: Verdana, Helvetica, sans-serif;
-	text-rendering: optimizeLegibility;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 460px;
-	max-height: 460px;
+  line-height: 1;
 }
 
-#Main {
-	background-color: white;
-	border: 1px solid #aaa;
-	margin: 2px;
-	padding: 2px;
-
+/* line 22, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
 }
+
+/* line 24, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 26, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 28, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 101, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 115, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+/* line 9, ../../sass/style.scss */
+html {
+  background-color: white;
+}
+
+/* line 12, ../../sass/style.scss */
+body {
+  color: black;
+  font-size: 100%;
+  font-family: Helvetica, Verdana, sans-serif;
+  text-rendering: optimizeLegibility;
+  width: 100%;
+  height: 460px;
+  max-height: 460px;
+}
+
+/* line 22, ../../sass/style.scss */
+.button {
+  color: #dddddd;
+  background-color: black;
+  border: 1px solid #777777;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+/* line 29, ../../sass/style.scss */
+.button:active {
+  color: black;
+  background-color: #dddddd;
+}
+
+/* line 34, ../../sass/style.scss */
+nav {
+  text-align: center;
+  margin-top: 5px;
+}
+/* line 37, ../../sass/style.scss */
+nav a {
+  margin: 0 -2px;
+}
+/* line 39, ../../sass/style.scss */
+nav a:first-child {
+  border-bottom-left-radius: 5px;
+}
+/* line 42, ../../sass/style.scss */
+nav a:last-child {
+  border-bottom-right-radius: 5px;
+}
+
+/* line 48, ../../sass/style.scss */
+#main {
+  background-color: whiute;
+  border: 1px solid #aaa;
+  margin: 2px;
+  padding: 2px;
+}
+
+/* line 55, ../../sass/style.scss */
 #Footer {
-	color: gray;
-	font-size: .3em;
-	text-align: center;
+  color: gray;
+  font-size: .3em;
+  text-align: center;
 }
 
+/* line 61, ../../sass/style.scss */
 h1 {
-	text-align: center;
-	font-size: 1em;
-	margin: 0 20px;
-	padding: 0;
-	border-bottom: 1px solid black;
-}
-
-button {
-	font-family: monospace;
-	border: 1px solid black;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	font-size: 1.25em;
-	background-color: #c0c0c0;
-	padding: 3px;
-}
-button:active {
-	background-color: black;
-	color: #c0c0c0;
+  text-align: center;
+  font-size: 1em;
+  margin: 0 20px;
+  padding: 0;
+  border-bottom: 1px solid black;
 }
 
 /*** Buttons Styles ***/
+/* line 71, ../../sass/style.scss */
 #Buttons {
-	text-align: center;
-	margin: 3px 0;
-}
-#Buttons ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-#Buttons li {
-	display: inline;
+  text-align: center;
+  margin: 3px 0;
 }
 
+/* line 75, ../../sass/style.scss */
+#Buttons ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 80, ../../sass/style.scss */
+#Buttons li {
+  display: inline;
+}
 
 /*** Config Window Styles ***/
-#SetWindow, 
+/* line 90, ../../sass/style.scss */
+#SetWindow,
 #ConfigWindow {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	z-index: 1000;
-	display: none;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 1000;
+  display: none;
 }
-#SetWindowList, 
+
+/* line 101, ../../sass/style.scss */
+#SetWindowList,
 #ConfigWindowOptions {
-	border: 3px double black;
-	background-color: white;
-	width: 85%;
-	margin: 20px auto;
-	padding: 10px;
-	text-align: left;
+  border: 3px double black;
+  background-color: white;
+  width: 85%;
+  margin: 20px auto;
+  padding: 10px;
+  text-align: left;
 }
+
+/* line 109, ../../sass/style.scss */
 #ConfigWindow fieldset {
-	border: 1px solid black;
+  border: 1px solid black;
 }
+
+/* line 112, ../../sass/style.scss */
 #ConfigWindow fieldset fieldset {
-	border: 1px dashed grey;
-	padding: 1px 3px;
+  border: 1px dashed grey;
+  padding: 1px 3px;
 }
+
+/* line 116, ../../sass/style.scss */
 #ConfigWindow input[type="number"] {
-	border: 1px solid grey;
-	font-family: monospace;
-	padding: 2px;
+  border: 1px solid grey;
+  font-family: monospace;
+  padding: 2px;
 }
+
+/* line 121, ../../sass/style.scss */
 .ConfigButtons {
-	width: 100%;
-	margin: auto;
+  width: 100%;
+  margin: auto;
 }
+
+/* line 125, ../../sass/style.scss */
 .ConfigButtons .OptionsSave {
-	float: right;
+  float: right;
 }
+
+/* line 129, ../../sass/style.scss */
 .SetButtons button
 .ConfigButtons button {
-	padding: 2px;
-	margin: 10px;
+  padding: 2px;
+  margin: 10px;
 }
+
+/* line 133, ../../sass/style.scss */
 #set_Alchemy_Options {
-	margin-left: 20px;
+  margin-left: 20px;
 }
 
+/* line 137, ../../sass/style.scss */
 .SetButtons {
-	margin: auto;
+  margin: auto;
 }
+
+/* line 140, ../../sass/style.scss */
 .SetButtons .SetSave {
-	float: right;
+  float: right;
 }
+
+/* line 143, ../../sass/style.scss */
 #NewSet {
-	width: 100%;
-	margin: 0;
-	padding: 4px;
-	text-align: center;
+  width: 100%;
+  margin: 0;
+  padding: 4px;
+  text-align: center;
 }
+
+/* line 149, ../../sass/style.scss */
 #NewSet input {
-	width: 90%;
+  width: 90%;
 }
+
 /*** Deck Display Styles ***/
+/* line 153, ../../sass/style.scss */
 #Deck {
-	margin: 0 auto;
+  margin: 0 auto;
 }
+
+/* line 156, ../../sass/style.scss */
 #Deck ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
+
+/* line 161, ../../sass/style.scss */
 #Deck li {
-	border-top: 1px dotted grey;
-	padding: 7px 0;
+  border-top: 1px dotted grey;
+  padding: 7px 0;
 }
+
+/* line 165, ../../sass/style.scss */
 #Deck li:first-child {
-	border-top: none;
+  border-top: none;
 }
+
+/* line 168, ../../sass/style.scss */
 #Deck li.hilight {
-	background-color: lightgreen;
+  background-color: lightgreen;
 }
+
+/* line 171, ../../sass/style.scss */
 #Deck button {
-	padding: 0 4px;
-	margin: 0 3px;
+  padding: 0 4px;
+  margin: 0 3px;
 }
+
+/* line 175, ../../sass/style.scss */
 #Deck .replacementCard {
-	background-color: lightblue;
+  background-color: lightblue;
 }
-#Deck .cardName {
-}
+
+/* line 180, ../../sass/style.scss */
 #Deck .cardSet {
-	font-family: monospace;
-	font-weight: bold;
-	text-align: right;
-	margin-right: 2px;
-	display: block;
-	float: left;
+  font-family: monospace;
+  font-weight: bold;
+  text-align: right;
+  margin-right: 2px;
+  display: block;
+  float: left;
 }
 
+/* line 189, ../../sass/style.scss */
 #Deck .cardCost {
-	font-family: monospace;
-	margin-left: 1px;
-	float: right;
-	text-align: right;
+  font-family: monospace;
+  margin-left: 1px;
+  float: right;
+  text-align: right;
 }
+
+/* line 195, ../../sass/style.scss */
 #Deck .cardType {
-	font-family: monospace;
-	margin-left: 1px;
-	float: right;
+  font-family: monospace;
+  margin-left: 1px;
+  float: right;
 }
 
+/* line 201, ../../sass/style.scss */
 #Deck .Intrigue {
-	color: #00f;
+  color: #00f;
 }
+
+/* line 204, ../../sass/style.scss */
 #Deck .Seaside {
-	color: #ff4500;
+  color: #ff4500;
 }
+
+/* line 207, ../../sass/style.scss */
 #Deck .Alchemy {
-	color: #A0A;
+  color: #A0A;
 }
+
+/* line 210, ../../sass/style.scss */
 #Deck .Promo {
-	color: #888;
+  color: #888;
 }
+
+/* line 213, ../../sass/style.scss */
 #Deck .Prosperity {
-	color: #050;
+  color: #050;
 }
-#Deck .type_Action {
-}
+
+/* line 218, ../../sass/style.scss */
 #Deck .type_Attack {
-	color: red;
+  color: red;
 }
+
+/* line 221, ../../sass/style.scss */
 #Deck .type_Defense {
-	color: blue;
+  color: blue;
 }
+
+/* line 224, ../../sass/style.scss */
 #Deck .type_Duration {
-	color: #ff4500;
+  color: #ff4500;
 }
+
+/* line 227, ../../sass/style.scss */
 #Deck .type_Treasure {
-	color: #ac853f;
+  color: #ac853f;
 }
+
+/* line 230, ../../sass/style.scss */
 #Deck .type_Victory {
-	color: #006400;
+  color: #006400;
 }
 
+/* line 234, ../../sass/style.scss */
 div.qtip-content {
-	cursor: pointer;
+  cursor: pointer;
 }
 
+/* line 238, ../../sass/style.scss */
 #SaveBox {
-	display: none;
+  display: none;
 }
 
+/* line 242, ../../sass/style.scss */
 #SaveBox input {
-	width:80%;
+  width: 80%;
 }

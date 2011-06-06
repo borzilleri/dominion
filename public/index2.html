@@ -22,34 +22,54 @@
 		<script src="javascript/data.js" type="text/javascript" charset="utf-8"></script>
 
 		<!-- Classes/Libraries -->
-		<script src="javascript/model.card.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/collection.library.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/view.options.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/controller.app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/models/card.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/models/library.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/views/base.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/views/options.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/views/deck.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/views/sets.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/controllers/dominion.js" type="text/javascript" charset="utf-8"></script>
 
 		<script type="text/javascript" charset="utf-8">
 $(function() {
-	window.app = new App_Controller();
+	window.app = new Dominion_Controller();
 	Backbone.history.start();
 });
 </script>
 			</head>
 			<body>
-				<nav>
-				<a href="#" class="button newSet">New</a>
-				<a href="#sets" class="button">List</a>
-				<a href="#options" class="button">Options</a>
-				</nav>
-
 				<div id="content">
 				</div>
 
-				<script id="tempalet-setlist" type="text/x-underscore-template">
+				<script id="template-deck" type="text/x-underscore-template">
+					<nav>
+					<a href="#deck/new" class="button newSet">New</a>
+					<a href="#sets" class="button">List</a>
+					<a href="#options" class="button">Options</a>
+					</nav>
+					<ul>
+
+					</ul>
+				</script>
+				<script id="template-card" type="text/x-underscore-template">
+					<li>
+					<span class="cardName">
+					</li>
+				</script>
+				<script id="template-sets" type="text/x-underscore-template">
+					<nav>
+					<a href="#deck/new" class="button newSet">New</a>
+					<a href="#options" class="button">Options</a>
+					</nav>
 					<div>
 						Set Listing
 					</div>
 				</script>
 				<script id="template-options" type="text/x-underscore-template">
+					<nav>
+					<a href="#deck/new" class="button newSet">New</a>
+					<a href="#sets" class="button">List</a>
+					</nav>
 					<fieldset>
 						<legend>Sets Included</legend>
 						<div>
@@ -143,11 +163,6 @@ $(function() {
 							<label for="sort_Cost">Cost</label><br>
 						</fieldset>
 					</fieldset>
-
-					<div class="ConfigButtons">
-						<a href="#" class="button cancel">Cancel</a>
-						<a href="#" class="button save">Save</a>
-					</div>
 				</script>
 			</body>
 		</html>

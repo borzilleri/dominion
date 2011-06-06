@@ -48,13 +48,36 @@ $(function() {
 					<a href="#options" class="button">Options</a>
 					</nav>
 					<ul>
+						<% _(set).each(function(card) { %>
+						<li>
+						<span class="cardSet <%= card.set %>">[<% print(card.set.substring(1)); %>]</span>
+						<span class="cardName"><%= card.name %></span>
+						<span class="cardType">[<%
+							if( card.type.action ) {
+								print('<span class="type_action">A</span>');
+							}
+							if( card.type.treasure ) {
+								print('<span class="type_treasure">T</span>');
+							}
+							if( card.type.victory ) {
+								print('<span class="type_victory">V</span>');
+							}
 
+							if( card.type.attack ) {
+								print('-<span class="type_attack">A</span>');
+							}
+							else if( card.type.reaction ) {
+								print('-<span class="type_attack">A</span>');
+							}
+
+							if( card.type.duration ) {
+								print('-<span class="type_duration">D</span>');
+							}
+							%>]</span>
+						<span class="cardCost">[<%= card.cost %><%= card.costStr %></span>
+						</li>
+						<% }); %>
 					</ul>
-				</script>
-				<script id="template-card" type="text/x-underscore-template">
-					<li>
-					<span class="cardName">
-					</li>
 				</script>
 				<script id="template-sets" type="text/x-underscore-template">
 					<nav>

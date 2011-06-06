@@ -11,8 +11,8 @@ window.Base_View = Backbone.View.extend({
 	},
 	init: function(options) {
 	},
-	render: function() {
-		$(this.el).html(this.template({}));
+	render: function(data) {
+		$(this.el).html(this.template(data));
 		$('#content').html($(this.el));
 	}
 });

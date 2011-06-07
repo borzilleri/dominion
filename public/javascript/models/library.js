@@ -4,13 +4,13 @@ window.Library_Collection = Backbone.Collection.extend({
     return card.get('name');
   },
   compare_Set: function(card) {
-    return card.get('set')+'_'
-      +card.get('name');
+    return card.get('set')+'_'+
+      card.get('name');
   },
   compare_Cost: function(card) {
-    return card.get('cost')+'_'
-      +(card.get('potion')?'1':'0')+'_' 
-      +card.get('name');
+    return card.get('cost')+'_'+
+      (card.get('potion')?'1':'0')+'_'+
+			card.get('name');
   },
   sortBySet: function() {
     this.comparator = this.compare_Set;

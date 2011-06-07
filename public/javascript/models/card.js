@@ -4,7 +4,8 @@ window.Card_Model = Backbone.Model.extend({
   },
   toJSON: function() {
     var json = Backbone.Model.prototype.toJSON.call(this);
-    json.setAbbrev = this.get('set').substring(1);
-    json.costStr = this.cost + (this.potion?'P':'&nbsp');
+    json.setAbbrev = this.get('set').substring(0,1);
+    json.costStr = this.get('cost') + (this.get('potion')?'P':'&nbsp');
+    return json;
   }
 });

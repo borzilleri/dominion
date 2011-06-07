@@ -50,7 +50,7 @@ $(function() {
 					<ul>
 						<% _(set).each(function(card) { %>
 						<li>
-						<span class="cardSet <%= card.set %>">[<% print(card.set.substring(1)); %>]</span>
+						<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
 						<span class="cardName"><%= card.name %></span>
 						<span class="cardType">[<%
 							if( card.type.action ) {
@@ -66,15 +66,15 @@ $(function() {
 							if( card.type.attack ) {
 								print('-<span class="type_attack">A</span>');
 							}
-							else if( card.type.reaction ) {
-								print('-<span class="type_attack">A</span>');
+							else if( card.type.defense ) {
+								print('-<span class="type_defense">R</span>');
 							}
 
 							if( card.type.duration ) {
 								print('-<span class="type_duration">D</span>');
 							}
 							%>]</span>
-						<span class="cardCost">[<%= card.cost %><%= card.costStr %></span>
+						<span class="cardCost">[<%= card.costStr %>]</span>
 						</li>
 						<% }); %>
 					</ul>

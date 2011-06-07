@@ -117,8 +117,7 @@ var deck = (function() {
 	 * @param array cardArray An array of cards to select from.
 	 * @return object The card selected from cardArray
 	 */
-	function getRandomCard(cardArray, forceNotInDeck) {
-		if( undefined===forceNotInDeck ) forceNotInDeck = true;
+	function getRandomCard(cardArray, forceNotInDeck) { if( undefined===forceNotInDeck ) forceNotInDeck = true;
 		var card;
 		do {
 			card = cardArray[Math.floor(Math.random()*cardArray.length)];

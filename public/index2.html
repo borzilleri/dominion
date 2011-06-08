@@ -43,9 +43,9 @@ $(function() {
 
 				<script id="template-deck" type="text/x-underscore-template">
 					<nav>
-					<a href="#deck/new" class="button newSet">New</a>
-					<a href="#sets" class="button">List</a>
-					<a href="#options" class="button">Options</a>
+					<a href="#deck/new" class="button-left newSet">New</a>
+					<a href="#sets" class="button">Sets</a>
+					<a href="#options" class="button-right">Options</a>
 					</nav>
 					<ul>
 						<% _(set).each(function(card) { %>
@@ -81,8 +81,8 @@ $(function() {
 				</script>
 				<script id="template-sets" type="text/x-underscore-template">
 					<nav>
-					<a href="#deck/new" class="button newSet">New</a>
-					<a href="#options" class="button">Options</a>
+					<a href="#deck" class="button-left newSet">&lt; Back</a>
+					<a href="#options" class="button-right">Options</a>
 					</nav>
 					<div>
 						Set Listing
@@ -90,8 +90,7 @@ $(function() {
 				</script>
 				<script id="template-options" type="text/x-underscore-template">
 					<nav>
-					<a href="#deck/new" class="button newSet">New</a>
-					<a href="#sets" class="button">List</a>
+					<a href="<%= backTarget %>" class="button-left">&lt Back</a>
 					</nav>
 					<fieldset>
 						<legend>Sets Included</legend>

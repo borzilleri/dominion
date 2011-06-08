@@ -5,12 +5,6 @@ window.Deck_View = Backbone.View.extend({
 		'click .newSet': 'newDeck'
 	},
 	initialize: function(options) {
-		if( 'new' === options.set ) {
-			this.generateDeck();
-		}
-		else {
-			this.loadDeck(options.set);
-		}
 		_(this).bindAll(
 			'render',
 			'output',
@@ -19,17 +13,18 @@ window.Deck_View = Backbone.View.extend({
 			'loadDeck'
 		);
 
+		this.loadDeck(options.set);
 		this.template = _.template($('#template-deck').html());
 		this.render();
 		this.output();
 	},
 	render: function() {
 		$(this.el).html(this.template({
-			set: this.deck.toJSON()
+			set: (this.deck ? this.deck.toJSON() : [])
 		}));
 	},
 	output: function() {
-		$('#content').html($(this.el));
+		$('#content').html(this.el);
 	},
 	newDeck: function(e) {
 		this.generateDeck();
@@ -38,16 +33,24 @@ window.Deck_View = Backbone.View.extend({
 	},
 	generateDeck: function() {
 		console.log('[ generating deck ]');
-		this.deck = new Library_Collection();
 
+		this.deck = new Library_Collection();
 		while( this.deck.length < 10 ) {
 			var i = Math.floor(Math.random()*window.app.library.length);
 			var model = window.app.library.at(i).clone();
 			this.deck.add(model);
 		}
 		this.deck.sortByName();
+
+		window.app.lastDeck = this.deck;
 	},
 	loadDeck: function(deck) {
 		console.log('[ loading deck: '+deck+']');
+		if( !deck || 'last' == deck ) {
+			this.deck = window.app.lastDeck;
+		}
+		else {
+			// load the named set
+		}
 	}
 });

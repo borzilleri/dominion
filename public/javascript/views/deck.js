@@ -40,7 +40,7 @@ window.Deck_View = Backbone.View.extend({
 			var model = window.app.library.at(i).clone();
 			this.deck.add(model);
 		}
-		this.deck.sortByName();
+		this.deck.orderBy('name');
 
 		window.app.lastDeck = this.deck;
 	},

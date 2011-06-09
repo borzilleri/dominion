@@ -1,5 +1,9 @@
 window.Options_View = Backbone.View.extend({
 	id: 'options',
+	events: {
+		'change input': 'updateOption',
+		'change select': 'updateOption'
+	},
 	initialize: function(options) {
 		_(this).bindAll(
 			'render'
@@ -9,9 +13,15 @@ window.Options_View = Backbone.View.extend({
 	},
 	render: function() {
 		$(this.el).html(this.template({
+			options: window.options.toJSON(),
 			backTarget: window.app.backTarget,
-			options: {}
+			constants: window.options.constants
 		}));
 		$('#content').html(this.el);
-	}
+	},
+	updateOption: function(e) {
+		var $field = $(e.currentTarget);
+		console.log('[set: '+$field.attr('name')+' to: '+$field.val()+']');
+		window.options.updateSetting($field.attr('name'), $field.val());
+	},
 });

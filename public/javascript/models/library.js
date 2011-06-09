@@ -12,16 +12,16 @@ window.Library_Collection = Backbone.Collection.extend({
       (card.get('potion')?'1':'0')+'_'+
 			card.get('name');
   },
-  sortBySet: function() {
-    this.comparator = this.compare_Set;
-    this.sort();
-  },
-  sortByCost: function() {
-    this.comparator = this.comprare_Cost;
-    this.sort();
-  },
-  sortByName: function() {
-    this.comparator = this.compare_Name;
+  orderBy: function(sort) {
+    if( 'name' === sort ) {
+      this.comparator = this.compare_Name;
+    }
+    else if( 'set' === sort ) {
+      this.comparator = this.compare_Set;
+    }
+    else if( 'cost' === sort ) {
+      this.comparator = this.comprare_Cost;
+    }
     this.sort();
   }
 });

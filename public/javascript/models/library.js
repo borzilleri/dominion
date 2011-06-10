@@ -20,7 +20,7 @@ window.Library_Collection = Backbone.Collection.extend({
       this.comparator = this.compare_Set;
     }
     else if( 'cost' === sort ) {
-      this.comparator = this.comprare_Cost;
+      this.comparator = this.compare_Cost;
     }
     this.sort();
   }

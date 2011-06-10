@@ -6,7 +6,8 @@ window.Options_View = Backbone.View.extend({
 	},
 	initialize: function(options) {
 		_(this).bindAll(
-			'render'
+			'render',
+			'updateOption'
 		);
 		this.template = _.template($('#template-options').html());
 		this.render();

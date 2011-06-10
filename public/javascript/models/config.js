@@ -4,7 +4,7 @@ window.Config_Model = Backbone.Model.extend({
 		blackmarket_max: 200,
 		sort_fields: ['name','set','cost']
 	},
-	defaults_opts: {
+	defaults: {
 		// Included Sets
 		sets: {
 			Dominion: true,
@@ -39,7 +39,7 @@ window.Config_Model = Backbone.Model.extend({
 		if( options.librarySize ) {
 			this.constants.blackmarket_max = options.librarySize;
 		}
-		Backbone.Model.prototype.initialize.call(this,this.defaults_opts);
+		//Backbone.Model.prototype.initialize.call(this,this.defaults_opts);
 		this.fetch();
 	},
 	parse: function(resp) {

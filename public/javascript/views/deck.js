@@ -19,6 +19,9 @@ window.Deck_View = Backbone.View.extend({
 		this.output();
 	},
 	render: function() {
+		if( this.deck ) {
+		  this.deck.orderBy(window.options.get('sort'));
+    }
 		$(this.el).html(this.template({
 			set: (this.deck ? this.deck.toJSON() : [])
 		}));
@@ -40,7 +43,6 @@ window.Deck_View = Backbone.View.extend({
 			var model = window.app.library.at(i).clone();
 			this.deck.add(model);
 		}
-		this.deck.orderBy('name');
 
 		window.app.lastDeck = this.deck;
 	},

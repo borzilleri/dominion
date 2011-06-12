@@ -23,7 +23,8 @@ window.Deck_View = Backbone.View.extend({
 		  this.deck.orderBy(window.options.get('sort'));
     }
 		$(this.el).html(this.template({
-			set: (this.deck ? this.deck.toJSON() : [])
+			set: (this.deck ? this.deck.toJSON() : []),
+			options: window.options.toJSON()
 		}));
 	},
 	output: function() {

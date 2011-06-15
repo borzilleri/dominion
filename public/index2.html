@@ -40,15 +40,18 @@
 
 		<script id="template-deck" type="text/x-underscore-template">
 			<nav>
-			<a href="#deck/new" class="button-left newSet">New</a>
+			<a href="#" class="button-left newSet">New</a>
 			<a href="#sets" class="button">Sets</a>
 			<a href="#options" class="button-right">Options</a>
 			</nav>
 			<ul>
 				<% _(set).each(function(card) { %>
 					<li>
+					<% if( options.display.set ) { %>
 					<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
+					<% } %>
 					<span class="cardName"><%= card.name %></span>
+					<% if( options.display.type ) { %>
 					<span class="cardType">[<%
 						if( card.type.action ) {
 							print('<span class="type_action">A</span>');
@@ -71,7 +74,10 @@
 							print('-<span class="type_duration">D</span>');
 						}
 						%>]</span>
+					<% } %>
+					<% if( options.display.cost ) { %>
 					<span class="cardCost">[<%= card.costStr %>]</span>
+					<% } %>
 					</li>
 					<% }); %>
 			</ul>

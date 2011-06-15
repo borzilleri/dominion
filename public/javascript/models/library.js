@@ -1,5 +1,20 @@
 window.Library_Collection = Backbone.Collection.extend({
   model: Card_Model,
+  load: function(set) {
+    console.log('[ loading deck: '+set+']');
+  },
+  generate: function() {
+    while( this.length < 10 ) {
+      var i = Math.floor(Math.random()*window.app.library.length);
+      var model = window.app.library.at(i).clone();
+
+      if( !this.get(model.id) ) {
+        this.add(model);
+      }
+    }
+    this.orderBy('name');
+    window.app.lastDeck = this;
+  },
   compare_Name: function(card) {
     return card.get('name');
   },

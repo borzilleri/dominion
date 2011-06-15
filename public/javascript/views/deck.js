@@ -1,6 +1,6 @@
 window.Deck_View = Backbone.View.extend({
 	id: 'deck',
-	deck: new Library_Collection(),
+	deck: null,
 	events: {
 		'click .newSet': 'newDeck'
 	},
@@ -33,24 +33,17 @@ window.Deck_View = Backbone.View.extend({
 	},
 	generateDeck: function() {
 		console.log('[ generating deck ]');
-
 		this.deck = new Library_Collection();
-		while( this.deck.length < 10 ) {
-			var i = Math.floor(Math.random()*window.app.library.length);
-			var model = window.app.library.at(i).clone();
-			this.deck.add(model);
-		}
-		this.deck.orderBy('name');
-
-		window.app.lastDeck = this.deck;
+		this.deck.generate();
 	},
 	loadDeck: function(deck) {
-		console.log('[ loading deck: '+deck+']');
 		if( !deck || 'last' == deck ) {
+			console.log('[ loading last deck ]');
 			this.deck = window.app.lastDeck;
 		}
 		else {
-			// load the named set
+		  this.deck = new Library_Collection();
+		  this.deck.load(deck);
 		}
 	}
 });

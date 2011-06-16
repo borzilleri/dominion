@@ -1,18 +1,58 @@
 window.Library_Collection = Backbone.Collection.extend({
+  default_size: 10,
   model: Card_Model,
+  bane: null,
+  black_market: null,
+  prosperity_basics: false,
   load: function(set) {
     console.log('[ loading deck: '+set+']');
   },
   generate: function() {
-    while( this.length < 10 ) {
-      var i = Math.floor(Math.random()*window.app.library.length);
-      var model = window.app.library.at(i).clone();
+    var defenseRequired = false,
+        defenseAdded = false;
+    // If we're using Alchemy, select the min number of potion cards.
+    if( window.options.get('sets').alchemy ) {
+      var pots = new Library_Collection(window.app.library.filter(function(model) {
+        return model.get('set') == 'Alchemy';
+      }));
 
-      if( !this.get(model.id) ) {
+      while( this.length < window.options.get('alchemy_min') ) {
+        var i = Math.floor(Math.random()*pots.length);
+        var model = pots.at(i);
         this.add(model);
+        pots.remove(model);
+        if( model.get('type').attack && window.options.get('require_defense') ) {
+          defenseRequired = true;
+        }
       }
     }
-    this.orderBy('name');
+
+    if( this.length < this.default_size ) {
+      // Handle adding reaction cards if necessary
+      var selection = new Library_Collection(window.app.library.filter(function(model) {
+        // does not yet handle alchemy max cards
+        return (
+          window.options.get('sets')[model.get('set')] ||
+          window.options.get('promos')[model.get('name')]
+        );
+      }));
+
+      while( this.length < this.default_size ) {
+        if( defenseRequired && !defenseAdded ) {
+          // Handle adding a required defense card.
+        }
+        var i = Math.floor(Math.random()*selection.length);
+        var model = selection.at(i);
+        this.add(model);
+        selection.remove(model);
+        if( model.get('type').attack && window.options.get('require_defense') && !defenseAdded ) {
+          defenseRequired = true;
+        }
+
+        // Flag Little Witch & Black Market
+      }
+    }
+
     window.app.lastDeck = this;
   },
   compare_Name: function(card) {

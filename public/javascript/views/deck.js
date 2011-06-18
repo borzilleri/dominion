@@ -1,6 +1,7 @@
 window.Deck_View = Backbone.View.extend({
 	id: 'deck',
 	deck: null,
+  error: null,
 	events: {
 		'click .newSet': 'newDeck'
 	},
@@ -9,7 +10,6 @@ window.Deck_View = Backbone.View.extend({
 			'render',
 			'output',
 			'newDeck',
-			'generateDeck',
 			'loadDeck'
 		);
 
@@ -24,25 +24,29 @@ window.Deck_View = Backbone.View.extend({
     }
 		$(this.el).html(this.template({
 			set: (this.deck ? this.deck.toJSON() : []),
-			options: window.options.toJSON()
+			options: window.options.toJSON(),
+			error: this.error
 		}));
 	},
 	output: function() {
 		$('#content').html(this.el);
 	},
 	newDeck: function(e) {
-		this.generateDeck();
+		var deck = new Library_Collection();
+		try {
+		  deck.generate();
+      this.deck = deck;
+      this.error = null;
+    }
+		catch( error ) {
+		  this.deck = null;
+		  this.error = error;
+    }
 		this.render();
-		e.preventDefault();
-	},
-	generateDeck: function() {
-		console.log('[ generating deck ]');
-		this.deck = new Library_Collection();
-		this.deck.generate();
+		return false;
 	},
 	loadDeck: function(deck) {
 		if( !deck || 'last' == deck ) {
-			console.log('[ loading last deck ]');
 			this.deck = window.app.lastDeck;
 		}
 		else {

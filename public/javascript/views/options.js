@@ -21,8 +21,20 @@ window.Options_View = Backbone.View.extend({
 		$('#content').html(this.el);
 	},
 	updateOption: function(e) {
-		var $field = $(e.currentTarget);
-		console.log('[set: '+$field.attr('name')+' to: '+$field.val()+']');
-		window.options.updateSetting($field.attr('name'), $field.val());
+		var $field = $(e.currentTarget),
+		    name = $field.attr('name'),
+		    value = $field.val();
+		console.log('[ changed: '+name+' : '+value+' ]');
+
+		var success = window.options.updateSetting(name, value);
+
+		if( 'sets' === name ) {
+		  this.$('[data-set="'+value+'"] input')
+		    .prop('disabled', !$field.prop('checked'));
+    }
+    else if( 'promos' ===  name ) {
+      this.$('[data-promos="'+value+'"] input')
+        .prop('disabled', !$field.prop('checked'));
+    }
 	},
 });

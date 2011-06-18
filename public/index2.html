@@ -4,7 +4,8 @@
 		<title>Dominion</title>
 
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=devicewidth; initial-scale=1.0; maximum-scale=1; user-scalable=0;">
+		<meta name="viewport" 
+			content="width=devicewidth; initial-scale=1.0; maximum-scale=1; user-scalable=0;">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
@@ -12,27 +13,42 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css">
 
 		<!-- Third Party Library Files -->
-		<script src="javascript/lib/jquery-1.6.1.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/json2.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/underscore.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/backbone.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/backbone.localstorage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/jquery-1.6.1.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/json2.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/underscore.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/backbone.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/backbone.localstorage.js" 
+			type="text/javascript" charset="utf-8"></script>
 
 		<!-- Data Files -->
-		<script src="javascript/data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/data.js" 
+			type="text/javascript" charset="utf-8"></script>
 
 		<!-- Classes/Libraries -->
-		<script src="javascript/models/card.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/models/library.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/models/config.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/views/base.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/views/options.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/views/deck.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/views/sets.js" type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/controllers/dominion.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/models/card.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/models/library.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/models/config.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/views/base.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/views/options.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/views/deck.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/views/sets.js" 
+			type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/controllers/dominion.js"
+			type="text/javascript" charset="utf-8"></script>
 
 		<!-- Bootstrap file to startup the app -->
-		<script src="javascript/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/bootstrap.js" 
+			type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		<div id="content">
@@ -44,6 +60,11 @@
 			<a href="#sets" class="button">Sets</a>
 			<a href="#options" class="button-right">Options</a>
 			</nav>
+			<% if( error ) { %>
+				<div class="error">
+					Unable to generate new deck:<br><%=error%>
+				</div>
+			<% } else { %>
 			<ul>
 				<% _(set).each(function(card) { %>
 					<li>
@@ -53,26 +74,16 @@
 					<span class="cardName"><%= card.name %></span>
 					<% if( options.display.type ) { %>
 					<span class="cardType">[<%
-						if( card.type.action ) {
-							print('<span class="type_action">A</span>');
-						}
-						if( card.type.treasure ) {
-							print('<span class="type_treasure">T</span>');
-						}
-						if( card.type.victory ) {
-							print('<span class="type_victory">V</span>');
-						}
+						if( card.type.action ) print('<span class="type_action">A</span>');
+						if( card.type.treasure ) print('<span class="type_treasure">T</span>');
+						if( card.type.victory ) print('<span class="type_victory">V</span>');
 
-						if( card.type.attack ) {
-							print('-<span class="type_attack">A</span>');
-						}
+						if( card.type.attack ) print('-<span class="type_attack">A</span>');
 						else if( card.type.defense ) {
 							print('-<span class="type_defense">R</span>');
 						}
 
-						if( card.type.duration ) {
-							print('-<span class="type_duration">D</span>');
-						}
+						if( card.type.duration ) print('-<span class="type_duration">D</span>');
 						%>]</span>
 					<% } %>
 					<% if( options.display.cost ) { %>
@@ -81,6 +92,7 @@
 					</li>
 					<% }); %>
 			</ul>
+			<% } %>
 		</script>
 		<script id="template-sets" type="text/x-underscore-template">
 			<nav>
@@ -117,7 +129,7 @@
 			</fieldset>
 
 			<fieldset>Set Rules<fieldset>
-					<div>
+					<div data-set="Alchemy">
 						<label>No. Potion Cards</label>
 						<input type="number" min="0" max="10" size="3" maxlength="2"
 						id="alchemy_min" name="alchemy_min" value="<%=options.alchemy_min%>"
@@ -128,14 +140,14 @@
 					</div>
 				</fieldset>
 				<fieldset>Card Rules</fieldset>
-				<div>
+				<div data-promos="Black Market">
 					<label for="blackmarket_size">Black Market Deck Size</label>
 					<input type="number" min="10" max="<%=constants.blackmarket_max%>"
 					size="3" maxlength="3" id="blackmarket_size" name="blackmarket_size" 
 					value="<%=options.blackmarket_size%>" 
 					<%=(options.promos['Black Market']?'':'disabled')%>>
 				</div>
-				<div>
+				<div data-set="Prosperity">
 					<label for="prosperity_random_basics">Random Colony/Platinum</label>
 					<input type="checkbox" id="prosperity_random_basics"
 					name="prosperity_random_basics" value="true"

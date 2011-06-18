@@ -4,21 +4,33 @@ window.Library_Collection = Backbone.Collection.extend({
   bane: null,
   black_market: null,
   prosperity_basics: false,
+  initialize: function(models) {
+    _(this).bindAll(
+      'load',
+      'generate',
+      'selectBaneCard',
+      'buildBlackMarket',
+      'getRandom'
+    );
+  },
   load: function(set) {
     console.log('[ loading deck: '+set+']');
   },
   generate: function() {
-    var defenseRequired = false,
+    var self = this,
+        defenseRequired = false,
         defenseAdded = false;
+    console.log('[ begin deck generation ]');
+
     // If we're using Alchemy, select the min number of potion cards.
-    if( window.options.get('sets').alchemy ) {
+    if( window.options.get('sets').Alchemy ) {
       var pots = new Library_Collection(window.app.library.filter(function(model) {
-        return model.get('set') == 'Alchemy';
+        return model.get('potion');
       }));
 
       while( this.length < window.options.get('alchemy_min') ) {
-        var i = Math.floor(Math.random()*pots.length);
-        var model = pots.at(i);
+        var model = pots.getRandom();
+        console.log('[ adding: '+model.get('name')+','+model.get('potion')+' ]');
         this.add(model);
         pots.remove(model);
         if( model.get('type').attack && window.options.get('require_defense') ) {
@@ -26,34 +38,74 @@ window.Library_Collection = Backbone.Collection.extend({
         }
       }
     }
+    console.log('[ finished adding potion cards ]');
 
+    var potCards = this.length;
+
+    // Then add the remaining number of cards, if any
     if( this.length < this.default_size ) {
-      // Handle adding reaction cards if necessary
-      var selection = new Library_Collection(window.app.library.filter(function(model) {
-        // does not yet handle alchemy max cards
-        return (
-          window.options.get('sets')[model.get('set')] ||
-          window.options.get('promos')[model.get('name')]
-        );
-      }));
+      var selection = new Library_Collection(
+        window.app.library.filter(function(model) { 
+          return model.isSelectable() && !self.get(model.get('name'));
+        })
+      );
 
       while( this.length < this.default_size ) {
-        if( defenseRequired && !defenseAdded ) {
-          // Handle adding a required defense card.
-        }
-        var i = Math.floor(Math.random()*selection.length);
-        var model = selection.at(i);
-        this.add(model);
-        selection.remove(model);
-        if( model.get('type').attack && window.options.get('require_defense') && !defenseAdded ) {
-          defenseRequired = true;
+        // If we've maxed out our potion cards,
+        // filter them out from the selection library
+        if( potCards >= window.options.get('alchemy_max') ) {
+          selection = new Library_Collection(selection.filter(function(model) {
+            return !model.get('potion');
+          }));
         }
 
-        // Flag Little Witch & Black Market
+        // We have no cards left to select from, bail out, this is
+        // an error condition
+        if( 0 >= selection.length ) throw "Too few cards to select from.";
+
+        var model = selection.getRandom();
+        console.log('[ adding: '+model.get('name')+','+model.get('potion')+' ]');
+        this.add(model);
+        selection.remove(model);
+
+        if( model.get('potion') ) potCards += 1;
+        if( model.get('type').attack && 
+            window.options.get('require_defense') && 
+            !defenseAdded ) {
+          defenseRequired = true;
+        }
+        if( model.get('type').defense ) {
+          defenseAdded = true;
+        }
       }
     }
 
+    if( defenseRequired && !defenseAdded ) {
+      var reactions = new Library_Collection(window.app.library.filter(function(model) {
+        return model.isSelectable() && model.get('type').defense;
+      }));
+      if( 0 < reactions.length ) {
+        var model = reactions.getRandom();
+        var lastModel = this.last();
+        this.remove(this.last());
+        this.add(model);
+      }
+    }
+
+    // Handle any per-card special rules, such as little witch & black market
+    this.each(function(model) {
+      if( 'Little Witch' === model.get('name') ) self.selectBaneCard();
+      else if( 'Black Market' === model.get('name') ) self.buildBlackMarket();
+    });
     window.app.lastDeck = this;
+  },
+  selectBaneCard: function() {
+
+  },
+  buildBlackMarket: function() {
+  },
+  getRandom: function() {
+    return this.at(Math.floor(Math.random() * this.length));
   },
   compare_Name: function(card) {
     return card.get('name');

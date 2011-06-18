@@ -1,24 +1,41 @@
 @import "compass/reset";
 
-$bg-color: #ffffff;
+$bg-color: #333;
 $text-color: #000000;
+
+$set-radius-horz: 12px;
+$set-radius-vert: 10px;
+
 $button-bg: #000000;
 $button-border: #777777;
 $button-text: #dddddd;
 
+$set-dominion: #000000;
+$set-intrigue: #0000ff;
+$set-seaside: #ff4500;
+$set-alchemy: #aa00aa;
+$set-promo: #888888;
+$set-prosperity: #005500;
+$set-cornucopia: #ff4500;
+
+$type-action: black;
+$type-attack: red;
+$type-defense: blue;
+$type-duration: #ff4500;
+$type-treasure: #ac853f;
+$type-victory: #006400;
+
 html {
 	background-color: $bg-color;
-	margin: 0;
-	padding: 0;
 }
 body {
 	color: $text-color;
 	font-size: 100%;
 	font-family: Helvetica, Verdana, sans-serif;
 	text-rendering: optimizeLegibility;
-	width: 100%;
-	height: 460px;
-	max-height: 460px;
+	//width: 100%;
+	//height: 460px;
+	//max-height: 460px;
 	margin: 0;
 }
 
@@ -59,6 +76,102 @@ nav {
 		clear: both;
 	}
 }
+
+h2 {
+	text-transform: uppercase;
+	font-size: 120%;
+	font-weight: bold;
+	color: lightgray;
+	margin-left: $set-radius-horz;
+	margin-top: 5px;
+}
+ul.set {
+	li {
+		background-color: #dddddd;
+		border-top: 1px dotted gray;
+		padding: 7px 0;
+		&:first-child {
+			border-top-left-radius: $set-radius-horz $set-radius-vert;
+			border-top-right-radius: $set-radius-horz $set-radius-vert;
+		}
+		&:last-child {
+			border-bottom-left-radius: $set-radius-horz $set-radius-vert;
+			border-bottom-right-radius: $set-radius-horz $set-radius-vert;
+			border-bottom: 1px dotted gray;
+		}
+
+		.selected {
+			background-color: lightgreen;
+		}
+
+		.replacement {
+			background-color: lightblue;
+		}
+	}
+}
+
+.cardSet {
+	font-family: monospace;
+	font-weight: bold;
+	text-align: right;
+	margin-right: 2px;
+	display: block;
+	float: left;
+
+	&.Dominion {
+		color: $set-dominion;
+	}
+	&.Intrigue {
+		color: $set-intrigue;
+	}
+	&.Seaside {
+		color: $set-seaside;
+	}
+	&.Alchemy {
+		color: $set-alchemy;
+	}
+	&.Promo {
+		color: $set-promo;
+	}
+	&.Prosperity {
+		color: $set-prosperity;
+	}
+	&.Cornucopia {
+		color: $set-cornucopia;
+	}
+}
+
+.cardType {
+	font-family: monospace;
+	margin-left: 1px;
+	float: right;
+
+	.action {
+		color: $type-action;
+	}
+	.attack {
+		color: $type-attack;
+	}
+	.defense {
+		color: $type-defense;
+	}
+	.duration {
+		color: $type-duration;
+	}
+	.treasure {
+		color: $type-treasure;
+	}
+	.victory {
+		color: $type-victory;
+	}
+}
+.cardCost {
+	font-family: monospace;
+	margin-left: 1px;
+	float: right;
+	text-align: right;
+}
+
 
 h1 {
 	text-align: center;
@@ -132,87 +245,6 @@ h1 {
 }
 #NewSet input {
 	width: 90%;
-}
-/*** Deck Display Styles ***/
-#Deck {
-	margin: 0 auto;
-}
-#Deck ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-#Deck li {
-	border-top: 1px dotted grey;
-	padding: 7px 0;
-}
-#Deck li:first-child {
-	border-top: none;
-}
-#Deck li.hilight {
-	background-color: lightgreen;
-}
-#Deck button {
-	padding: 0 4px;
-	margin: 0 3px;
-}
-#Deck .replacementCard {
-	background-color: lightblue;
-}
-#Deck .cardName {
-}
-#Deck .cardSet {
-	font-family: monospace;
-	font-weight: bold;
-	text-align: right;
-	margin-right: 2px;
-	display: block;
-	float: left;
-}
-
-#Deck .cardCost {
-	font-family: monospace;
-	margin-left: 1px;
-	float: right;
-	text-align: right;
-}
-#Deck .cardType {
-	font-family: monospace;
-	margin-left: 1px;
-	float: right;
-}
-
-#Deck .Intrigue {
-	color: #00f;
-}
-#Deck .Seaside {
-	color: #ff4500;
-}
-#Deck .Alchemy {
-	color: #A0A;
-}
-#Deck .Promo {
-	color: #888;
-}
-#Deck .Prosperity {
-	color: #050;
-}
-#Deck .type_Action {
-}
-#Deck .type_Attack {
-	color: red;
-}
-#Deck .type_Defense {
-	color: blue;
-}
-#Deck .type_Duration {
-	color: #ff4500;
-}
-#Deck .type_Treasure {
-	color: #ac853f;
-}
-#Deck .type_Victory {
-	color: #006400;
 }
 
 div.qtip-content {

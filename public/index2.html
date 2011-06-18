@@ -71,7 +71,7 @@
 					}); %>
 				</ul>
 				<% if( bane ) { %>
-					<h2>Bane<h2>
+					<h2>Bane</h2>
 					<ul class="set">
 						<%=card({card:bane,options:options})%>
 					</ul>
@@ -92,23 +92,23 @@
 				<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
 				<% } %>
 			<span class="cardName"><%= card.name %></span>
-			<% if( options.display.type ) { %>
-				<span class="cardType">[<%
-					if( card.type.action ) print('<span class="type_action">A</span>');
-					if( card.type.treasure ) print('<span class="type_treasure">T</span>');
-					if( card.type.victory ) print('<span class="type_victory">V</span>');
-
-					if( card.type.attack ) print('-<span class="type_attack">A</span>');
-					else if( card.type.defense ) {
-						print('-<span class="type_defense">R</span>');
-					}
-
-					if( card.type.duration ) print('-<span class="type_duration">D</span>');
-					%>]</span>
-				<% } %>
 			<% if( options.display.cost ) { %>
 				<span class="cardCost">[<%= card.costStr %>]</span>
-				<% } %>
+			<% } %>
+			<% if( options.display.type ) { %>
+				<span class="cardType">[<%
+					if( card.type.action ) print('<span class="action">A</span>');
+					if( card.type.treasure ) print('<span class="treasure">T</span>');
+					if( card.type.victory ) print('<span class="victory">V</span>');
+
+					if( card.type.attack ) print('-<span class="attack">A</span>');
+					else if( card.type.defense ) {
+						print('-<span class="defense">R</span>');
+					}
+
+					if( card.type.duration ) print('-<span class="duration">D</span>');
+					%>]</span>
+			<% } %>
 			</li>
 		</script>
 		<script id="template-sets" type="text/x-underscore-template">

@@ -20,7 +20,7 @@ window.Library_Collection = Backbone.Collection.extend({
     var self = this,
         defenseRequired = false,
         defenseAdded = false;
-    console.log('[ begin deck generation ]');
+    //console.log('[ begin deck generation ]');
 
     // If we're using Alchemy, select the min number of potion cards.
     if( window.options.get('sets').Alchemy ) {
@@ -38,7 +38,7 @@ window.Library_Collection = Backbone.Collection.extend({
         }
       }
     }
-    console.log('[ finished adding potion cards ]');
+    //console.log('[ finished adding potion cards ]');
 
     var potCards = this.length;
 
@@ -64,7 +64,7 @@ window.Library_Collection = Backbone.Collection.extend({
         if( 0 >= selection.length ) throw "Too few cards to select from.";
 
         var model = selection.getRandom();
-        console.log('[ adding: '+model.get('name')+','+model.get('potion')+' ]');
+        //console.log('[ adding: '+model.get('name')+','+model.get('potion')+' ]');
         this.add(model);
         selection.remove(model);
 
@@ -109,6 +109,30 @@ window.Library_Collection = Backbone.Collection.extend({
     if( false === this.bane ) throw "No valid Bane cards available.";
   },
   buildBlackMarket: function() {
+    var self = this,
+        blackMarket = null,
+        size = window.options.get('blackmarket_size');
+    var cards = new Library_Collection(window.app.library.filter(function(m) {
+      return m.isSelectable() && !self.get(m.get('name')) &&
+        (!self.bane || self.bane.get('name') !== m.get('name'));
+    }));
+
+    
+    if( cards.length < size ) {
+      throw "Insufficient cards remaining for Black Market";
+    }
+    else if( cards.length === size ) {
+      blackMarket = cards;
+    }
+    else {
+      blackMarket = new Library_Collection();
+      while( blackMarket.length < size ) {
+        var model = cards.getRandom();
+        blackMarket.add(model);
+        cards.remove(model);
+      }
+    }
+    this.black_market = blackMarket;
   },
   getRandom: function() {
     return 0 >= this.length ? 

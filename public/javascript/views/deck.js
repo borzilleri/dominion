@@ -15,19 +15,24 @@ window.Deck_View = Backbone.View.extend({
 
 		this.loadDeck(options.set);
 		this.template = _.template($('#template-deck').html());
+		this.template_card = _.template($('#template-card').html());
 		this.render();
 		this.output();
 	},
 	render: function() {
 		if( this.deck ) {
 		  this.deck.orderBy(window.options.get('sort'));
+      if( this.deck.black_market ) {
+        this.deck.black_market.orderBy(window.options.get('sort'));
+      }
     }
 		$(this.el).html(this.template({
-			set: (this.deck ? this.deck.toJSON() : []),
+      card: this.template_card,
 			options: window.options.toJSON(),
 			error: this.error,
-			bane: (this.deck ? this.deck.bane.toJSON() : null),
-		  blackMarket: (this.deck ? this.deck.black_market.toJSON() : null)
+			set: (this.deck ? this.deck.toJSON() : []),
+			bane: (this.deck && this.deck.bane ? this.deck.bane.toJSON() : null),
+		  blackMarket: (this.deck && this.deck.black_market ? this.deck.black_market.toJSON() : null)
 		}));
 	},
 	output: function() {

@@ -65,37 +65,51 @@
 					Unable to generate new deck:<br><%=error%>
 				</div>
 			<% } else { %>
-			<ul>
-				<% _(set).each(function(card) { %>
-					<li>
-					<% if( options.display.set ) { %>
-						<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
-						<% } %>
-					<span class="cardName"><%= card.name %></span>
-					<% if( options.display.type ) { %>
-						<span class="cardType">[<%
-							if( card.type.action ) print('<span class="type_action">A</span>');
-							if( card.type.treasure ) print('<span class="type_treasure">T</span>');
-							if( card.type.victory ) print('<span class="type_victory">V</span>');
-
-							if( card.type.attack ) print('-<span class="type_attack">A</span>');
-							else if( card.type.defense ) {
-								print('-<span class="type_defense">R</span>');
-							}
-
-							if( card.type.duration ) print('-<span class="type_duration">D</span>');
-							%>]</span>
-						<% } %>
-					<% if( options.display.cost ) { %>
-						<span class="cardCost">[<%= card.costStr %>]</span>
-						<% } %>
-					</li>
-				<% }); %>
+				<ul class="set">
+					<% _(set).each(function(item) {
+						print(card({card:item,options:options}));
+					}); %>
+				</ul>
 				<% if( bane ) { %>
-
+					<h2>Bane<h2>
+					<ul class="set">
+						<%=card({card:bane,options:options})%>
+					</ul>
 				<% } %>
-			</ul>
+				<% if( blackMarket ) { %>
+					<h2>Black Market</h2>
+					<ul class="set">
+					<% _(blackMarket).each(function(item) {
+						print( card({card:item,options:options}) );
+					}); %>
+					</ul>
+				<% } %>
 			<% } %>
+		</script>
+		<script id="template-card" type="text/x-underscore-template">
+			<li>
+			<% if( options.display.set ) { %>
+				<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
+				<% } %>
+			<span class="cardName"><%= card.name %></span>
+			<% if( options.display.type ) { %>
+				<span class="cardType">[<%
+					if( card.type.action ) print('<span class="type_action">A</span>');
+					if( card.type.treasure ) print('<span class="type_treasure">T</span>');
+					if( card.type.victory ) print('<span class="type_victory">V</span>');
+
+					if( card.type.attack ) print('-<span class="type_attack">A</span>');
+					else if( card.type.defense ) {
+						print('-<span class="type_defense">R</span>');
+					}
+
+					if( card.type.duration ) print('-<span class="type_duration">D</span>');
+					%>]</span>
+				<% } %>
+			<% if( options.display.cost ) { %>
+				<span class="cardCost">[<%= card.costStr %>]</span>
+				<% } %>
+			</li>
 		</script>
 		<script id="template-sets" type="text/x-underscore-template">
 			<nav>

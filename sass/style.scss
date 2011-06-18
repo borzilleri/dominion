@@ -1,0 +1,260 @@
+@import "compass/reset";
+
+$bg-color: #333;
+$text-color: #000000;
+
+$set-radius-horz: 12px;
+$set-radius-vert: 10px;
+
+$button-bg: #000000;
+$button-border: #777777;
+$button-text: #dddddd;
+
+$set-dominion: #000000;
+$set-intrigue: #0000ff;
+$set-seaside: #ff4500;
+$set-alchemy: #aa00aa;
+$set-promo: #888888;
+$set-prosperity: #005500;
+$set-cornucopia: #ff4500;
+
+$type-action: black;
+$type-attack: red;
+$type-defense: blue;
+$type-duration: #ff4500;
+$type-treasure: #ac853f;
+$type-victory: #006400;
+
+html {
+	background-color: $bg-color;
+}
+body {
+	color: $text-color;
+	font-size: 100%;
+	font-family: Helvetica, Verdana, sans-serif;
+	text-rendering: optimizeLegibility;
+	//width: 100%;
+	//height: 460px;
+	//max-height: 460px;
+	margin: 0;
+}
+
+.button {
+  color: $button-text;
+  background-color: $button-bg;
+  border: 1px solid $button-border;
+	text-decoration: none;
+	padding: 5px 10px;
+	border-radius: 7px;
+}
+.button:active {
+	color: $button-bg;
+	background-color: $button-text;
+}
+.button-left {
+	@extend .button;
+	float: left;
+}
+.button-right {
+	@extend .button;
+	float: right;
+}
+
+nav {
+	text-align: center;
+	.button {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		&.button-left {
+			border-bottom-left-radius: 0;
+		}
+		&.button-right {
+			border-bottom-right-radius: 0;
+		}
+	}
+	& + * {
+		clear: both;
+	}
+}
+
+h2 {
+	text-transform: uppercase;
+	font-size: 120%;
+	font-weight: bold;
+	color: lightgray;
+	margin-left: $set-radius-horz;
+	margin-top: 5px;
+}
+ul.set {
+	li {
+		background-color: #dddddd;
+		border-top: 1px dotted gray;
+		padding: 7px 0;
+		&:first-child {
+			border-top-left-radius: $set-radius-horz $set-radius-vert;
+			border-top-right-radius: $set-radius-horz $set-radius-vert;
+		}
+		&:last-child {
+			border-bottom-left-radius: $set-radius-horz $set-radius-vert;
+			border-bottom-right-radius: $set-radius-horz $set-radius-vert;
+			border-bottom: 1px dotted gray;
+		}
+
+		.selected {
+			background-color: lightgreen;
+		}
+
+		.replacement {
+			background-color: lightblue;
+		}
+	}
+}
+
+.cardSet {
+	font-family: monospace;
+	font-weight: bold;
+	text-align: right;
+	margin-right: 2px;
+	display: block;
+	float: left;
+
+	&.Dominion {
+		color: $set-dominion;
+	}
+	&.Intrigue {
+		color: $set-intrigue;
+	}
+	&.Seaside {
+		color: $set-seaside;
+	}
+	&.Alchemy {
+		color: $set-alchemy;
+	}
+	&.Promo {
+		color: $set-promo;
+	}
+	&.Prosperity {
+		color: $set-prosperity;
+	}
+	&.Cornucopia {
+		color: $set-cornucopia;
+	}
+}
+
+.cardType {
+	font-family: monospace;
+	margin-left: 1px;
+	float: right;
+
+	.action {
+		color: $type-action;
+	}
+	.attack {
+		color: $type-attack;
+	}
+	.defense {
+		color: $type-defense;
+	}
+	.duration {
+		color: $type-duration;
+	}
+	.treasure {
+		color: $type-treasure;
+	}
+	.victory {
+		color: $type-victory;
+	}
+}
+.cardCost {
+	font-family: monospace;
+	margin-left: 1px;
+	float: right;
+	text-align: right;
+}
+
+
+h1 {
+	text-align: center;
+	font-size: 1em;
+	margin: 0 20px;
+	padding: 0;
+	border-bottom: 1px solid black;
+}
+
+
+/*** Config Window Styles ***/
+#SetWindow, 
+#ConfigWindow {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	z-index: 1000;
+	display: none;
+}
+#SetWindowList, 
+#ConfigWindowOptions {
+	border: 3px double black;
+	background-color: white;
+	width: 85%;
+	margin: 20px auto;
+	padding: 10px;
+	text-align: left;
+}
+#ConfigWindow fieldset {
+	border: 1px solid black;
+}
+#ConfigWindow fieldset fieldset {
+	border: 1px dashed grey;
+	padding: 1px 3px;
+}
+#ConfigWindow input[type="number"] {
+	border: 1px solid grey;
+	font-family: monospace;
+	padding: 2px;
+}
+.ConfigButtons {
+	width: 100%;
+	margin: auto;
+}
+.ConfigButtons .OptionsSave {
+	float: right;
+}
+.SetButtons button
+.ConfigButtons button {
+	padding: 2px;
+	margin: 10px;
+}
+#set_Alchemy_Options {
+	margin-left: 20px;
+}
+
+.SetButtons {
+	margin: auto;
+}
+.SetButtons .SetSave {
+	float: right;
+}
+#NewSet {
+	width: 100%;
+	margin: 0;
+	padding: 4px;
+	text-align: center;
+}
+#NewSet input {
+	width: 90%;
+}
+
+div.qtip-content {
+	cursor: pointer;
+}
+
+#SaveBox {
+	display: none;
+}
+
+#SaveBox input {
+	width:80%;
+}

@@ -14,43 +14,163 @@
 			type="text/css" charset="utf-8" media="screen">
 		
 		<!-- Third Party Library Files -->
-		<script src="js/lib/jquery-1.5.2.min.js" type="text/javascript" 
-			charset="utf-8"></script>
-		<script src="js/lib/jquery.mobile-1.0a4.1.min.js" type="text/javascript"
-			charset="utf-8"></script>
-		<script src="js/lib/underscore-min.js" type="text/javascript"
-			charset="utf-8"></script>
-		<script src="js/lib/backbone-min.js" type="text/javascript"
-			charset="utf-8"></script>
+		<script src="javascript/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/json2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/backbone-min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/jsonquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/store.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/lib/qtip.jquery.min.js" type="text/javascript" charset="utf-8"></script>
 
-		<!-- Our own classes/libraries -->
-		<!-- models -->
-		<script src="js/models/card.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/models/deck.js" type="text/javascript" charset="utf-8"></script>
+		<!-- Data Files -->
+		<script src="data/defaults.json" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/data.js" type="text/javascript" charset="utf-8"></script>
 
-		<!-- views -->
-		<script src="js/views/options.js" type="text/javascript" charset="utf-8"></script>
-
-		<!-- controller -->
-		<script src="js/controllers/app.js" type="text/javascript" charset="utf-8"></script>
-
-		<!-- Data files -->
-		<script src="js/data.js" type="text/javascript" 
-			charset="utf-8"></script>
+		<!-- Classes/Libraries -->
+		<script src="javascript/model.card.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/collection.library.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/view.options.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/class.config.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascript/class.deck.js" type="text/javascript" charset="utf-8"></script>
 
 		<script type="text/javascript" charset="utf-8">
-			$(function() {
-				window.LIBRARY = new Deck(CARD_MODELS);
-				window.app = new Dominion();
-			});
-		</script>
+// If we have a new manifest, swap over to the new data when it's ready.
+window.applicationCache.addEventListener('updateready', function() {
+	console.log('Update Ready, swapping cache.');
+	window.applicationCache.swapCache();
+}, false);
+// Prevent scrolling for touch move events.
+function BlockMove(event) { if( ! $('#ConfigWindow').is(':visible') ) event.preventDefault(); }
+
+var ACTIVE_TIP = false;
+var DEBUG_MODE = false;
+
+function showConfigPanel() {
+	config.updateConfigWindow();
+	$('#ConfigWindow').show();
+}
+function hideConfigPanel(save) {
+	if( Boolean(save) ) config.saveSettings();
+	$('#ConfigWindow').hide();
+}
+function showSets() {
+	$('#SetList').empty().append(deck.buildSetListHTML()).show();
+	$('#SetWindow').show();
+}
+function hideSetPanel() {
+	$('#SetWindow').hide();
+}
+function replaceSingleCard(cardLi) {
+	deck.replaceCard(cardLi);
+	$(cardLi).qtip('hide');
+	ACTIVE_TIP = false;
+	$('#Deck').empty().append(deck.buildDeckHTML()).show();
+}
+function generateDeck() {
+	$('#Deck').empty().append(deck.generateDeck()).show();
+}
+function loadDeck() {
+	alert(this.innerText);
+}
+function showSave() {
+	$('#SaveBox').slideDown();
+}
+function hideSave() {
+	$('#saveDeckName').removeClass('error');
+	$('#SaveBox').slideUp();
+}
+function saveDeck() {
+	var deckName = $('#saveDeckName').val();
+	var success = deck.saveCurrent(deckName);
+	if( !success ) {
+		$('#saveDeckName').addClass('error');
+	}
+	else {
+		$('#saveDeckName').removeClass('error');
+		hideSave();
+	}
+}
+
+
+$(window).load(function() {
+	// Toggle debug mode on if neccessary.
+	DEBUG_MODE = ('#debug' == window.location.hash);
+
+window.App_Controller = Backbone.Controller.extend({
+	routes: {
+		'options': 'showOptions'
+	},
+  initialize: function(options) {
+    _(this).bindAll('showOptions','showDeck');
+  },
+  showOptions: function() {
+    alert('opts');
+  },
+  showDeck: function() {
+    alert('deck');
+  }
+});
+
+window.app = new App_Controller;
+
+	// Button Bindings
+	//$('#showConfig').click(showConfigPanel);
+	$('#generateDeck').click(generateDeck);
+	$('#showSets').click(showSets);
+	$('#saveDeck').click(showSave);
+
+	// Config Window bindings
+	$('#ConfigWindow input').change(config.cacheSetting);
+	$('.OptionsCancel').click(function() { hideConfigPanel(); });
+	$('.OptionsSave').click(function() { hideConfigPanel(true); });
+	$('.SetCancel').click(function() { hideSetPanel(); });
+	$('.SetSave').click(function() { hideSetPanel(); });
+
+	// Save Box Bindings
+	$('#saveDeckCancel').click(hideSave);
+	$('#saveDeckCommit').click(saveDeck);
+
+	$('#SetList a').live('click', loadDeck);
+	if( DEBUG_MODE ) {
+		$('html').width(320).height(480);
+		$('#ConfigWindowOptions, #SetWindowList').width(320*.85);
+	}
+
+	if( deck.load(deck.LAST_DECK) ) {
+		$('#Deck').empty().append(deck.buildDeckHTML()).show();
+	}
+});
+</script>
 	</head>
-	<body>
-		<div data-role="page" id="home">
-			<div data-role="header" data-backbtn="false">
-				<h1>Dominion</h1>
+	<body ontouchmove="BlockMove(event);">
+		<div id="Main">
+			<div id="Buttons">
+				<ul>
+					<li><a href="#options" class="test">test</a></li>
+					<li><button id="generateDeck">New</button></li>
+					<li><button id="saveDeck">Save</button></li>
+					<li><button id="showSets">List</button</li>
+					<li><button id="showConfig">Config</button></li>
+				</ul>
 			</div>
-			<div data-role="content">
+
+			<div id="SaveBox">
+				<input id="saveDeckName" type="text">
+				<button id="saveDeckCancel">Cancel</button>
+				<button id="saveDeckCommit">Save</button>
+			</div>
+
+			<div id="SetWindow">
+				<div id="SetWindowList">
+					<div class="SetButtons">
+						<button class="SetCancel">Cancel</button>
+						<button class="SetSave">Save Current</button>
+					</div>
+					<div id="NewSet">
+						<input type="text" id="newSet_name"/>
+					</div>
+					<div id="SetList"></div>
+				</div>
 			</div>
 			<div data-role="footer">
 				<div data-role="navbar"><ul>

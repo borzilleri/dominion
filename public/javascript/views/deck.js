@@ -25,7 +25,9 @@ window.Deck_View = Backbone.View.extend({
 		$(this.el).html(this.template({
 			set: (this.deck ? this.deck.toJSON() : []),
 			options: window.options.toJSON(),
-			error: this.error
+			error: this.error,
+			bane: (this.deck ? this.deck.bane.toJSON() : null),
+		  blackMarket: (this.deck ? this.deck.black_market.toJSON() : null)
 		}));
 	},
 	output: function() {

@@ -69,28 +69,31 @@
 				<% _(set).each(function(card) { %>
 					<li>
 					<% if( options.display.set ) { %>
-					<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
-					<% } %>
+						<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
+						<% } %>
 					<span class="cardName"><%= card.name %></span>
 					<% if( options.display.type ) { %>
-					<span class="cardType">[<%
-						if( card.type.action ) print('<span class="type_action">A</span>');
-						if( card.type.treasure ) print('<span class="type_treasure">T</span>');
-						if( card.type.victory ) print('<span class="type_victory">V</span>');
+						<span class="cardType">[<%
+							if( card.type.action ) print('<span class="type_action">A</span>');
+							if( card.type.treasure ) print('<span class="type_treasure">T</span>');
+							if( card.type.victory ) print('<span class="type_victory">V</span>');
 
-						if( card.type.attack ) print('-<span class="type_attack">A</span>');
-						else if( card.type.defense ) {
-							print('-<span class="type_defense">R</span>');
-						}
+							if( card.type.attack ) print('-<span class="type_attack">A</span>');
+							else if( card.type.defense ) {
+								print('-<span class="type_defense">R</span>');
+							}
 
-						if( card.type.duration ) print('-<span class="type_duration">D</span>');
-						%>]</span>
-					<% } %>
+							if( card.type.duration ) print('-<span class="type_duration">D</span>');
+							%>]</span>
+						<% } %>
 					<% if( options.display.cost ) { %>
-					<span class="cardCost">[<%= card.costStr %>]</span>
-					<% } %>
+						<span class="cardCost">[<%= card.costStr %>]</span>
+						<% } %>
 					</li>
-					<% }); %>
+				<% }); %>
+				<% if( bane ) { %>
+
+				<% } %>
 			</ul>
 			<% } %>
 		</script>

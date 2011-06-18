@@ -92,20 +92,27 @@ window.Library_Collection = Backbone.Collection.extend({
       }
     }
 
-    // Handle any per-card special rules, such as little witch & black market
+    // Handle any per-card special rules, such as young witch & black market
     this.each(function(model) {
-      if( 'Little Witch' === model.get('name') ) self.selectBaneCard();
+      if( 'Young Witch' === model.get('name') ) self.selectBaneCard();
       else if( 'Black Market' === model.get('name') ) self.buildBlackMarket();
     });
     window.app.lastDeck = this;
   },
   selectBaneCard: function() {
+    var self = this;
+    this.bane = new Library_Collection(window.app.library.filter(function(m) {
+      return m.isSelectable() && !self.get(m.get('name')) &&
+        ( 2 <= m.get('cost') && 3 >= m.get('cost') ) && !m.get('potion');
+    })).getRandom();
 
+    if( false === this.bane ) throw "No valid Bane cards available.";
   },
   buildBlackMarket: function() {
   },
   getRandom: function() {
-    return this.at(Math.floor(Math.random() * this.length));
+    return 0 >= this.length ? 
+      false : this.at(Math.floor(Math.random() * this.length));
   },
   compare_Name: function(card) {
     return card.get('name');

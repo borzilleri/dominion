@@ -1,7 +1,8 @@
 @import "compass/reset";
 
 $bg-color: #333;
-$text-color: #000000;
+$text-color-light: lightgray;
+$text-color-dark: black;
 
 $set-radius-horz: 12px;
 $set-radius-vert: 10px;
@@ -29,7 +30,7 @@ html {
 	background-color: $bg-color;
 }
 body {
-	color: $text-color;
+	color: $text-color-light;
 	font-size: 100%;
 	font-family: Helvetica, Verdana, sans-serif;
 	text-rendering: optimizeLegibility;
@@ -39,8 +40,11 @@ body {
 	margin: 0;
 }
 
+a {
+	color: $text-color-light;
+}
+
 .button {
-  color: $button-text;
   background-color: $button-bg;
   border: 1px solid $button-border;
 	text-decoration: none;
@@ -81,12 +85,12 @@ h2 {
 	text-transform: uppercase;
 	font-size: 120%;
 	font-weight: bold;
-	color: lightgray;
 	margin-left: $set-radius-horz;
 	margin-top: 5px;
 }
 ul.set {
 	li {
+		color: $text-color-dark;
 		background-color: #dddddd;
 		border-top: 1px dotted gray;
 		padding: 7px 0;
@@ -172,13 +176,38 @@ ul.set {
 	text-align: right;
 }
 
+ul.fieldset {
+	margin: 5px;
+	border-radius: 5px;
+	background-color: #555;
+	border: 1px solid black;
 
-h1 {
-	text-align: center;
-	font-size: 1em;
-	margin: 0 20px;
-	padding: 0;
-	border-bottom: 1px solid black;
+	li {
+		border-bottom: 1px solid black;
+		&:last-child {
+			border: none;
+		}
+
+		&:after {
+			clear: both;
+			content: "&nbsp;";
+			display: block;
+			height: 0;
+			visibility: hidden;
+		}
+
+		> label {
+			float: left;
+			display: block;
+			margin: 10px 20px;
+			font-weight: bold;
+		}
+	}
+	.iPhoneCheckContainer, select {
+		margin: 5px 10px;
+		float: right;
+	}
+
 }
 
 

@@ -1,202 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-	<!-- re-add this later: manifest="cache-manifest.manifest" -->
-	<head>
-		<title>Dominion</title>
+<!-- re-add this later: manifest="cache-manifest.manifest" -->
+<head>
+	<title>Dominion</title>
 
-		<meta charset="utf-8">
-		<meta name="viewport" 
-			content="width=devicewidth; initial-scale=1.0; maximum-scale=1; user-scalable=0;">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta charset="utf-8">
+	<meta name="viewport" 
+		content="width=devicewidth; initial-scale=1.0; maximum-scale=1; user-scalable=0;">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-		<!-- CSS Files -->
-		<link href="css/style.css" rel="stylesheet" type="text/css">
+	<!-- CSS Files -->
+	<link href="css/style.css" rel="stylesheet" type="text/css">
 
-		<!-- Third Party Library Files -->
-		<script src="javascript/lib/jquery-1.6.1.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/json2.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/underscore.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/backbone.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/lib/backbone.localStorage.js" 
-			type="text/javascript" charset="utf-8"></script>
+	<!-- Third Party Library Files -->
+	<script src="javascript/lib/jquery-1.6.1.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/lib/underscore.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/lib/backbone.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/lib/backbone.localStorage.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/lib/json2.js" 
+		type="text/javascript" charset="utf-8"></script>
 
-		<!-- Data Files -->
-		<script src="javascript/data.js" 
-			type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/lib/iphone-style-checkboxes.js"
+		type="text/javascript" charset="utf-8"></script>
+	<link href="css/iphone-style-checkboxes.css" rel="stylesheet" type="text/css">
 
-		<!-- Classes/Libraries -->
-		<script src="javascript/models/card.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/models/library.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/models/config.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/views/base.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/views/options.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/views/deck.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/views/sets.js" 
-			type="text/javascript" charset="utf-8"></script>
-		<script src="javascript/controllers/dominion.js"
-			type="text/javascript" charset="utf-8"></script>
+	<!-- Data Files -->
+	<script src="javascript/data.js" 
+		type="text/javascript" charset="utf-8"></script>
 
-		<!-- Bootstrap file to startup the app -->
-		<script src="javascript/bootstrap.js" 
-			type="text/javascript" charset="utf-8"></script>
-	</head>
-	<body>
-		<div id="content">
+	<!-- Classes/Libraries -->
+	<script src="javascript/models/card.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/models/library.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/models/config.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/views/base.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/views/options.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/views/deck.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/views/sets.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/controllers/dominion.js"
+		type="text/javascript" charset="utf-8"></script>
+
+	<!-- Bootstrap file to startup the app -->
+	<script src="javascript/bootstrap.js" 
+		type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="content">
+</div>
+
+<script id="template-deck" type="text/x-underscore-template">
+	<nav>
+	<a href="#" class="button-left newSet">New</a>
+	<a href="#sets" class="button">Sets</a>
+	<a href="#options" class="button-right">Options</a>
+	</nav>
+	<% if( error ) { %>
+		<div class="error">
+			Unable to generate new deck:<br><%=error%>
 		</div>
+	<% } else { %>
+		<ul class="set">
+			<% _(set).each(function(item) {
+				print(card({card:item,options:options}));
+			}); %>
+		</ul>
+		<% if( bane ) { %>
+			<h2>Bane</h2>
+			<ul class="set">
+				<%=card({card:bane,options:options})%>
+			</ul>
+		<% } %>
+		<% if( blackMarket ) { %>
+			<h2>Black Market</h2>
+			<ul class="set">
+			<% _(blackMarket).each(function(item) {
+				print( card({card:item,options:options}) );
+			}); %>
+			</ul>
+		<% } %>
+	<% } %>
+</script>
+<script id="template-card" type="text/x-underscore-template">
+	<li>
+	<% if( options.display.set ) { %>
+		<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
+		<% } %>
+	<span class="cardName"><%= card.name %></span>
+	<% if( options.display.cost ) { %>
+		<span class="cardCost">[<%= card.costStr %>]</span>
+	<% } %>
+	<% if( options.display.type ) { %>
+		<span class="cardType">[<%
+			if( card.type.action ) print('<span class="action">A</span>');
+			if( card.type.treasure ) print('<span class="treasure">T</span>');
+			if( card.type.victory ) print('<span class="victory">V</span>');
 
-		<script id="template-deck" type="text/x-underscore-template">
-			<nav>
-			<a href="#" class="button-left newSet">New</a>
-			<a href="#sets" class="button">Sets</a>
-			<a href="#options" class="button-right">Options</a>
-			</nav>
-			<% if( error ) { %>
-				<div class="error">
-					Unable to generate new deck:<br><%=error%>
-				</div>
-			<% } else { %>
-				<ul class="set">
-					<% _(set).each(function(item) {
-						print(card({card:item,options:options}));
-					}); %>
-				</ul>
-				<% if( bane ) { %>
-					<h2>Bane</h2>
-					<ul class="set">
-						<%=card({card:bane,options:options})%>
-					</ul>
-				<% } %>
-				<% if( blackMarket ) { %>
-					<h2>Black Market</h2>
-					<ul class="set">
-					<% _(blackMarket).each(function(item) {
-						print( card({card:item,options:options}) );
-					}); %>
-					</ul>
-				<% } %>
-			<% } %>
-		</script>
-		<script id="template-card" type="text/x-underscore-template">
-			<li>
-			<% if( options.display.set ) { %>
-				<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
-				<% } %>
-			<span class="cardName"><%= card.name %></span>
-			<% if( options.display.cost ) { %>
-				<span class="cardCost">[<%= card.costStr %>]</span>
-			<% } %>
-			<% if( options.display.type ) { %>
-				<span class="cardType">[<%
-					if( card.type.action ) print('<span class="action">A</span>');
-					if( card.type.treasure ) print('<span class="treasure">T</span>');
-					if( card.type.victory ) print('<span class="victory">V</span>');
+			if( card.type.attack ) print('-<span class="attack">A</span>');
+			else if( card.type.defense ) {
+				print('-<span class="defense">R</span>');
+			}
 
-					if( card.type.attack ) print('-<span class="attack">A</span>');
-					else if( card.type.defense ) {
-						print('-<span class="defense">R</span>');
-					}
+			if( card.type.duration ) print('-<span class="duration">D</span>');
+			%>]</span>
+	<% } %>
+	</li>
+</script>
+<script id="template-sets" type="text/x-underscore-template">
+	<nav>
+	<a href="#deck" class="button-left newSet">&lt; Back</a>
+	<a href="#options" class="button-right">Options</a>
+	</nav>
+	<div>
+		Set Listing
+	</div>
+</script>
+<script id="template-options" type="text/x-underscore-template">
+	<nav>
+	<a href="<%= backTarget %>" class="button-left">&lt Back</a>
+	</nav>
+	<h2>Deck Display</h2>
+	<ul class="fieldset">
+	<% _(options.display).each(function(on, key) { %>
+		<li>
+			<label>Show <%=key.charAt(0).toUpperCase()+key.slice(1)%></label>
+			<input type="checkbox" id="display_<%=key%>" name="display"
+			value="<%=key%>" <%=on?'checked':''%>>
+		</li>
+	<% }); %>
+		<li>
+			<label for="sort">Sort By</label>
+			<select id="sort" name="sort">
+			<% _(constants.sort_fields).each(function(sort) { %>
+				<option value="<%=sort%>" <%=(sort===options.sort)?'selected':''%>
+				><%=sort%></option>
+			<% }); %>
+			</select>
+		</li>
+	</ul>
 
-					if( card.type.duration ) print('-<span class="duration">D</span>');
-					%>]</span>
-			<% } %>
-			</li>
-		</script>
-		<script id="template-sets" type="text/x-underscore-template">
-			<nav>
-			<a href="#deck" class="button-left newSet">&lt; Back</a>
-			<a href="#options" class="button-right">Options</a>
-			</nav>
-			<div>
-				Set Listing
-			</div>
-		</script>
-		<script id="template-options" type="text/x-underscore-template">
-			<nav>
-			<a href="<%= backTarget %>" class="button-left">&lt Back</a>
-			</nav>
-			<fieldset><legend>Included Cards</legend>
-				<fieldset><legend>Sets</legend>
-					<% _(options.sets).each(function(on,set) { %>
-						<div>
-							<label for="set_<%=set%>"><%=set%></label>
-							<input type="checkbox" id="set_<%=set%>" name="sets" 
-							value="<%=set%>" <%=(on?'checked':'')%>>
-						</div>
-						<% }); %>
-				</fieldset>
-				<fieldset><legend>Promos</legend>
-					<% _(options.promos).each(function(include,card) { %>
-						<div>
-							<label for="card_<%=card%>"><%=card%></label>
-							<input type="checkbox" id="card_<%=card%>" name="promos" 
-							value="<%=card%>" <%=(include?'checked':'')%>>
-						</div>
-						<% }); %>
-				</fieldset>
-			</fieldset>
+	<h2>Card Selection</h2>
+	<ul class="fieldset">
+	<% _(options.sets).each(function(on,set) { %>
+		<li>
+			<label for="set_<%=set%>"><%=set%></label>
+			<input type="checkbox" id="set_<%=set%>" name="sets" 
+			value="<%=set%>" <%=(on?'checked':'')%>>
+		</li>
+	<% }); %>
+	<% _(options.promos).each(function(include,card) { %>
+		<li>
+			<label for="card_<%=card%>"><%=card%></label>
+			<input type="checkbox" id="card_<%=card%>" name="promos" 
+			value="<%=card%>" <%=(include?'checked':'')%>>
+		</li>
+	<% }); %>
+	</ul>
 
-			<fieldset>Set Rules<fieldset>
-					<div data-set="Alchemy">
-						<label>No. Potion Cards</label>
-						<input type="number" min="0" max="10" size="3" maxlength="2"
-						id="alchemy_min" name="alchemy_min" value="<%=options.alchemy_min%>"
-						<%=options.sets.Alchemy?'':'disabled'%>>&ndash;
-						<input type="number" min="0" max="10" size="3" maxlength="2"
-						id="alchemy_max" name="alchemy_max" value="<%=options.alchemy_max%>"
-						<%=options.sets.Alchemy?'':'disabled'%>>
-					</div>
-				</fieldset>
-				<fieldset>Card Rules</fieldset>
-				<div data-promos="Black Market">
-					<label for="blackmarket_size">Black Market Deck Size</label>
-					<input type="number" min="10" max="<%=constants.blackmarket_max%>"
-					size="3" maxlength="3" id="blackmarket_size" name="blackmarket_size" 
-					value="<%=options.blackmarket_size%>" 
-					<%=(options.promos['Black Market']?'':'disabled')%>>
-				</div>
-				<div data-set="Prosperity">
-					<label for="prosperity_random_basics">Random Colony/Platinum</label>
-					<input type="checkbox" id="prosperity_random_basics"
-					name="prosperity_random_basics" value="true"
-					<%=options.prosperity_random_basics?'checked':''%>>
-				</div>
-			</fieldset>
-			<fieldset><legend>Card Selection</legend>
-				<div>
-					<label for="require_defense">Require Reactions</label>
-					<input type="checkbox" id="require_defense" name="require_defense"
-					value="true" <%=options.require_defense?'checked':''%>>
-				</div>
-			</fieldset>
-			<fieldset><legend>Deck Display</legend>
-				<% _(options.display).each(function(on, key) { %>
-					<div>
-						<label for="display_<%=key%>">Show <%=key.charAt(0).toUpperCase()+key.slice(1)%></label>
-						<input type="checkbox" id="display_<%=key%>" name="display"
-						value="<%=key%>" <%=on?'checked':''%>>
-					</div>
-					<% }); %>
-				<div>
-					<label for="sort">Sort By</label>
-					<select id="sort" name="sort">
-						<% _(constants.sort_fields).each(function(sort) { %>
-							<option value="<%=sort%>" <%=(sort===options.sort)?'selected':''%>
-							><%=sort.charAt(0).toUpperCase()+sort.slice(1)%></option>
-							<% }); %>
-					</select>
-				</div>
-			</fieldset>
-		</script>
-	</body>
+	<h2>Deck Building</h2>
+	<ul class="fieldset">
+		<li>
+			<label for="require_defense">Require Reactions</label>
+			<input type="checkbox" id="require_defense" name="require_defense"
+			value="true" <%=options.require_defense?'checked':''%>>
+		</li>
+		<li data-set="Alchemy">
+			<label>No. Potion Cards</label>
+			<input type="number" min="0" max="10" size="3" maxlength="2"
+			id="alchemy_min" name="alchemy_min" value="<%=options.alchemy_min%>"
+			<%=options.sets.Alchemy?'':'disabled'%>>&ndash;
+			<input type="number" min="0" max="10" size="3" maxlength="2"
+			id="alchemy_max" name="alchemy_max" value="<%=options.alchemy_max%>"
+			<%=options.sets.Alchemy?'':'disabled'%>>
+		</li>
+		<li data-set="Prosperity">
+			<label for="prosperity_random_basics">Random Colony/Platinum</label>
+			<input type="checkbox" id="prosperity_random_basics"
+			name="prosperity_random_basics" value="true"
+			<%=options.prosperity_random_basics?'checked':''%>>
+		</li>
+		<li data-card="Black Market">
+			<label for="blackmarket_size">Black Market Size</label>
+			<input type="number" min="10" max="<%=constants.blackmarket_max%>"
+			size="3" maxlength="3" id="blackmarket_size" name="blackmarket_size" 
+			value="<%=options.blackmarket_size%>" 
+			<%=(options.promos['Black Market']?'':'disabled')%>>
+		</li>
+	</ul>
+</script>
+</body>
 </html>

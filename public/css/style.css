@@ -64,23 +64,27 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-/* line 28, ../../sass/style.scss */
+/* line 29, ../../sass/style.scss */
 html {
   background-color: #333333;
 }
 
-/* line 31, ../../sass/style.scss */
+/* line 32, ../../sass/style.scss */
 body {
-  color: black;
+  color: lightgray;
   font-size: 100%;
   font-family: Helvetica, Verdana, sans-serif;
   text-rendering: optimizeLegibility;
   margin: 0;
 }
 
-/* line 42, ../../sass/style.scss */
+/* line 43, ../../sass/style.scss */
+a {
+  color: lightgray;
+}
+
+/* line 47, ../../sass/style.scss */
 .button, .button-left, .button-right {
-  color: #dddddd;
   background-color: black;
   border: 1px solid #777777;
   text-decoration: none;
@@ -88,81 +92,81 @@ body {
   border-radius: 7px;
 }
 
-/* line 50, ../../sass/style.scss */
+/* line 54, ../../sass/style.scss */
 .button:active, .button-left:active, .button-right:active {
   color: black;
   background-color: #dddddd;
 }
 
-/* line 54, ../../sass/style.scss */
+/* line 58, ../../sass/style.scss */
 .button-left {
   float: left;
 }
 
-/* line 58, ../../sass/style.scss */
+/* line 62, ../../sass/style.scss */
 .button-right {
   float: right;
 }
 
-/* line 63, ../../sass/style.scss */
+/* line 67, ../../sass/style.scss */
 nav {
   text-align: center;
 }
-/* line 65, ../../sass/style.scss */
+/* line 69, ../../sass/style.scss */
 nav .button, nav .button-left, nav .button-right {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-/* line 68, ../../sass/style.scss */
+/* line 72, ../../sass/style.scss */
 nav .button-left, nav .button-left.button-right {
   border-bottom-left-radius: 0;
 }
-/* line 71, ../../sass/style.scss */
+/* line 75, ../../sass/style.scss */
 nav .button-right.button-left, nav .button-right {
   border-bottom-right-radius: 0;
 }
-/* line 75, ../../sass/style.scss */
+/* line 79, ../../sass/style.scss */
 nav + * {
   clear: both;
 }
 
-/* line 80, ../../sass/style.scss */
+/* line 84, ../../sass/style.scss */
 h2 {
   text-transform: uppercase;
   font-size: 120%;
   font-weight: bold;
-  color: lightgray;
   margin-left: 12px;
   margin-top: 5px;
 }
 
-/* line 89, ../../sass/style.scss */
+/* line 92, ../../sass/style.scss */
 ul.set li {
+  color: black;
   background-color: #dddddd;
   border-top: 1px dotted gray;
   padding: 7px 0;
 }
-/* line 93, ../../sass/style.scss */
+/* line 97, ../../sass/style.scss */
 ul.set li:first-child {
   border-top-left-radius: 12px 10px;
   border-top-right-radius: 12px 10px;
 }
-/* line 97, ../../sass/style.scss */
+/* line 101, ../../sass/style.scss */
 ul.set li:last-child {
   border-bottom-left-radius: 12px 10px;
   border-bottom-right-radius: 12px 10px;
   border-bottom: 1px dotted gray;
 }
-/* line 103, ../../sass/style.scss */
+/* line 107, ../../sass/style.scss */
 ul.set li .selected {
   background-color: lightgreen;
 }
-/* line 107, ../../sass/style.scss */
+/* line 111, ../../sass/style.scss */
 ul.set li .replacement {
   background-color: lightblue;
 }
 
-/* line 113, ../../sass/style.scss */
+/* line 117, ../../sass/style.scss */
 .cardSet {
   font-family: monospace;
   font-weight: bold;
@@ -171,67 +175,67 @@ ul.set li .replacement {
   display: block;
   float: left;
 }
-/* line 121, ../../sass/style.scss */
+/* line 125, ../../sass/style.scss */
 .cardSet.Dominion {
   color: black;
 }
-/* line 124, ../../sass/style.scss */
+/* line 128, ../../sass/style.scss */
 .cardSet.Intrigue {
   color: blue;
 }
-/* line 127, ../../sass/style.scss */
+/* line 131, ../../sass/style.scss */
 .cardSet.Seaside {
   color: #ff4500;
 }
-/* line 130, ../../sass/style.scss */
+/* line 134, ../../sass/style.scss */
 .cardSet.Alchemy {
   color: #aa00aa;
 }
-/* line 133, ../../sass/style.scss */
+/* line 137, ../../sass/style.scss */
 .cardSet.Promo {
   color: #888888;
 }
-/* line 136, ../../sass/style.scss */
+/* line 140, ../../sass/style.scss */
 .cardSet.Prosperity {
   color: #005500;
 }
-/* line 139, ../../sass/style.scss */
+/* line 143, ../../sass/style.scss */
 .cardSet.Cornucopia {
   color: #ff4500;
 }
 
-/* line 144, ../../sass/style.scss */
+/* line 148, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 149, ../../sass/style.scss */
+/* line 153, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 152, ../../sass/style.scss */
+/* line 156, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 155, ../../sass/style.scss */
+/* line 159, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 158, ../../sass/style.scss */
+/* line 162, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 161, ../../sass/style.scss */
+/* line 165, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 164, ../../sass/style.scss */
+/* line 168, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 168, ../../sass/style.scss */
+/* line 172, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -239,17 +243,44 @@ ul.set li .replacement {
   text-align: right;
 }
 
-/* line 176, ../../sass/style.scss */
-h1 {
-  text-align: center;
-  font-size: 1em;
-  margin: 0 20px;
-  padding: 0;
+/* line 179, ../../sass/style.scss */
+ul.fieldset {
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #555;
+  border: 1px solid black;
+}
+/* line 185, ../../sass/style.scss */
+ul.fieldset li {
   border-bottom: 1px solid black;
+}
+/* line 187, ../../sass/style.scss */
+ul.fieldset li:last-child {
+  border: none;
+}
+/* line 191, ../../sass/style.scss */
+ul.fieldset li:after {
+  clear: both;
+  content: "&nbsp;";
+  display: block;
+  height: 0;
+  visibility: hidden;
+}
+/* line 199, ../../sass/style.scss */
+ul.fieldset li > label {
+  float: left;
+  display: block;
+  margin: 10px 20px;
+  font-weight: bold;
+}
+/* line 206, ../../sass/style.scss */
+ul.fieldset .iPhoneCheckContainer, ul.fieldset select {
+  margin: 5px 10px;
+  float: right;
 }
 
 /*** Config Window Styles ***/
-/* line 187, ../../sass/style.scss */
+/* line 216, ../../sass/style.scss */
 #SetWindow,
 #ConfigWindow {
   position: absolute;
@@ -262,7 +293,7 @@ h1 {
   display: none;
 }
 
-/* line 198, ../../sass/style.scss */
+/* line 227, ../../sass/style.scss */
 #SetWindowList,
 #ConfigWindowOptions {
   border: 3px double black;
@@ -273,58 +304,58 @@ h1 {
   text-align: left;
 }
 
-/* line 206, ../../sass/style.scss */
+/* line 235, ../../sass/style.scss */
 #ConfigWindow fieldset {
   border: 1px solid black;
 }
 
-/* line 209, ../../sass/style.scss */
+/* line 238, ../../sass/style.scss */
 #ConfigWindow fieldset fieldset {
   border: 1px dashed grey;
   padding: 1px 3px;
 }
 
-/* line 213, ../../sass/style.scss */
+/* line 242, ../../sass/style.scss */
 #ConfigWindow input[type="number"] {
   border: 1px solid grey;
   font-family: monospace;
   padding: 2px;
 }
 
-/* line 218, ../../sass/style.scss */
+/* line 247, ../../sass/style.scss */
 .ConfigButtons {
   width: 100%;
   margin: auto;
 }
 
-/* line 222, ../../sass/style.scss */
+/* line 251, ../../sass/style.scss */
 .ConfigButtons .OptionsSave {
   float: right;
 }
 
-/* line 226, ../../sass/style.scss */
+/* line 255, ../../sass/style.scss */
 .SetButtons button
 .ConfigButtons button {
   padding: 2px;
   margin: 10px;
 }
 
-/* line 230, ../../sass/style.scss */
+/* line 259, ../../sass/style.scss */
 #set_Alchemy_Options {
   margin-left: 20px;
 }
 
-/* line 234, ../../sass/style.scss */
+/* line 263, ../../sass/style.scss */
 .SetButtons {
   margin: auto;
 }
 
-/* line 237, ../../sass/style.scss */
+/* line 266, ../../sass/style.scss */
 .SetButtons .SetSave {
   float: right;
 }
 
-/* line 240, ../../sass/style.scss */
+/* line 269, ../../sass/style.scss */
 #NewSet {
   width: 100%;
   margin: 0;
@@ -332,22 +363,22 @@ h1 {
   text-align: center;
 }
 
-/* line 246, ../../sass/style.scss */
+/* line 275, ../../sass/style.scss */
 #NewSet input {
   width: 90%;
 }
 
-/* line 250, ../../sass/style.scss */
+/* line 279, ../../sass/style.scss */
 div.qtip-content {
   cursor: pointer;
 }
 
-/* line 254, ../../sass/style.scss */
+/* line 283, ../../sass/style.scss */
 #SaveBox {
   display: none;
 }
 
-/* line 258, ../../sass/style.scss */
+/* line 287, ../../sass/style.scss */
 #SaveBox input {
   width: 80%;
 }

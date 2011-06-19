@@ -76,14 +76,15 @@ body {
   font-family: Helvetica, Verdana, sans-serif;
   text-rendering: optimizeLegibility;
   margin: 0;
+  padding-bottom: 10px;
 }
 
-/* line 43, ../../sass/style.scss */
+/* line 44, ../../sass/style.scss */
 a {
   color: lightgray;
 }
 
-/* line 47, ../../sass/style.scss */
+/* line 48, ../../sass/style.scss */
 .button, .button-left, .button-right {
   background-color: black;
   border: 1px solid #777777;
@@ -92,45 +93,45 @@ a {
   border-radius: 7px;
 }
 
-/* line 54, ../../sass/style.scss */
+/* line 55, ../../sass/style.scss */
 .button:active, .button-left:active, .button-right:active {
   color: black;
   background-color: #dddddd;
 }
 
-/* line 58, ../../sass/style.scss */
+/* line 59, ../../sass/style.scss */
 .button-left {
   float: left;
 }
 
-/* line 62, ../../sass/style.scss */
+/* line 63, ../../sass/style.scss */
 .button-right {
   float: right;
 }
 
-/* line 67, ../../sass/style.scss */
+/* line 68, ../../sass/style.scss */
 nav {
   text-align: center;
 }
-/* line 69, ../../sass/style.scss */
+/* line 70, ../../sass/style.scss */
 nav .button, nav .button-left, nav .button-right {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-/* line 72, ../../sass/style.scss */
+/* line 73, ../../sass/style.scss */
 nav .button-left, nav .button-left.button-right {
   border-bottom-left-radius: 0;
 }
-/* line 75, ../../sass/style.scss */
+/* line 76, ../../sass/style.scss */
 nav .button-right.button-left, nav .button-right {
   border-bottom-right-radius: 0;
 }
-/* line 79, ../../sass/style.scss */
+/* line 80, ../../sass/style.scss */
 nav + * {
   clear: both;
 }
 
-/* line 84, ../../sass/style.scss */
+/* line 85, ../../sass/style.scss */
 h2 {
   text-transform: uppercase;
   font-size: 120%;
@@ -139,34 +140,34 @@ h2 {
   margin-top: 5px;
 }
 
-/* line 92, ../../sass/style.scss */
+/* line 93, ../../sass/style.scss */
 ul.set li {
   color: black;
   background-color: #dddddd;
   border-top: 1px dotted gray;
   padding: 7px 0;
 }
-/* line 97, ../../sass/style.scss */
+/* line 98, ../../sass/style.scss */
 ul.set li:first-child {
   border-top-left-radius: 12px 10px;
   border-top-right-radius: 12px 10px;
 }
-/* line 101, ../../sass/style.scss */
+/* line 102, ../../sass/style.scss */
 ul.set li:last-child {
   border-bottom-left-radius: 12px 10px;
   border-bottom-right-radius: 12px 10px;
   border-bottom: 1px dotted gray;
 }
-/* line 107, ../../sass/style.scss */
+/* line 108, ../../sass/style.scss */
 ul.set li .selected {
   background-color: lightgreen;
 }
-/* line 111, ../../sass/style.scss */
+/* line 112, ../../sass/style.scss */
 ul.set li .replacement {
   background-color: lightblue;
 }
 
-/* line 117, ../../sass/style.scss */
+/* line 118, ../../sass/style.scss */
 .cardSet {
   font-family: monospace;
   font-weight: bold;
@@ -175,67 +176,67 @@ ul.set li .replacement {
   display: block;
   float: left;
 }
-/* line 125, ../../sass/style.scss */
+/* line 126, ../../sass/style.scss */
 .cardSet.Dominion {
   color: black;
 }
-/* line 128, ../../sass/style.scss */
+/* line 129, ../../sass/style.scss */
 .cardSet.Intrigue {
   color: blue;
 }
-/* line 131, ../../sass/style.scss */
+/* line 132, ../../sass/style.scss */
 .cardSet.Seaside {
   color: #ff4500;
 }
-/* line 134, ../../sass/style.scss */
+/* line 135, ../../sass/style.scss */
 .cardSet.Alchemy {
   color: #aa00aa;
 }
-/* line 137, ../../sass/style.scss */
+/* line 138, ../../sass/style.scss */
 .cardSet.Promo {
   color: #888888;
 }
-/* line 140, ../../sass/style.scss */
+/* line 141, ../../sass/style.scss */
 .cardSet.Prosperity {
   color: #005500;
 }
-/* line 143, ../../sass/style.scss */
+/* line 144, ../../sass/style.scss */
 .cardSet.Cornucopia {
   color: #ff4500;
 }
 
-/* line 148, ../../sass/style.scss */
+/* line 149, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 153, ../../sass/style.scss */
+/* line 154, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 156, ../../sass/style.scss */
+/* line 157, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 159, ../../sass/style.scss */
+/* line 160, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 162, ../../sass/style.scss */
+/* line 163, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 165, ../../sass/style.scss */
+/* line 166, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 168, ../../sass/style.scss */
+/* line 169, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 172, ../../sass/style.scss */
+/* line 173, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -243,22 +244,22 @@ ul.set li .replacement {
   text-align: right;
 }
 
-/* line 179, ../../sass/style.scss */
+/* line 180, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 185, ../../sass/style.scss */
+/* line 186, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 187, ../../sass/style.scss */
+/* line 188, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 191, ../../sass/style.scss */
+/* line 192, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -266,21 +267,24 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 199, ../../sass/style.scss */
+/* line 200, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
-  margin: 10px 20px;
+  margin: 10px;
   font-weight: bold;
 }
-/* line 206, ../../sass/style.scss */
-ul.fieldset .iPhoneCheckContainer, ul.fieldset select {
-  margin: 5px 10px;
+/* line 210, ../../sass/style.scss */
+ul.fieldset li > .iPhoneCheckContainer,
+ul.fieldset li > select,
+ul.fieldset li > input,
+ul.fieldset li > .input {
+  margin: 5px;
   float: right;
 }
 
 /*** Config Window Styles ***/
-/* line 216, ../../sass/style.scss */
+/* line 221, ../../sass/style.scss */
 #SetWindow,
 #ConfigWindow {
   position: absolute;
@@ -293,7 +297,7 @@ ul.fieldset .iPhoneCheckContainer, ul.fieldset select {
   display: none;
 }
 
-/* line 227, ../../sass/style.scss */
+/* line 232, ../../sass/style.scss */
 #SetWindowList,
 #ConfigWindowOptions {
   border: 3px double black;
@@ -304,58 +308,58 @@ ul.fieldset .iPhoneCheckContainer, ul.fieldset select {
   text-align: left;
 }
 
-/* line 235, ../../sass/style.scss */
+/* line 240, ../../sass/style.scss */
 #ConfigWindow fieldset {
   border: 1px solid black;
 }
 
-/* line 238, ../../sass/style.scss */
+/* line 243, ../../sass/style.scss */
 #ConfigWindow fieldset fieldset {
   border: 1px dashed grey;
   padding: 1px 3px;
 }
 
-/* line 242, ../../sass/style.scss */
+/* line 247, ../../sass/style.scss */
 #ConfigWindow input[type="number"] {
   border: 1px solid grey;
   font-family: monospace;
   padding: 2px;
 }
 
-/* line 247, ../../sass/style.scss */
+/* line 252, ../../sass/style.scss */
 .ConfigButtons {
   width: 100%;
   margin: auto;
 }
 
-/* line 251, ../../sass/style.scss */
+/* line 256, ../../sass/style.scss */
 .ConfigButtons .OptionsSave {
   float: right;
 }
 
-/* line 255, ../../sass/style.scss */
+/* line 260, ../../sass/style.scss */
 .SetButtons button
 .ConfigButtons button {
   padding: 2px;
   margin: 10px;
 }
 
-/* line 259, ../../sass/style.scss */
+/* line 264, ../../sass/style.scss */
 #set_Alchemy_Options {
   margin-left: 20px;
 }
 
-/* line 263, ../../sass/style.scss */
+/* line 268, ../../sass/style.scss */
 .SetButtons {
   margin: auto;
 }
 
-/* line 266, ../../sass/style.scss */
+/* line 271, ../../sass/style.scss */
 .SetButtons .SetSave {
   float: right;
 }
 
-/* line 269, ../../sass/style.scss */
+/* line 274, ../../sass/style.scss */
 #NewSet {
   width: 100%;
   margin: 0;
@@ -363,22 +367,22 @@ ul.fieldset .iPhoneCheckContainer, ul.fieldset select {
   text-align: center;
 }
 
-/* line 275, ../../sass/style.scss */
+/* line 280, ../../sass/style.scss */
 #NewSet input {
   width: 90%;
 }
 
-/* line 279, ../../sass/style.scss */
+/* line 284, ../../sass/style.scss */
 div.qtip-content {
   cursor: pointer;
 }
 
-/* line 283, ../../sass/style.scss */
+/* line 288, ../../sass/style.scss */
 #SaveBox {
   display: none;
 }
 
-/* line 287, ../../sass/style.scss */
+/* line 292, ../../sass/style.scss */
 #SaveBox input {
   width: 80%;
 }

@@ -38,6 +38,7 @@ body {
 	//height: 460px;
 	//max-height: 460px;
 	margin: 0;
+	padding-bottom: 10px;
 }
 
 a {
@@ -199,13 +200,17 @@ ul.fieldset {
 		> label {
 			float: left;
 			display: block;
-			margin: 10px 20px;
+			margin: 10px;
 			font-weight: bold;
 		}
-	}
-	.iPhoneCheckContainer, select {
-		margin: 5px 10px;
-		float: right;
+		
+		> .iPhoneCheckContainer,
+		> select,
+		> input,
+		> .input {
+			margin: 5px;
+			float: right;
+		}
 	}
 
 }

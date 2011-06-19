@@ -175,26 +175,28 @@
 			value="true" <%=options.require_defense?'checked':''%>>
 		</li>
 		<li data-set="Alchemy">
-			<label>No. Potion Cards</label>
-			<input type="number" min="0" max="10" size="3" maxlength="2"
-			id="alchemy_min" name="alchemy_min" value="<%=options.alchemy_min%>"
-			<%=options.sets.Alchemy?'':'disabled'%>>&ndash;
-			<input type="number" min="0" max="10" size="3" maxlength="2"
-			id="alchemy_max" name="alchemy_max" value="<%=options.alchemy_max%>"
-			<%=options.sets.Alchemy?'':'disabled'%>>
+			<label>Potion Cards</label>
+			<div class="input">
+				<input type="number" min="0" max="10" size="3" maxlength="2" pattern="[0-9]*"
+					id="alchemy_min" name="alchemy_min" value="<%=options.alchemy_min%>"
+					<%=options.sets.Alchemy?'':'disabled'%>>&ndash;
+				<input type="number" min="0" max="10" size="3" maxlength="2" pattern="[0-9]*"
+					id="alchemy_max" name="alchemy_max" value="<%=options.alchemy_max%>"
+					<%=options.sets.Alchemy?'':'disabled'%>>
+			</div>
 		</li>
 		<li data-set="Prosperity">
-			<label for="prosperity_random_basics">Random Colony/Platinum</label>
+			<label for="prosperity_random_basics">Random Basics</label>
 			<input type="checkbox" id="prosperity_random_basics"
-			name="prosperity_random_basics" value="true"
-			<%=options.prosperity_random_basics?'checked':''%>>
+				name="prosperity_random_basics" value="true"
+				<%=options.prosperity_random_basics?'checked':''%>>
 		</li>
 		<li data-card="Black Market">
 			<label for="blackmarket_size">Black Market Size</label>
 			<input type="number" min="10" max="<%=constants.blackmarket_max%>"
-			size="3" maxlength="3" id="blackmarket_size" name="blackmarket_size" 
-			value="<%=options.blackmarket_size%>" 
-			<%=(options.promos['Black Market']?'':'disabled')%>>
+				size="3" maxlength="3" id="blackmarket_size" name="blackmarket_size" 
+				value="<%=options.blackmarket_size%>" 
+				<%=(options.promos['Black Market']?'':'disabled')%>>
 		</li>
 	</ul>
 </script>

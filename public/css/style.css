@@ -1,4 +1,4 @@
-/* line 17, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 17, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -20,45 +20,45 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-/* line 20, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 20, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 body {
   line-height: 1;
 }
 
-/* line 22, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 22, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 ol, ul {
   list-style: none;
 }
 
-/* line 24, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 24, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 26, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 26, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 caption, th, td {
   text-align: left;
   font-weight: normal;
   vertical-align: middle;
 }
 
-/* line 28, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 28, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q, blockquote {
   quotes: none;
 }
-/* line 101, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 101, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 q:before, q:after, blockquote:before, blockquote:after {
   content: "";
   content: none;
 }
 
-/* line 30, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 30, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 115, ../../../../.gem/ruby/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+/* line 115, ../../../../.gem/ruby/1.8/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block;
@@ -141,29 +141,29 @@ h2 {
 }
 
 /* line 93, ../../sass/style.scss */
-ul.set li {
+ul.deck li {
   color: black;
   background-color: #dddddd;
   border-top: 1px dotted gray;
-  padding: 7px 0;
+  padding: 7px;
 }
 /* line 98, ../../sass/style.scss */
-ul.set li:first-child {
+ul.deck li:first-child {
   border-top-left-radius: 12px 10px;
   border-top-right-radius: 12px 10px;
 }
 /* line 102, ../../sass/style.scss */
-ul.set li:last-child {
+ul.deck li:last-child {
   border-bottom-left-radius: 12px 10px;
   border-bottom-right-radius: 12px 10px;
   border-bottom: 1px dotted gray;
 }
 /* line 108, ../../sass/style.scss */
-ul.set li .selected {
+ul.deck li .selected {
   background-color: lightgreen;
 }
 /* line 112, ../../sass/style.scss */
-ul.set li .replacement {
+ul.deck li .replacement {
   background-color: lightblue;
 }
 
@@ -174,69 +174,76 @@ ul.set li .replacement {
   text-align: right;
   margin-right: 2px;
   display: block;
+}
+/* line 125, ../../sass/style.scss */
+ul.deck .cardSet {
   float: left;
 }
-/* line 126, ../../sass/style.scss */
+/* line 128, ../../sass/style.scss */
+ul.list .cardSet {
+  float: right;
+}
+/* line 132, ../../sass/style.scss */
 .cardSet.Dominion {
   color: black;
 }
-/* line 129, ../../sass/style.scss */
+/* line 135, ../../sass/style.scss */
 .cardSet.Intrigue {
   color: blue;
 }
-/* line 132, ../../sass/style.scss */
+/* line 138, ../../sass/style.scss */
 .cardSet.Seaside {
   color: #ff4500;
 }
-/* line 135, ../../sass/style.scss */
+/* line 141, ../../sass/style.scss */
 .cardSet.Alchemy {
   color: #aa00aa;
 }
-/* line 138, ../../sass/style.scss */
+/* line 144, ../../sass/style.scss */
 .cardSet.Promo {
   color: #888888;
 }
-/* line 141, ../../sass/style.scss */
+/* line 147, ../../sass/style.scss */
 .cardSet.Prosperity {
   color: #005500;
 }
-/* line 144, ../../sass/style.scss */
+/* line 150, ../../sass/style.scss */
 .cardSet.Cornucopia {
   color: #ff4500;
 }
 
-/* line 149, ../../sass/style.scss */
+/* line 155, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 154, ../../sass/style.scss */
+/* line 160, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 157, ../../sass/style.scss */
+/* line 163, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 160, ../../sass/style.scss */
+/* line 166, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 163, ../../sass/style.scss */
+/* line 169, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 166, ../../sass/style.scss */
+/* line 172, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 169, ../../sass/style.scss */
+/* line 175, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 173, ../../sass/style.scss */
+/* line 180, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -244,22 +251,34 @@ ul.set li .replacement {
   text-align: right;
 }
 
-/* line 180, ../../sass/style.scss */
+/* line 187, ../../sass/style.scss */
+ul.list {
+  margin: 10px 0;
+}
+/* line 190, ../../sass/style.scss */
+ul.list li {
+  color: black;
+  background-color: #dddddd;
+  border-top: 1px dotted gray;
+  padding: 7px 10px;
+}
+
+/* line 198, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 186, ../../sass/style.scss */
+/* line 204, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 188, ../../sass/style.scss */
+/* line 206, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 192, ../../sass/style.scss */
+/* line 210, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -267,122 +286,18 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 200, ../../sass/style.scss */
+/* line 218, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
   margin: 10px;
   font-weight: bold;
 }
-/* line 210, ../../sass/style.scss */
+/* line 228, ../../sass/style.scss */
 ul.fieldset li > .iPhoneCheckContainer,
 ul.fieldset li > select,
 ul.fieldset li > input,
 ul.fieldset li > .input {
   margin: 5px;
   float: right;
-}
-
-/*** Config Window Styles ***/
-/* line 221, ../../sass/style.scss */
-#SetWindow,
-#ConfigWindow {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  z-index: 1000;
-  display: none;
-}
-
-/* line 232, ../../sass/style.scss */
-#SetWindowList,
-#ConfigWindowOptions {
-  border: 3px double black;
-  background-color: white;
-  width: 85%;
-  margin: 20px auto;
-  padding: 10px;
-  text-align: left;
-}
-
-/* line 240, ../../sass/style.scss */
-#ConfigWindow fieldset {
-  border: 1px solid black;
-}
-
-/* line 243, ../../sass/style.scss */
-#ConfigWindow fieldset fieldset {
-  border: 1px dashed grey;
-  padding: 1px 3px;
-}
-
-/* line 247, ../../sass/style.scss */
-#ConfigWindow input[type="number"] {
-  border: 1px solid grey;
-  font-family: monospace;
-  padding: 2px;
-}
-
-/* line 252, ../../sass/style.scss */
-.ConfigButtons {
-  width: 100%;
-  margin: auto;
-}
-
-/* line 256, ../../sass/style.scss */
-.ConfigButtons .OptionsSave {
-  float: right;
-}
-
-/* line 260, ../../sass/style.scss */
-.SetButtons button
-.ConfigButtons button {
-  padding: 2px;
-  margin: 10px;
-}
-
-/* line 264, ../../sass/style.scss */
-#set_Alchemy_Options {
-  margin-left: 20px;
-}
-
-/* line 268, ../../sass/style.scss */
-.SetButtons {
-  margin: auto;
-}
-
-/* line 271, ../../sass/style.scss */
-.SetButtons .SetSave {
-  float: right;
-}
-
-/* line 274, ../../sass/style.scss */
-#NewSet {
-  width: 100%;
-  margin: 0;
-  padding: 4px;
-  text-align: center;
-}
-
-/* line 280, ../../sass/style.scss */
-#NewSet input {
-  width: 90%;
-}
-
-/* line 284, ../../sass/style.scss */
-div.qtip-content {
-  cursor: pointer;
-}
-
-/* line 288, ../../sass/style.scss */
-#SaveBox {
-  display: none;
-}
-
-/* line 292, ../../sass/style.scss */
-#SaveBox input {
-  width: 80%;
 }

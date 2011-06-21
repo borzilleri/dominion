@@ -4,8 +4,8 @@ $bg-color: #333;
 $text-color-light: lightgray;
 $text-color-dark: black;
 
-$set-radius-horz: 12px;
-$set-radius-vert: 10px;
+$corner-radius-horz: 12px;
+$corner-radius-vert: 10px;
 
 $button-bg: #000000;
 $button-border: #777777;
@@ -86,22 +86,22 @@ h2 {
 	text-transform: uppercase;
 	font-size: 120%;
 	font-weight: bold;
-	margin-left: $set-radius-horz;
+	margin-left: $corner-radius-horz;
 	margin-top: 5px;
 }
-ul.set {
+ul.deck {
 	li {
 		color: $text-color-dark;
 		background-color: #dddddd;
 		border-top: 1px dotted gray;
-		padding: 7px 0;
+		padding: 7px;
 		&:first-child {
-			border-top-left-radius: $set-radius-horz $set-radius-vert;
-			border-top-right-radius: $set-radius-horz $set-radius-vert;
+			border-top-left-radius: $corner-radius-horz $corner-radius-vert;
+			border-top-right-radius: $corner-radius-horz $corner-radius-vert;
 		}
 		&:last-child {
-			border-bottom-left-radius: $set-radius-horz $set-radius-vert;
-			border-bottom-right-radius: $set-radius-horz $set-radius-vert;
+			border-bottom-left-radius: $corner-radius-horz $corner-radius-vert;
+			border-bottom-right-radius: $corner-radius-horz $corner-radius-vert;
 			border-bottom: 1px dotted gray;
 		}
 
@@ -121,7 +121,13 @@ ul.set {
 	text-align: right;
 	margin-right: 2px;
 	display: block;
-	float: left;
+
+	ul.deck & {
+		float: left;
+	}
+	ul.list & {
+		float: right;
+	}
 
 	&.Dominion {
 		color: $set-dominion;
@@ -170,11 +176,23 @@ ul.set {
 		color: $type-victory;
 	}
 }
+
 .cardCost {
 	font-family: monospace;
 	margin-left: 1px;
 	float: right;
 	text-align: right;
+}
+
+ul.list {
+	margin: 10px 0;
+
+	li {
+		color: $text-color-dark;
+		background-color: #dddddd;
+		border-top: 1px dotted gray;
+		padding: 7px 10px;
+	}
 }
 
 ul.fieldset {
@@ -213,82 +231,4 @@ ul.fieldset {
 		}
 	}
 
-}
-
-
-/*** Config Window Styles ***/
-#SetWindow, 
-#ConfigWindow {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	text-align: center;
-	z-index: 1000;
-	display: none;
-}
-#SetWindowList, 
-#ConfigWindowOptions {
-	border: 3px double black;
-	background-color: white;
-	width: 85%;
-	margin: 20px auto;
-	padding: 10px;
-	text-align: left;
-}
-#ConfigWindow fieldset {
-	border: 1px solid black;
-}
-#ConfigWindow fieldset fieldset {
-	border: 1px dashed grey;
-	padding: 1px 3px;
-}
-#ConfigWindow input[type="number"] {
-	border: 1px solid grey;
-	font-family: monospace;
-	padding: 2px;
-}
-.ConfigButtons {
-	width: 100%;
-	margin: auto;
-}
-.ConfigButtons .OptionsSave {
-	float: right;
-}
-.SetButtons button
-.ConfigButtons button {
-	padding: 2px;
-	margin: 10px;
-}
-#set_Alchemy_Options {
-	margin-left: 20px;
-}
-
-.SetButtons {
-	margin: auto;
-}
-.SetButtons .SetSave {
-	float: right;
-}
-#NewSet {
-	width: 100%;
-	margin: 0;
-	padding: 4px;
-	text-align: center;
-}
-#NewSet input {
-	width: 90%;
-}
-
-div.qtip-content {
-	cursor: pointer;
-}
-
-#SaveBox {
-	display: none;
-}
-
-#SaveBox input {
-	width:80%;
 }

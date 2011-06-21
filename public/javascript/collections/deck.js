@@ -1,6 +1,5 @@
-window.Library_Collection = Backbone.Collection.extend({
+window.Deck_Collection = Card_Collection.extend({
   default_size: 10,
-  model: Card_Model,
   bane: null,
   black_market: null,
   prosperity_basics: false,
@@ -9,12 +8,20 @@ window.Library_Collection = Backbone.Collection.extend({
       'load',
       'generate',
       'selectBaneCard',
-      'buildBlackMarket',
-      'getRandom'
+      'buildBlackMarket'
     );
   },
   load: function(set) {
-    console.log('[ loading deck: '+set+']');
+    if( !(set in window.DECKS) ) throw "Set '"+set+"' not found.";
+
+    var self = this,
+        setInfo = window.DECKS[set],
+        card;
+    _(setInfo.cards).each(function(cardName) {
+      card = window.library.random(cardName);
+      if( !card ) throw "Card: '"+cardName+"' not found.";
+      self.add(card);
+    });
   },
   generate: function() {
     var self = this,
@@ -24,12 +31,12 @@ window.Library_Collection = Backbone.Collection.extend({
 
     // If we're using Alchemy, select the min number of potion cards.
     if( window.options.get('sets').Alchemy ) {
-      var pots = new Library_Collection(window.app.library.filter(function(model) {
+      var pots = new Library_Collection(window.library.filter(function(model) {
         return model.get('potion');
       }));
 
       while( this.length < window.options.get('alchemy_min') ) {
-        var model = pots.getRandom();
+        var model = pots.random();
         console.log('[ adding: '+model.get('name')+','+model.get('potion')+' ]');
         this.add(model);
         pots.remove(model);
@@ -45,7 +52,7 @@ window.Library_Collection = Backbone.Collection.extend({
     // Then add the remaining number of cards, if any
     if( this.length < this.default_size ) {
       var selection = new Library_Collection(
-        window.app.library.filter(function(model) { 
+        window.library.filter(function(model) { 
           return model.isSelectable() && !self.get(model.get('name'));
         })
       );
@@ -63,7 +70,7 @@ window.Library_Collection = Backbone.Collection.extend({
         // an error condition
         if( 0 >= selection.length ) throw "Too few cards to select from.";
 
-        var model = selection.getRandom();
+        var model = selection.random();
         //console.log('[ adding: '+model.get('name')+','+model.get('potion')+' ]');
         this.add(model);
         selection.remove(model);
@@ -81,11 +88,11 @@ window.Library_Collection = Backbone.Collection.extend({
     }
 
     if( defenseRequired && !defenseAdded ) {
-      var reactions = new Library_Collection(window.app.library.filter(function(model) {
+      var reactions = new Library_Collection(window.library.filter(function(model) {
         return model.isSelectable() && model.get('type').defense;
       }));
       if( 0 < reactions.length ) {
-        var model = reactions.getRandom();
+        var model = reactions.random();
         var lastModel = this.last();
         this.remove(this.last());
         this.add(model);
@@ -101,10 +108,10 @@ window.Library_Collection = Backbone.Collection.extend({
   },
   selectBaneCard: function() {
     var self = this;
-    this.bane = new Library_Collection(window.app.library.filter(function(m) {
+    this.bane = new Library_Collection(window.library.filter(function(m) {
       return m.isSelectable() && !self.get(m.get('name')) &&
         ( 2 <= m.get('cost') && 3 >= m.get('cost') ) && !m.get('potion');
-    })).getRandom();
+    })).random();
 
     if( false === this.bane ) throw "No valid Bane cards available.";
   },
@@ -112,7 +119,7 @@ window.Library_Collection = Backbone.Collection.extend({
     var self = this,
         blackMarket = null,
         size = window.options.get('blackmarket_size');
-    var cards = new Library_Collection(window.app.library.filter(function(m) {
+    var cards = new Library_Collection(window.library.filter(function(m) {
       return m.isSelectable() && !self.get(m.get('name')) &&
         (!self.bane || self.bane.get('name') !== m.get('name'));
     }));
@@ -127,16 +134,12 @@ window.Library_Collection = Backbone.Collection.extend({
     else {
       blackMarket = new Library_Collection();
       while( blackMarket.length < size ) {
-        var model = cards.getRandom();
+        var model = cards.random();
         blackMarket.add(model);
         cards.remove(model);
       }
     }
     this.black_market = blackMarket;
-  },
-  getRandom: function() {
-    return 0 >= this.length ? 
-      false : this.at(Math.floor(Math.random() * this.length));
   },
   compare_Name: function(card) {
     return card.get('name');

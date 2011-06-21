@@ -1,4 +1,4 @@
-window.LIBRARY = [
+window.DATA_CARDS = [
 {
   name: 'Ambassador',
   cost: 3,

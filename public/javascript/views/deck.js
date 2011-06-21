@@ -13,7 +13,7 @@ window.Deck_View = Backbone.View.extend({
 			'loadDeck'
 		);
 
-		this.loadDeck(options.set);
+		this.loadDeck(options.deck);
 		this.template = _.template($('#template-deck').html());
 		this.template_card = _.template($('#template-card').html());
 		this.render();
@@ -30,7 +30,7 @@ window.Deck_View = Backbone.View.extend({
       card: this.template_card,
 			options: window.options.toJSON(),
 			error: this.error,
-			set: (this.deck ? this.deck.toJSON() : []),
+			deck: (this.deck ? this.deck.toJSON() : []),
 			bane: (this.deck && this.deck.bane ? this.deck.bane.toJSON() : null),
 		  blackMarket: (this.deck && this.deck.black_market ? this.deck.black_market.toJSON() : null)
 		}));
@@ -39,7 +39,7 @@ window.Deck_View = Backbone.View.extend({
 		$('#content').html(this.el);
 	},
 	newDeck: function(e) {
-		var deck = new Library_Collection();
+		var deck = new Deck_Collection();
 		try {
 		  deck.generate();
       this.deck = deck;
@@ -52,13 +52,21 @@ window.Deck_View = Backbone.View.extend({
 		this.render();
 		return false;
 	},
-	loadDeck: function(deck) {
-		if( !deck || 'last' == deck ) {
+	loadDeck: function(name) {
+		if( !name || 'last' == name ) {
 			this.deck = window.app.lastDeck;
+			return;
 		}
-		else {
-		  this.deck = new Library_Collection();
-		  this.deck.load(deck);
-		}
+
+    var deck = new Deck_Collection();
+    try {
+      deck.load(name);
+      this.deck = deck;
+      this.error = null;
+    }
+    catch( error ) {
+      this.deck = null;
+      this.error = error;
+    }
 	}
 });

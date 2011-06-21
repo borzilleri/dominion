@@ -30,15 +30,23 @@
 	<link href="css/iphone-style-checkboxes.css" rel="stylesheet" type="text/css">
 
 	<!-- Data Files -->
-	<script src="javascript/data.js" 
+	<script src="javascript/cards.js" 
 		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/decks.js"
+		type="text/javascript" cahrset="utf-8"></script>
 
 	<!-- Classes/Libraries -->
 	<script src="javascript/models/card.js" 
 		type="text/javascript" charset="utf-8"></script>
-	<script src="javascript/models/library.js" 
-		type="text/javascript" charset="utf-8"></script>
 	<script src="javascript/models/config.js" 
+		type="text/javascript" charset="utf-8"></script>
+
+	<script src="javascript/collections/card.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/collections/library.js" 
+		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/collections/deck.js" 
+
 		type="text/javascript" charset="utf-8"></script>
 	<script src="javascript/views/base.js" 
 		type="text/javascript" charset="utf-8"></script>
@@ -46,8 +54,9 @@
 		type="text/javascript" charset="utf-8"></script>
 	<script src="javascript/views/deck.js" 
 		type="text/javascript" charset="utf-8"></script>
-	<script src="javascript/views/sets.js" 
+	<script src="javascript/views/list.js" 
 		type="text/javascript" charset="utf-8"></script>
+
 	<script src="javascript/controllers/dominion.js"
 		type="text/javascript" charset="utf-8"></script>
 
@@ -62,7 +71,7 @@
 <script id="template-deck" type="text/x-underscore-template">
 	<nav>
 	<a href="#" class="button-left newSet">New</a>
-	<a href="#sets" class="button">Sets</a>
+	<a href="#list" class="button">Sets</a>
 	<a href="#options" class="button-right">Options</a>
 	</nav>
 	<% if( error ) { %>
@@ -70,20 +79,20 @@
 			Unable to generate new deck:<br><%=error%>
 		</div>
 	<% } else { %>
-		<ul class="set">
-			<% _(set).each(function(item) {
+		<ul class="deck">
+			<% _(deck).each(function(item) {
 				print(card({card:item,options:options}));
 			}); %>
 		</ul>
 		<% if( bane ) { %>
 			<h2>Bane</h2>
-			<ul class="set">
+			<ul class="deck">
 				<%=card({card:bane,options:options})%>
 			</ul>
 		<% } %>
 		<% if( blackMarket ) { %>
 			<h2>Black Market</h2>
-			<ul class="set">
+			<ul class="deck">
 			<% _(blackMarket).each(function(item) {
 				print( card({card:item,options:options}) );
 			}); %>
@@ -116,14 +125,20 @@
 	<% } %>
 	</li>
 </script>
-<script id="template-sets" type="text/x-underscore-template">
+<script id="template-list" type="text/x-underscore-template">
 	<nav>
-	<a href="#deck" class="button-left newSet">&lt; Back</a>
+	<a href="#deck" class="button-left">&lt; Back</a>
 	<a href="#options" class="button-right">Options</a>
 	</nav>
-	<div>
-		Set Listing
-	</div>
+
+	<h2>Recommended Sets</h2>
+	<ul class="list">
+	<% _(window.DECKS).each(function(deck, name) { %>
+		<li><span class="deckName"><%=name%></span>
+
+		</li>
+	<% }); %>
+	</ul>
 </script>
 <script id="template-options" type="text/x-underscore-template">
 	<nav>

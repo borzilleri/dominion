@@ -115,7 +115,7 @@ ul.deck {
 	}
 }
 
-.cardSet {
+.cardSet, .deckSets {
 	font-family: monospace;
 	font-weight: bold;
 	text-align: right;
@@ -191,7 +191,8 @@ ul.list {
 		color: $text-color-dark;
 		background-color: #dddddd;
 		border-top: 1px dotted gray;
-		padding: 7px 10px;
+		padding: 7px;
+		cursor: pointer;
 	}
 }
 

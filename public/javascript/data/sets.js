@@ -1,7 +1,7 @@
 window.DATA_SETS = {
   'Promo': {
     symbol: '*'
-  }
+  },
   'Dominion': {
     symbol: 'D'
   },

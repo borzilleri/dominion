@@ -168,7 +168,7 @@ ul.deck li .replacement {
 }
 
 /* line 118, ../../sass/style.scss */
-.cardSet {
+.cardSet, .deckSets {
   font-family: monospace;
   font-weight: bold;
   text-align: right;
@@ -176,39 +176,39 @@ ul.deck li .replacement {
   display: block;
 }
 /* line 125, ../../sass/style.scss */
-ul.deck .cardSet {
+ul.deck .cardSet, ul.deck .deckSets {
   float: left;
 }
 /* line 128, ../../sass/style.scss */
-ul.list .cardSet {
+ul.list .cardSet, ul.list .deckSets {
   float: right;
 }
 /* line 132, ../../sass/style.scss */
-.cardSet.Dominion {
+.cardSet.Dominion, .deckSets.Dominion {
   color: black;
 }
 /* line 135, ../../sass/style.scss */
-.cardSet.Intrigue {
+.cardSet.Intrigue, .deckSets.Intrigue {
   color: blue;
 }
 /* line 138, ../../sass/style.scss */
-.cardSet.Seaside {
+.cardSet.Seaside, .deckSets.Seaside {
   color: #ff4500;
 }
 /* line 141, ../../sass/style.scss */
-.cardSet.Alchemy {
+.cardSet.Alchemy, .deckSets.Alchemy {
   color: #aa00aa;
 }
 /* line 144, ../../sass/style.scss */
-.cardSet.Promo {
+.cardSet.Promo, .deckSets.Promo {
   color: #888888;
 }
 /* line 147, ../../sass/style.scss */
-.cardSet.Prosperity {
+.cardSet.Prosperity, .deckSets.Prosperity {
   color: #005500;
 }
 /* line 150, ../../sass/style.scss */
-.cardSet.Cornucopia {
+.cardSet.Cornucopia, .deckSets.Cornucopia {
   color: #ff4500;
 }
 
@@ -260,25 +260,26 @@ ul.list li {
   color: black;
   background-color: #dddddd;
   border-top: 1px dotted gray;
-  padding: 7px 10px;
+  padding: 7px;
+  cursor: pointer;
 }
 
-/* line 198, ../../sass/style.scss */
+/* line 199, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 204, ../../sass/style.scss */
+/* line 205, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 206, ../../sass/style.scss */
+/* line 207, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 210, ../../sass/style.scss */
+/* line 211, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -286,14 +287,14 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 218, ../../sass/style.scss */
+/* line 219, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
   margin: 10px;
   font-weight: bold;
 }
-/* line 228, ../../sass/style.scss */
+/* line 229, ../../sass/style.scss */
 ul.fieldset li > .iPhoneCheckContainer,
 ul.fieldset li > select,
 ul.fieldset li > input,

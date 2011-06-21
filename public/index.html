@@ -30,9 +30,11 @@
 	<link href="css/iphone-style-checkboxes.css" rel="stylesheet" type="text/css">
 
 	<!-- Data Files -->
-	<script src="javascript/cards.js" 
+	<script src="javascript/data/cards.js" 
 		type="text/javascript" charset="utf-8"></script>
-	<script src="javascript/decks.js"
+	<script src="javascript/data/decks.js"
+		type="text/javascript" cahrset="utf-8"></script>
+	<script src="javascript/data/sets.js"
 		type="text/javascript" cahrset="utf-8"></script>
 
 	<!-- Classes/Libraries -->
@@ -103,7 +105,7 @@
 <script id="template-card" type="text/x-underscore-template">
 	<li>
 	<% if( options.display.set ) { %>
-		<span class="cardSet <%= card.set %>">[<%= card.setAbbrev %>]</span>
+		<span class="cardSet <%= card.set %>">[<%=DATA_SETS[card.set].symbol%>]</span>
 		<% } %>
 	<span class="cardName"><%= card.name %></span>
 	<% if( options.display.cost ) { %>
@@ -133,9 +135,12 @@
 
 	<h2>Recommended Sets</h2>
 	<ul class="list">
-	<% _(window.DECKS).each(function(deck, name) { %>
-		<li><span class="deckName"><%=name%></span>
-
+	<% _(window.DATA_DECKS).each(function(deck, name) { %>
+		<li data-deck="<%=name%>">
+			<span class="deckName"><%=name%></span>
+			<span class="deckSets">[<% _(deck.sets).each(function(v,name) {
+				print(DATA_SETS[name].symbol);
+			});%>]</span>
 		</li>
 	<% }); %>
 	</ul>

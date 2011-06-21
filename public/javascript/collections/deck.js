@@ -11,17 +11,18 @@ window.Deck_Collection = Card_Collection.extend({
       'buildBlackMarket'
     );
   },
-  load: function(set) {
-    if( !(set in window.DECKS) ) throw "Set '"+set+"' not found.";
+  load: function(deck) {
+    if( !(deck in window.DATA_DECKS) ) throw "Deck '"+deck+"' not found.";
 
     var self = this,
-        setInfo = window.DECKS[set],
+        deckInfo = window.DATA_DECKS[deck],
         card;
-    _(setInfo.cards).each(function(cardName) {
-      card = window.library.random(cardName);
+    _(deckInfo.cards).each(function(cardName) {
+      card = window.library.get(cardName);
       if( !card ) throw "Card: '"+cardName+"' not found.";
       self.add(card);
     });
+    window.app.lastDeck = this;
   },
   generate: function() {
     var self = this,
@@ -145,7 +146,9 @@ window.Deck_Collection = Card_Collection.extend({
     return card.get('name');
   },
   compare_Set: function(card) {
-    return card.get('set')+'_'+
+    var set = card.get('set') === 'Promo' ? '~' : '';
+    set += card.get('set');
+    return set+'_'+
       card.get('name');
   },
   compare_Cost: function(card) {

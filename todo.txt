@@ -1,0 +1,10 @@
+
+Additional config/rules:
+"no duplicates from previous deck"
+"at least one attack card"
+|->"at least one reaction card"
+"no attack cards"
+"no curses"
+"/smart/ Alchemy" (if a potion card is chosen at least X will be)
+"at least one +buy/gain card"
+"at least one +action card"

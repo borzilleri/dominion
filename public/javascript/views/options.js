@@ -46,5 +46,6 @@ window.Options_View = Backbone.View.extend({
       this.$('[data-promos="'+value+'"] input')
         .prop('disabled', !$field.prop('checked'));
     }
+    return false;
 	},
 });

@@ -3,10 +3,10 @@ $(function() {
 
   window.isMobile = (function(ua) {
     return (
-      ua.match('/iPhone/') ||
-      ua.match('/iPod/') ||
-      ua.match('/iPad/') ||
-      ua.match('/Android/')
+      ua.match('iPhone') ||
+      ua.match('iPod') ||
+      ua.match('iPad') ||
+      ua.match('Android')
     );
   })(navigator.userAgent);
 

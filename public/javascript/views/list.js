@@ -11,7 +11,7 @@ window.List_View = Backbone.View.extend({
   },
   render: function() {
     $(this.el).html(this.template());
-    $('#content').html($(this.el));
+    $('div.content').html($(this.el));
   },
   loadDeck: function(e) {
     var deck = $(e.currentTarget).data('deck');

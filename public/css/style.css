@@ -65,11 +65,16 @@ footer, header, hgroup, menu, nav, section {
 }
 
 /* line 29, ../../sass/style.scss */
+* {
+  -webkit-touch-callout: none;
+}
+
+/* line 33, ../../sass/style.scss */
 html {
   background-color: #333333;
 }
 
-/* line 32, ../../sass/style.scss */
+/* line 36, ../../sass/style.scss */
 body {
   color: lightgray;
   font-size: 100%;
@@ -79,59 +84,31 @@ body {
   padding-bottom: 10px;
 }
 
-/* line 44, ../../sass/style.scss */
+/* line 48, ../../sass/style.scss */
 a {
   color: lightgray;
 }
 
-/* line 48, ../../sass/style.scss */
-.button, .button-left, .button-right {
-  background-color: black;
-  border: 1px solid #777777;
-  text-decoration: none;
-  padding: 5px 10px;
-  border-radius: 7px;
-}
-
-/* line 55, ../../sass/style.scss */
-.button:active, .button-left:active, .button-right:active {
-  color: black;
-  background-color: #dddddd;
-}
-
-/* line 59, ../../sass/style.scss */
+/* line 52, ../../sass/style.scss */
 .button-left {
   float: left;
 }
 
-/* line 63, ../../sass/style.scss */
+/* line 56, ../../sass/style.scss */
 .button-right {
   float: right;
 }
 
-/* line 68, ../../sass/style.scss */
-nav {
-  text-align: center;
-}
-/* line 70, ../../sass/style.scss */
-nav .button, nav .button-left, nav .button-right {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-/* line 73, ../../sass/style.scss */
-nav .button-left, nav .button-left.button-right {
-  border-bottom-left-radius: 0;
-}
-/* line 76, ../../sass/style.scss */
-nav .button-right.button-left, nav .button-right {
-  border-bottom-right-radius: 0;
-}
-/* line 80, ../../sass/style.scss */
-nav + * {
-  clear: both;
+/* line 61, ../../sass/style.scss */
+#scrollWrapper {
+  position: absolute;
+  top: 0px;
+  bottom: 48px;
+  width: 100%;
+  z-index: 1;
 }
 
-/* line 85, ../../sass/style.scss */
+/* line 70, ../../sass/style.scss */
 h2 {
   text-transform: uppercase;
   font-size: 120%;
@@ -140,34 +117,34 @@ h2 {
   margin-top: 5px;
 }
 
-/* line 93, ../../sass/style.scss */
+/* line 78, ../../sass/style.scss */
 ul.deck li {
   color: black;
   background-color: #dddddd;
   border-top: 1px dotted gray;
   padding: 7px;
 }
-/* line 98, ../../sass/style.scss */
+/* line 83, ../../sass/style.scss */
 ul.deck li:first-child {
   border-top-left-radius: 12px 10px;
   border-top-right-radius: 12px 10px;
 }
-/* line 102, ../../sass/style.scss */
+/* line 87, ../../sass/style.scss */
 ul.deck li:last-child {
   border-bottom-left-radius: 12px 10px;
   border-bottom-right-radius: 12px 10px;
   border-bottom: 1px dotted gray;
 }
-/* line 108, ../../sass/style.scss */
+/* line 93, ../../sass/style.scss */
 ul.deck li .selected {
   background-color: lightgreen;
 }
-/* line 112, ../../sass/style.scss */
+/* line 97, ../../sass/style.scss */
 ul.deck li .replacement {
   background-color: lightblue;
 }
 
-/* line 118, ../../sass/style.scss */
+/* line 103, ../../sass/style.scss */
 .cardSet, .deckSets {
   font-family: monospace;
   font-weight: bold;
@@ -175,75 +152,75 @@ ul.deck li .replacement {
   margin-right: 2px;
   display: block;
 }
-/* line 125, ../../sass/style.scss */
+/* line 110, ../../sass/style.scss */
 ul.deck .cardSet, ul.deck .deckSets {
   float: left;
 }
-/* line 128, ../../sass/style.scss */
+/* line 113, ../../sass/style.scss */
 ul.list .cardSet, ul.list .deckSets {
   float: right;
 }
-/* line 132, ../../sass/style.scss */
+/* line 117, ../../sass/style.scss */
 .cardSet.Dominion, .deckSets.Dominion {
   color: black;
 }
-/* line 135, ../../sass/style.scss */
+/* line 120, ../../sass/style.scss */
 .cardSet.Intrigue, .deckSets.Intrigue {
   color: blue;
 }
-/* line 138, ../../sass/style.scss */
+/* line 123, ../../sass/style.scss */
 .cardSet.Seaside, .deckSets.Seaside {
   color: #ff4500;
 }
-/* line 141, ../../sass/style.scss */
+/* line 126, ../../sass/style.scss */
 .cardSet.Alchemy, .deckSets.Alchemy {
   color: #aa00aa;
 }
-/* line 144, ../../sass/style.scss */
+/* line 129, ../../sass/style.scss */
 .cardSet.Promo, .deckSets.Promo {
   color: #888888;
 }
-/* line 147, ../../sass/style.scss */
+/* line 132, ../../sass/style.scss */
 .cardSet.Prosperity, .deckSets.Prosperity {
   color: #005500;
 }
-/* line 150, ../../sass/style.scss */
+/* line 135, ../../sass/style.scss */
 .cardSet.Cornucopia, .deckSets.Cornucopia {
   color: #ff4500;
 }
 
-/* line 155, ../../sass/style.scss */
+/* line 140, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 160, ../../sass/style.scss */
+/* line 145, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 163, ../../sass/style.scss */
+/* line 148, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 166, ../../sass/style.scss */
+/* line 151, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 169, ../../sass/style.scss */
+/* line 154, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 172, ../../sass/style.scss */
+/* line 157, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 175, ../../sass/style.scss */
+/* line 160, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 180, ../../sass/style.scss */
+/* line 165, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -251,11 +228,11 @@ ul.list .cardSet, ul.list .deckSets {
   text-align: right;
 }
 
-/* line 187, ../../sass/style.scss */
+/* line 172, ../../sass/style.scss */
 ul.list {
   margin: 10px 0;
 }
-/* line 190, ../../sass/style.scss */
+/* line 175, ../../sass/style.scss */
 ul.list li {
   color: black;
   background-color: #dddddd;
@@ -264,22 +241,22 @@ ul.list li {
   cursor: pointer;
 }
 
-/* line 199, ../../sass/style.scss */
+/* line 184, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 205, ../../sass/style.scss */
+/* line 190, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 207, ../../sass/style.scss */
+/* line 192, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 211, ../../sass/style.scss */
+/* line 196, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -287,18 +264,74 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 219, ../../sass/style.scss */
+/* line 204, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
   margin: 10px;
   font-weight: bold;
 }
-/* line 229, ../../sass/style.scss */
+/* line 214, ../../sass/style.scss */
 ul.fieldset li > .iPhoneCheckContainer,
 ul.fieldset li > select,
 ul.fieldset li > input,
 ul.fieldset li > .input {
   margin: 5px;
   float: right;
+}
+
+/* line 221, ../../sass/style.scss */
+.button, .button-left, .button-right {
+  z-index: 10;
+  text-decoration: none;
+}
+
+/* line 229, ../../sass/style.scss */
+footer {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  border-top: 1px solid #444;
+  background-color: #222;
+}
+/* line 239, ../../sass/style.scss */
+footer .footer-button, footer .footer-button-left, footer .footer-button-right, footer .footer-button-center {
+  z-index: 3;
+  text-align: center;
+  width: 30%;
+  border: 1px solid red;
+}
+/* line 247, ../../sass/style.scss */
+footer .footer-button-left {
+  float: left;
+}
+/* line 251, ../../sass/style.scss */
+footer .footer-button-right {
+  float: right;
+}
+
+/* line 261, ../../sass/style.scss */
+nav ul {
+  text-align: center;
+}
+/* line 264, ../../sass/style.scss */
+nav ul li {
+  display: inline-table;
+  -webkit-user-select: none;
+  list-style: none;
+  -webkit-tap-hilight-color: transparent;
+  border-radius: 4px;
+  text-align: center;
+  width: 30%;
+}
+/* line 273, ../../sass/style.scss */
+nav ul li a {
+  text-decoration: none;
+}
+/* line 277, ../../sass/style.scss */
+nav ul li span {
+  vertical-align: top;
 }

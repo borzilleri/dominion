@@ -24,6 +24,8 @@
 		type="text/javascript" charset="utf-8"></script>
 	<script src="javascript/lib/json2.js" 
 		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/lib/iscroll.js"
+		type="text/javascript" charset="utf-8"></script>
 
 	<script src="javascript/lib/iphone-style-checkboxes.js"
 		type="text/javascript" charset="utf-8"></script>
@@ -67,19 +69,30 @@
 		type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-<div id="content">
+<div id="scrollWrapper">
+	<div id="scroller" class="content">
+	</div>
 </div>
+<footer>
+	<nav>
+		<ul>
+			<li><a href="#deck"><span>Deck</span></a></li>
+			<li><a href="#list"><span>Saved</span></a></li>
+			<li><a href="#options"><span>Options</span></a></li>
+		</ul>
+	</nav>
+</footer>
 
 <script id="template-deck" type="text/x-underscore-template">
-	<nav>
-	<a href="#" class="button-left newSet">New</a>
-	<a href="#list" class="button">Sets</a>
-	<a href="#options" class="button-right">Options</a>
-	</nav>
 	<% if( error ) { %>
 		<div class="error">
 			Unable to generate new deck:<br><%=error%>
 		</div>
+	<% } else if( !deck || 0 >= deck.length ) { %>
+		<ul class="deck">
+			<li>No deck generated, select a saved deck,
+			or pull down to generate a new deck.</li>
+		</ul>
 	<% } else { %>
 		<ul class="deck">
 			<% _(deck).each(function(item) {
@@ -128,11 +141,6 @@
 	</li>
 </script>
 <script id="template-list" type="text/x-underscore-template">
-	<nav>
-	<a href="#deck" class="button-left">&lt; Back</a>
-	<a href="#options" class="button-right">Options</a>
-	</nav>
-
 	<h2>Recommended Sets</h2>
 	<ul class="list">
 	<% _(window.DATA_DECKS).each(function(deck, name) { %>
@@ -146,9 +154,6 @@
 	</ul>
 </script>
 <script id="template-options" type="text/x-underscore-template">
-	<nav>
-	<a href="<%= backTarget %>" class="button-left">&lt Back</a>
-	</nav>
 	<h2>Deck Display</h2>
 	<ul class="fieldset">
 	<% _(options.display).each(function(on, key) { %>

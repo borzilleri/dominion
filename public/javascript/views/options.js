@@ -18,7 +18,7 @@ window.Options_View = Backbone.View.extend({
 			backTarget: window.app.backTarget,
 			constants: window.options.constants
 		}));
-		$('#content').html(this.el);
+		$('div.content').html(this.el);
     $(':checkbox').iphoneStyle();
 	},
 	updateOption: function(e) {

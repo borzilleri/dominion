@@ -3,7 +3,8 @@ window.Deck_View = Backbone.View.extend({
 	deck: null,
   error: null,
 	events: {
-		'click .newSet': 'newDeck'
+		'click .newSet': 'newDeck',
+	  'onPullDown': 'newDeck'
 	},
 	initialize: function(options) {
 		_(this).bindAll(
@@ -36,7 +37,13 @@ window.Deck_View = Backbone.View.extend({
 		}));
 	},
 	output: function() {
-		$('#content').html(this.el);
+	  console.log('moo?');
+		$('div.content').html(this.el);
+		window.myScroll = new iScroll('scrollWrapper', {
+		  hScroll: false,
+		  pullToRefresh: 'down',
+		  pullDownLabel: 'Pull Down to generate a new deck.'
+    });
 	},
 	newDeck: function(e) {
 		var deck = new Deck_Collection();

@@ -1,4 +1,6 @@
 $(function() {
+  $('body').bind('touchmove', function(e) { return e.preventDefault(); });
+
   window.isMobile = (function(ua) {
     return (
       ua.match('/iPhone/') ||

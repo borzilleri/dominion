@@ -1,10 +1,10 @@
 window.Deck_View = Backbone.View.extend({
-	id: 'deck',
+	id: 'scroller',
 	deck: null,
   error: null,
 	events: {
 		'click .newSet': 'newDeck',
-	  'onPullDown': 'newDeck'
+	  'pullDown': 'newDeck'
 	},
 	initialize: function(options) {
 		_(this).bindAll(
@@ -37,13 +37,23 @@ window.Deck_View = Backbone.View.extend({
 		}));
 	},
 	output: function() {
-	  console.log('moo?');
 		$('div.content').html(this.el);
-		window.myScroll = new iScroll('scrollWrapper', {
-		  hScroll: false,
-		  pullToRefresh: 'down',
-		  pullDownLabel: 'Pull Down to generate a new deck.'
-    });
+
+		setTimeout(function() {
+		  if( window.myScroll ) {
+		    window.myScroll.destroy();
+		    window.myScroll = null;
+      }
+      window.myScroll = new iScroll('scrollWrapper', {
+        hScroll: false,
+        pullToRefresh: 'down',
+        pullDownLabel: [
+        'Pull Down to randomize...',
+        'Release to randomize...',
+        'Randomizing...'
+        ]
+      });
+    }, 0);
 	},
 	newDeck: function(e) {
 		var deck = new Deck_Collection();

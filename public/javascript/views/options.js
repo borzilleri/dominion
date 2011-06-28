@@ -1,5 +1,5 @@
 window.Options_View = Backbone.View.extend({
-	id: 'options',
+	id: 'scroller',
 	events: {
 		'change input': 'updateOption',
 		'change select': 'updateOption'
@@ -20,6 +20,15 @@ window.Options_View = Backbone.View.extend({
 		}));
 		$('div.content').html(this.el);
     $(':checkbox').iphoneStyle();
+		setTimeout(function() {
+		  if( window.myScroll ) {
+		    window.myScroll.destroy();
+		    window.myScroll = null;
+      }
+      window.myScroll = new iScroll('scrollWrapper', {
+        hScroll: false
+      });
+    }, 0);
 	},
 	updateOption: function(e) {
 		var $field = $(e.currentTarget),

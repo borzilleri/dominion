@@ -1,5 +1,6 @@
 window.List_View = Backbone.View.extend({
-	id: 'scroller',
+	id: 'list-scroller',
+  className: 'content',
   events: {
     'click li': 'loadDeck'
   },
@@ -11,16 +12,11 @@ window.List_View = Backbone.View.extend({
   },
   render: function() {
     $(this.el).html(this.template());
-    $('div.content').html($(this.el));
-		setTimeout(function() {
-		  if( window.myScroll ) {
-		    window.myScroll.destroy();
-		    window.myScroll = null;
-      }
-      window.myScroll = new iScroll('scrollWrapper', {
-        hScroll: false
-      });
-    }, 0);
+    $('.scroll-wrapper').hide();
+    $('#list-wrapper').html($(this.el)).show();
+    this.scroller = new iScroll('list-wrapper', {
+      hScroll: false
+    });
   },
   loadDeck: function(e) {
     var deck = $(e.currentTarget).data('deck');

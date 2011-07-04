@@ -101,10 +101,19 @@ window.Deck_Collection = Card_Collection.extend({
     }
 
     // Handle any per-card special rules, such as young witch & black market
+    // We handle this afterwards.
     this.each(function(model) {
-      if( 'Young Witch' === model.get('name') ) self.selectBaneCard();
-      else if( 'Black Market' === model.get('name') ) self.buildBlackMarket();
+      if( 'Young Witch' === model.get('name') ) self.bane = true;
+      else if( 'Black Market' === model.get('name') ) self.black_market = true;
     });
+
+    if( true === this.bane ) {
+      this.selectBaneCard();
+    }
+    if( true === this.black_market ) {
+      this.buildBlackMarket();
+    }
+
     window.app.lastDeck = this;
   },
   selectBaneCard: function() {
@@ -113,6 +122,10 @@ window.Deck_Collection = Card_Collection.extend({
       return m.isSelectable() && !self.get(m.get('name')) &&
         ( 2 <= m.get('cost') && 3 >= m.get('cost') ) && !m.get('potion');
     })).random();
+
+    if( 'Black Market' === this.bane.get('name') ) {
+      this.black_market = true;
+    }
 
     if( false === this.bane ) throw "No valid Bane cards available.";
   },
@@ -133,7 +146,7 @@ window.Deck_Collection = Card_Collection.extend({
       blackMarket = cards;
     }
     else {
-      blackMarket = new Library_Collection();
+      blackMarket = new Deck_Collection();
       while( blackMarket.length < size ) {
         var model = cards.random();
         blackMarket.add(model);

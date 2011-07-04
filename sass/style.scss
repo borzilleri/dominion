@@ -28,6 +28,7 @@ $type-victory: #006400;
 
 * {
 	-webkit-touch-callout: none;
+	-webkit-user-select: none;
 }
 
 html {
@@ -58,12 +59,13 @@ a {
 	float: right;
 }
 
-#scrollWrapper {
-	position: absolute;
+.scroll-wrapper {
+	position: fixed;
 	top: 0px;
 	bottom: 48px;
 	width: 100%;
 	z-index: 1;
+	overflow: auto;
 }
 
 .qr {
@@ -72,6 +74,10 @@ a {
 	margin: 30px 0 15px 0;
 }
 
+
+.scroll-wrapper {
+	display: none;
+}
 
 h2 {
 	text-transform: uppercase;
@@ -84,16 +90,16 @@ ul.deck {
 	li {
 		color: $text-color-dark;
 		background-color: #dddddd;
-		border-top: 1px dotted gray;
+		border-bottom: 1px dotted gray;
 		padding: 7px;
 		&:first-child {
-			border-top-left-radius: $corner-radius-horz $corner-radius-vert;
-			border-top-right-radius: $corner-radius-horz $corner-radius-vert;
+			/*border-top-left-radius: $corner-radius-horz $corner-radius-vert;*/
+			/*border-top-right-radius: $corner-radius-horz $corner-radius-vert;*/
 		}
 		&:last-child {
-			border-bottom-left-radius: $corner-radius-horz $corner-radius-vert;
-			border-bottom-right-radius: $corner-radius-horz $corner-radius-vert;
-			border-bottom: 1px dotted gray;
+			/*border-bottom-left-radius: $corner-radius-horz $corner-radius-vert;*/
+			/*border-bottom-right-radius: $corner-radius-horz $corner-radius-vert;*/
+			//border-bottom: 1px dotted gray;
 		}
 
 		.selected {
@@ -269,7 +275,6 @@ nav {
 
 		li {
 			display: inline-table;
-			-webkit-user-select: none;
 			list-style: none;
 			-webkit-tap-hilight-color: transparent;
 			border-radius: 4px;

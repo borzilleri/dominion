@@ -783,6 +783,21 @@ window.DATA_CARDS = [
   }
 },
 {
+  name: 'Walled Village',
+  cost: 4,
+  potion: false,
+  set: 'Promo',
+  image: '',
+  type: {
+    action: true,
+    attack: false,
+    defense: false,
+    duration: false,
+    treasure: false,
+    victory: false
+  }
+},
+{
   name: 'Baron',
   cost: 4,
   potion: false,

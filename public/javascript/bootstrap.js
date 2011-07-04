@@ -1,5 +1,5 @@
 $(function() {
-  $('body').bind('touchmove', function(e) { return e.preventDefault(); });
+  document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 
   window.isMobile = (function(ua) {
     return (
@@ -10,7 +10,9 @@ $(function() {
     );
   })(navigator.userAgent);
 
-  window.options = new Config_Model();
+  window.options = new Config_Model({
+    'librarySize': window.DATA_CARDS.length
+  });
   window.app = new Dominion_Controller();
   Backbone.history.start();
 });

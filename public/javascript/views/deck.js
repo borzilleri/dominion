@@ -1,10 +1,10 @@
 window.Deck_View = Backbone.View.extend({
-	id: 'scroller',
+	id: 'deck-scroller',
+  className: 'content',
 	deck: null,
   error: null,
 	events: {
-		'click .newSet': 'newDeck',
-	  'pullDown': 'newDeck'
+		'click .newDeck': 'newDeck'
 	},
 	initialize: function(options) {
 		_(this).bindAll(
@@ -13,15 +13,15 @@ window.Deck_View = Backbone.View.extend({
 			'newDeck',
 			'loadDeck'
 		);
-
 		this.loadDeck(options.deck);
 		this.template = _.template($('#template-deck').html());
 		this.template_card = _.template($('#template-card').html());
 		this.render();
 		this.output();
 	},
-	render: function() {
-		if( this.deck ) {
+	render: function(refresh) {
+	  var self = this;
+	  if( this.deck ) {
 		  this.deck.orderBy(window.options.get('sort'));
       if( this.deck.black_market ) {
         this.deck.black_market.orderBy(window.options.get('sort'));
@@ -35,25 +35,20 @@ window.Deck_View = Backbone.View.extend({
 			bane: (this.deck && this.deck.bane ? this.deck.bane.toJSON() : null),
 		  blackMarket: (this.deck && this.deck.black_market ? this.deck.black_market.toJSON() : null)
 		}));
+
+		if( refresh ) {
+		  setTimeout(function() { self.scroller.refresh(); }, 0);
+    }
 	},
 	output: function() {
-		$('div.content').html(this.el);
-
-		setTimeout(function() {
-		  if( window.myScroll ) {
-		    window.myScroll.destroy();
-		    window.myScroll = null;
-      }
-      window.myScroll = new iScroll('scrollWrapper', {
-        hScroll: false,
-        pullToRefresh: 'down',
-        pullDownLabel: [
-        'Pull Down to randomize...',
-        'Release to randomize...',
-        'Randomizing...'
-        ]
-      });
-    }, 0);
+    var self = this;
+    $('.scroll-wrapper').hide();
+		$('#deck-wrapper').html(this.el).show();
+		this.scroller = new iScroll('deck-wrapper', {
+      hScroll: false,
+      pullToRefresh: 'down',
+      onPullDown: function() { self.newDeck(); }
+    });
 	},
 	newDeck: function(e) {
 		var deck = new Deck_Collection();
@@ -66,7 +61,7 @@ window.Deck_View = Backbone.View.extend({
 		  this.deck = null;
 		  this.error = error;
     }
-		this.render();
+		this.render(true);
 		return false;
 	},
 	loadDeck: function(name) {

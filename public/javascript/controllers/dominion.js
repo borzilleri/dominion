@@ -1,4 +1,4 @@
-window.Dominion_Controller = Backbone.Controller.extend({
+window.Dominion_Controller = Backbone.Router.extend({
 	lastDeck: null,
 	backTarget: null,
 	routes: {

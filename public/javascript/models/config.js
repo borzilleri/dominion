@@ -36,7 +36,7 @@ window.Config_Model = Backbone.Model.extend({
 		sort: 'name'
 	},
 	initialize: function(options) {
-		if( options.librarySize ) {
+		if( options && options.librarySize ) {
 			this.constants.blackmarket_max = options.librarySize;
 		}
 		//Backbone.Model.prototype.initialize.call(this,this.defaults_opts);

@@ -67,14 +67,15 @@ footer, header, hgroup, menu, nav, section {
 /* line 29, ../../sass/style.scss */
 * {
   -webkit-touch-callout: none;
+  -webkit-user-select: none;
 }
 
-/* line 33, ../../sass/style.scss */
+/* line 34, ../../sass/style.scss */
 html {
   background-color: #333333;
 }
 
-/* line 36, ../../sass/style.scss */
+/* line 37, ../../sass/style.scss */
 body {
   color: lightgray;
   font-size: 100%;
@@ -84,38 +85,44 @@ body {
   padding-bottom: 10px;
 }
 
-/* line 48, ../../sass/style.scss */
+/* line 49, ../../sass/style.scss */
 a {
   color: lightgray;
 }
 
-/* line 52, ../../sass/style.scss */
+/* line 53, ../../sass/style.scss */
 .button-left {
   float: left;
 }
 
-/* line 56, ../../sass/style.scss */
+/* line 57, ../../sass/style.scss */
 .button-right {
   float: right;
 }
 
-/* line 61, ../../sass/style.scss */
-#scrollWrapper {
-  position: absolute;
+/* line 62, ../../sass/style.scss */
+.scroll-wrapper {
+  position: fixed;
   top: 0px;
   bottom: 48px;
   width: 100%;
   z-index: 1;
+  overflow: auto;
 }
 
-/* line 69, ../../sass/style.scss */
+/* line 71, ../../sass/style.scss */
 .qr {
   width: 100%;
   text-align: center;
   margin: 30px 0 15px 0;
 }
 
-/* line 76, ../../sass/style.scss */
+/* line 78, ../../sass/style.scss */
+.scroll-wrapper {
+  display: none;
+}
+
+/* line 82, ../../sass/style.scss */
 h2 {
   text-transform: uppercase;
   font-size: 120%;
@@ -124,34 +131,33 @@ h2 {
   margin-top: 5px;
 }
 
-/* line 84, ../../sass/style.scss */
+/* line 90, ../../sass/style.scss */
 ul.deck li {
   color: black;
   background-color: #dddddd;
-  border-top: 1px dotted gray;
+  border-bottom: 1px dotted gray;
   padding: 7px;
 }
-/* line 89, ../../sass/style.scss */
+/* line 95, ../../sass/style.scss */
 ul.deck li:first-child {
-  border-top-left-radius: 12px 10px;
-  border-top-right-radius: 12px 10px;
-}
-/* line 93, ../../sass/style.scss */
-ul.deck li:last-child {
-  border-bottom-left-radius: 12px 10px;
-  border-bottom-right-radius: 12px 10px;
-  border-bottom: 1px dotted gray;
+  /*border-top-left-radius: $corner-radius-horz $corner-radius-vert;*/
+  /*border-top-right-radius: $corner-radius-horz $corner-radius-vert;*/
 }
 /* line 99, ../../sass/style.scss */
+ul.deck li:last-child {
+  /*border-bottom-left-radius: $corner-radius-horz $corner-radius-vert;*/
+  /*border-bottom-right-radius: $corner-radius-horz $corner-radius-vert;*/
+}
+/* line 105, ../../sass/style.scss */
 ul.deck li .selected {
   background-color: lightgreen;
 }
-/* line 103, ../../sass/style.scss */
+/* line 109, ../../sass/style.scss */
 ul.deck li .replacement {
   background-color: lightblue;
 }
 
-/* line 109, ../../sass/style.scss */
+/* line 115, ../../sass/style.scss */
 .cardSet, .deckSets {
   font-family: monospace;
   font-weight: bold;
@@ -159,75 +165,75 @@ ul.deck li .replacement {
   margin-right: 2px;
   display: block;
 }
-/* line 116, ../../sass/style.scss */
+/* line 122, ../../sass/style.scss */
 ul.deck .cardSet, ul.deck .deckSets {
   float: left;
 }
-/* line 119, ../../sass/style.scss */
+/* line 125, ../../sass/style.scss */
 ul.list .cardSet, ul.list .deckSets {
   float: right;
 }
-/* line 123, ../../sass/style.scss */
+/* line 129, ../../sass/style.scss */
 .cardSet.Dominion, .deckSets.Dominion {
   color: black;
 }
-/* line 126, ../../sass/style.scss */
+/* line 132, ../../sass/style.scss */
 .cardSet.Intrigue, .deckSets.Intrigue {
   color: blue;
 }
-/* line 129, ../../sass/style.scss */
+/* line 135, ../../sass/style.scss */
 .cardSet.Seaside, .deckSets.Seaside {
   color: #ff4500;
 }
-/* line 132, ../../sass/style.scss */
+/* line 138, ../../sass/style.scss */
 .cardSet.Alchemy, .deckSets.Alchemy {
   color: #aa00aa;
 }
-/* line 135, ../../sass/style.scss */
+/* line 141, ../../sass/style.scss */
 .cardSet.Promo, .deckSets.Promo {
   color: #888888;
 }
-/* line 138, ../../sass/style.scss */
+/* line 144, ../../sass/style.scss */
 .cardSet.Prosperity, .deckSets.Prosperity {
   color: #005500;
 }
-/* line 141, ../../sass/style.scss */
+/* line 147, ../../sass/style.scss */
 .cardSet.Cornucopia, .deckSets.Cornucopia {
   color: #ff4500;
 }
 
-/* line 146, ../../sass/style.scss */
+/* line 152, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 151, ../../sass/style.scss */
+/* line 157, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 154, ../../sass/style.scss */
+/* line 160, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 157, ../../sass/style.scss */
+/* line 163, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 160, ../../sass/style.scss */
+/* line 166, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 163, ../../sass/style.scss */
+/* line 169, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 166, ../../sass/style.scss */
+/* line 172, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 171, ../../sass/style.scss */
+/* line 177, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -235,11 +241,11 @@ ul.list .cardSet, ul.list .deckSets {
   text-align: right;
 }
 
-/* line 178, ../../sass/style.scss */
+/* line 184, ../../sass/style.scss */
 ul.list {
   margin: 10px 0;
 }
-/* line 181, ../../sass/style.scss */
+/* line 187, ../../sass/style.scss */
 ul.list li {
   color: black;
   background-color: #dddddd;
@@ -248,22 +254,22 @@ ul.list li {
   cursor: pointer;
 }
 
-/* line 190, ../../sass/style.scss */
+/* line 196, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 196, ../../sass/style.scss */
+/* line 202, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 198, ../../sass/style.scss */
+/* line 204, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 202, ../../sass/style.scss */
+/* line 208, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -271,14 +277,14 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 210, ../../sass/style.scss */
+/* line 216, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
   margin: 10px;
   font-weight: bold;
 }
-/* line 220, ../../sass/style.scss */
+/* line 226, ../../sass/style.scss */
 ul.fieldset li > .iPhoneCheckContainer,
 ul.fieldset li > select,
 ul.fieldset li > input,
@@ -287,13 +293,13 @@ ul.fieldset li > .input {
   float: right;
 }
 
-/* line 227, ../../sass/style.scss */
+/* line 233, ../../sass/style.scss */
 .button, .button-left, .button-right {
   z-index: 10;
   text-decoration: none;
 }
 
-/* line 235, ../../sass/style.scss */
+/* line 241, ../../sass/style.scss */
 footer {
   position: absolute;
   z-index: 2;
@@ -304,41 +310,40 @@ footer {
   border-top: 1px solid #444;
   background-color: #222;
 }
-/* line 245, ../../sass/style.scss */
+/* line 251, ../../sass/style.scss */
 footer .footer-button, footer .footer-button-left, footer .footer-button-right, footer .footer-button-center {
   z-index: 3;
   text-align: center;
   width: 30%;
   border: 1px solid red;
 }
-/* line 253, ../../sass/style.scss */
+/* line 259, ../../sass/style.scss */
 footer .footer-button-left {
   float: left;
 }
-/* line 257, ../../sass/style.scss */
+/* line 263, ../../sass/style.scss */
 footer .footer-button-right {
   float: right;
 }
 
-/* line 267, ../../sass/style.scss */
+/* line 273, ../../sass/style.scss */
 nav ul {
   text-align: center;
 }
-/* line 270, ../../sass/style.scss */
+/* line 276, ../../sass/style.scss */
 nav ul li {
   display: inline-table;
-  -webkit-user-select: none;
   list-style: none;
   -webkit-tap-hilight-color: transparent;
   border-radius: 4px;
   text-align: center;
   width: 30%;
 }
-/* line 279, ../../sass/style.scss */
+/* line 284, ../../sass/style.scss */
 nav ul li a {
   text-decoration: none;
 }
-/* line 283, ../../sass/style.scss */
+/* line 288, ../../sass/style.scss */
 nav ul li span {
   vertical-align: top;
 }

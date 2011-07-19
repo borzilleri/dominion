@@ -1,3 +1,8 @@
+Features: 
+- swipe to replace cards
+- swipe to delete (user) decks
+- save deck
+- Toolbar style
 
 Additional config/rules:
 "no duplicates from previous deck"

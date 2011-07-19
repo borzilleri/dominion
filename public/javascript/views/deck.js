@@ -1,5 +1,4 @@
 window.Deck_View = Backbone.View.extend({
-	id: 'deck-scroller',
   className: 'content',
 	deck: null,
   error: null,
@@ -43,7 +42,7 @@ window.Deck_View = Backbone.View.extend({
 	output: function() {
     var self = this;
     $('.scroll-wrapper').hide();
-		$('#deck-wrapper').html(this.el).show();
+    $('#deck-wrapper').find('.scroller').html(this.el).parent().show();
 		this.scroller = new iScroll('deck-wrapper', {
       hScroll: false,
       pullToRefresh: 'down',

@@ -1,5 +1,4 @@
 window.List_View = Backbone.View.extend({
-	id: 'list-scroller',
   className: 'content',
   events: {
     'click li': 'loadDeck'
@@ -13,7 +12,7 @@ window.List_View = Backbone.View.extend({
   render: function() {
     $(this.el).html(this.template());
     $('.scroll-wrapper').hide();
-    $('#list-wrapper').html($(this.el)).show();
+    $('#list-wrapper').find('.scroller').html(this.el).parent().show();
     this.scroller = new iScroll('list-wrapper', {
       hScroll: false
     });

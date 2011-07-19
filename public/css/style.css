@@ -64,18 +64,97 @@ footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
-/* line 29, ../../sass/style.scss */
+/**
+ *
+ * Styles specific to the pull down/up element
+ *
+ */
+/* line 7, ../../sass/_iscroll.scss */
+.iScrollPullDown,
+.iScrollPullUp {
+  height: 40px;
+  line-height: 40px;
+  padding: 5px 10px;
+  -webkit-transform: translate3d(0, 0, 0);
+  /* Put the element in the HW accelerated layer */
+}
+
+/* line 15, ../../sass/_iscroll.scss */
+.iScrollPullDownIcon,
+.iScrollPullUpIcon {
+  display: block;
+  float: left;
+  width: 40px;
+  height: 40px;
+  background: url(../images/pull-icon.png) 0 0 no-repeat;
+  background-size: 40px 80px;
+  margin-right: 5px;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 250ms;
+  -webkit-transform: rotate(0);
+}
+
+/* line 26, ../../sass/_iscroll.scss */
+.iScrollPullDown.flip .iScrollPullDownIcon {
+  -webkit-transform: rotate(-180deg);
+}
+
+/* line 31, ../../sass/_iscroll.scss */
+.iScrollPullDown.loading .iScrollPullDownIcon,
+.iScrollPullUp.loading .iScrollPullUpIcon {
+  background-position: 0 100%;
+  -webkit-animation-name: loading;
+  -webkit-animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+/* line 39, ../../sass/_iscroll.scss */
+.iScrollPullUp {
+  border-bottom: 0;
+}
+
+/* line 43, ../../sass/_iscroll.scss */
+.iScrollPullUpIcon {
+  -webkit-transform: rotate(-180deg);
+}
+
+/* line 47, ../../sass/_iscroll.scss */
+.iScrollPullUp.flip .iScrollPullUpIcon {
+  -webkit-transform: rotate(0);
+}
+
+@-webkit-keyframes loading {
+  /* line 52, ../../sass/_iscroll.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  /* line 53, ../../sass/_iscroll.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:2) {
+  /* line 58, ../../sass/_iscroll.scss */
+  .iScrollPullDownIcon,
+  .iScrollPullUpIcon {
+    background-image: url(../images/pull-icon@2x.png);
+  }
+}
+/* line 30, ../../sass/style.scss */
 * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
 }
 
-/* line 34, ../../sass/style.scss */
+/* line 35, ../../sass/style.scss */
 html {
   background-color: #333333;
 }
 
-/* line 37, ../../sass/style.scss */
+/* line 38, ../../sass/style.scss */
 body {
   color: lightgray;
   font-size: 100%;
@@ -85,22 +164,22 @@ body {
   padding-bottom: 10px;
 }
 
-/* line 49, ../../sass/style.scss */
+/* line 50, ../../sass/style.scss */
 a {
   color: lightgray;
 }
 
-/* line 53, ../../sass/style.scss */
+/* line 54, ../../sass/style.scss */
 .button-left {
   float: left;
 }
 
-/* line 57, ../../sass/style.scss */
+/* line 58, ../../sass/style.scss */
 .button-right {
   float: right;
 }
 
-/* line 62, ../../sass/style.scss */
+/* line 63, ../../sass/style.scss */
 .scroll-wrapper {
   position: fixed;
   top: 0px;
@@ -108,21 +187,17 @@ a {
   width: 100%;
   z-index: 1;
   overflow: auto;
+  display: none;
 }
 
-/* line 71, ../../sass/style.scss */
+/* line 73, ../../sass/style.scss */
 .qr {
   width: 100%;
   text-align: center;
   margin: 30px 0 15px 0;
 }
 
-/* line 78, ../../sass/style.scss */
-.scroll-wrapper {
-  display: none;
-}
-
-/* line 82, ../../sass/style.scss */
+/* line 79, ../../sass/style.scss */
 h2 {
   text-transform: uppercase;
   font-size: 120%;
@@ -131,33 +206,33 @@ h2 {
   margin-top: 5px;
 }
 
-/* line 90, ../../sass/style.scss */
+/* line 87, ../../sass/style.scss */
 ul.deck li {
   color: black;
   background-color: #dddddd;
   border-bottom: 1px dotted gray;
   padding: 7px;
 }
-/* line 95, ../../sass/style.scss */
+/* line 92, ../../sass/style.scss */
 ul.deck li:first-child {
   /*border-top-left-radius: $corner-radius-horz $corner-radius-vert;*/
   /*border-top-right-radius: $corner-radius-horz $corner-radius-vert;*/
 }
-/* line 99, ../../sass/style.scss */
+/* line 96, ../../sass/style.scss */
 ul.deck li:last-child {
   /*border-bottom-left-radius: $corner-radius-horz $corner-radius-vert;*/
   /*border-bottom-right-radius: $corner-radius-horz $corner-radius-vert;*/
 }
-/* line 105, ../../sass/style.scss */
+/* line 102, ../../sass/style.scss */
 ul.deck li .selected {
   background-color: lightgreen;
 }
-/* line 109, ../../sass/style.scss */
+/* line 106, ../../sass/style.scss */
 ul.deck li .replacement {
   background-color: lightblue;
 }
 
-/* line 115, ../../sass/style.scss */
+/* line 112, ../../sass/style.scss */
 .cardSet, .deckSets {
   font-family: monospace;
   font-weight: bold;
@@ -165,75 +240,75 @@ ul.deck li .replacement {
   margin-right: 2px;
   display: block;
 }
-/* line 122, ../../sass/style.scss */
+/* line 119, ../../sass/style.scss */
 ul.deck .cardSet, ul.deck .deckSets {
   float: left;
 }
-/* line 125, ../../sass/style.scss */
+/* line 122, ../../sass/style.scss */
 ul.list .cardSet, ul.list .deckSets {
   float: right;
 }
-/* line 129, ../../sass/style.scss */
+/* line 126, ../../sass/style.scss */
 .cardSet.Dominion, .deckSets.Dominion {
   color: black;
 }
-/* line 132, ../../sass/style.scss */
+/* line 129, ../../sass/style.scss */
 .cardSet.Intrigue, .deckSets.Intrigue {
   color: blue;
 }
-/* line 135, ../../sass/style.scss */
+/* line 132, ../../sass/style.scss */
 .cardSet.Seaside, .deckSets.Seaside {
   color: #ff4500;
 }
-/* line 138, ../../sass/style.scss */
+/* line 135, ../../sass/style.scss */
 .cardSet.Alchemy, .deckSets.Alchemy {
   color: #aa00aa;
 }
-/* line 141, ../../sass/style.scss */
+/* line 138, ../../sass/style.scss */
 .cardSet.Promo, .deckSets.Promo {
   color: #888888;
 }
-/* line 144, ../../sass/style.scss */
+/* line 141, ../../sass/style.scss */
 .cardSet.Prosperity, .deckSets.Prosperity {
   color: #005500;
 }
-/* line 147, ../../sass/style.scss */
+/* line 144, ../../sass/style.scss */
 .cardSet.Cornucopia, .deckSets.Cornucopia {
   color: #ff4500;
 }
 
-/* line 152, ../../sass/style.scss */
+/* line 149, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 157, ../../sass/style.scss */
+/* line 154, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 160, ../../sass/style.scss */
+/* line 157, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 163, ../../sass/style.scss */
+/* line 160, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 166, ../../sass/style.scss */
+/* line 163, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 169, ../../sass/style.scss */
+/* line 166, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 172, ../../sass/style.scss */
+/* line 169, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 177, ../../sass/style.scss */
+/* line 174, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -241,11 +316,11 @@ ul.list .cardSet, ul.list .deckSets {
   text-align: right;
 }
 
-/* line 184, ../../sass/style.scss */
+/* line 181, ../../sass/style.scss */
 ul.list {
   margin: 10px 0;
 }
-/* line 187, ../../sass/style.scss */
+/* line 184, ../../sass/style.scss */
 ul.list li {
   color: black;
   background-color: #dddddd;
@@ -254,22 +329,22 @@ ul.list li {
   cursor: pointer;
 }
 
-/* line 196, ../../sass/style.scss */
+/* line 193, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 202, ../../sass/style.scss */
+/* line 199, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 204, ../../sass/style.scss */
+/* line 201, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 208, ../../sass/style.scss */
+/* line 205, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -277,14 +352,14 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 216, ../../sass/style.scss */
+/* line 213, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
   margin: 10px;
   font-weight: bold;
 }
-/* line 226, ../../sass/style.scss */
+/* line 223, ../../sass/style.scss */
 ul.fieldset li > .iPhoneCheckContainer,
 ul.fieldset li > select,
 ul.fieldset li > input,
@@ -293,13 +368,13 @@ ul.fieldset li > .input {
   float: right;
 }
 
-/* line 233, ../../sass/style.scss */
+/* line 230, ../../sass/style.scss */
 .button, .button-left, .button-right {
   z-index: 10;
   text-decoration: none;
 }
 
-/* line 241, ../../sass/style.scss */
+/* line 238, ../../sass/style.scss */
 footer {
   position: absolute;
   z-index: 2;
@@ -310,27 +385,27 @@ footer {
   border-top: 1px solid #444;
   background-color: #222;
 }
-/* line 251, ../../sass/style.scss */
+/* line 248, ../../sass/style.scss */
 footer .footer-button, footer .footer-button-left, footer .footer-button-right, footer .footer-button-center {
   z-index: 3;
   text-align: center;
   width: 30%;
   border: 1px solid red;
 }
-/* line 259, ../../sass/style.scss */
+/* line 256, ../../sass/style.scss */
 footer .footer-button-left {
   float: left;
 }
-/* line 263, ../../sass/style.scss */
+/* line 260, ../../sass/style.scss */
 footer .footer-button-right {
   float: right;
 }
 
-/* line 273, ../../sass/style.scss */
+/* line 270, ../../sass/style.scss */
 nav ul {
   text-align: center;
 }
-/* line 276, ../../sass/style.scss */
+/* line 273, ../../sass/style.scss */
 nav ul li {
   display: inline-table;
   list-style: none;
@@ -339,11 +414,16 @@ nav ul li {
   text-align: center;
   width: 30%;
 }
-/* line 284, ../../sass/style.scss */
+/* line 281, ../../sass/style.scss */
 nav ul li a {
   text-decoration: none;
 }
-/* line 288, ../../sass/style.scss */
+/* line 285, ../../sass/style.scss */
 nav ul li span {
   vertical-align: top;
+}
+
+/* line 292, ../../sass/style.scss */
+.iScrollPullDown {
+  font-weight: bold;
 }

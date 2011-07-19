@@ -143,18 +143,124 @@ footer, header, hgroup, menu, nav, section {
     background-image: url(../images/pull-icon@2x.png);
   }
 }
-/* line 30, ../../sass/style.scss */
+/* line 1, ../../sass/_iphone-style-checkboxes.scss */
+.iPhoneCheckContainer {
+  position: relative;
+  height: 27px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* line 6, ../../sass/_iphone-style-checkboxes.scss */
+.iPhoneCheckContainer input {
+  position: absolute;
+  top: 5px;
+  left: 30px;
+  opacity: 0;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+}
+
+/* line 13, ../../sass/_iphone-style-checkboxes.scss */
+.iPhoneCheckContainer label {
+  white-space: nowrap;
+  font-size: 17px;
+  line-height: 17px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: block;
+  height: 27px;
+  position: absolute;
+  width: auto;
+  top: 0;
+  padding-top: 5px;
+  overflow: hidden;
+}
+
+/* line 28, ../../sass/_iphone-style-checkboxes.scss */
+.iPhoneCheckContainer, .iPhoneCheckContainer label {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+}
+
+/* line 33, ../../sass/_iphone-style-checkboxes.scss */
+.iPhoneCheckDisabled {
+  opacity: 0.5;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+}
+
+/* line 38, ../../sass/_iphone-style-checkboxes.scss */
+label.iPhoneCheckLabelOn {
+  color: white;
+  background: url("../images/iphone-style-checkboxes/on.png?1282083753") no-repeat;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+  left: 0;
+  padding-top: 5px;
+}
+
+/* line 44, ../../sass/_iphone-style-checkboxes.scss */
+label.iPhoneCheckLabelOn span {
+  padding-left: 8px;
+}
+
+/* line 46, ../../sass/_iphone-style-checkboxes.scss */
+label.iPhoneCheckLabelOff {
+  color: #8b8b8b;
+  background: url("../images/iphone-style-checkboxes/off.png?1282083753") no-repeat right 0;
+  text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.6);
+  text-align: right;
+  right: 0;
+}
+
+/* line 52, ../../sass/_iphone-style-checkboxes.scss */
+label.iPhoneCheckLabelOff span {
+  padding-right: 8px;
+}
+
+/* line 55, ../../sass/_iphone-style-checkboxes.scss */
+.iPhoneCheckHandle {
+  display: block;
+  height: 27px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  background: url("../images/iphone-style-checkboxes/slider_left.png?1282083753") no-repeat;
+  padding-left: 3px;
+}
+
+/* line 66, ../../sass/_iphone-style-checkboxes.scss */
+.iPhoneCheckHandleRight {
+  height: 100%;
+  width: 100%;
+  padding-right: 3px;
+  background: url("../images/iphone-style-checkboxes/slider_right.png?1282083753") no-repeat right 0;
+}
+
+/* line 72, ../../sass/_iphone-style-checkboxes.scss */
+.iPhoneCheckHandleCenter {
+  height: 100%;
+  width: 100%;
+  background: url("../images/iphone-style-checkboxes/slider_center.png?1282083753");
+}
+
+/* line 31, ../../sass/style.scss */
 * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
 }
 
-/* line 35, ../../sass/style.scss */
+/* line 36, ../../sass/style.scss */
 html {
   background-color: #333333;
 }
 
-/* line 38, ../../sass/style.scss */
+/* line 39, ../../sass/style.scss */
 body {
   color: lightgray;
   font-size: 100%;
@@ -164,22 +270,22 @@ body {
   padding-bottom: 10px;
 }
 
-/* line 50, ../../sass/style.scss */
+/* line 51, ../../sass/style.scss */
 a {
   color: lightgray;
 }
 
-/* line 54, ../../sass/style.scss */
+/* line 55, ../../sass/style.scss */
 .button-left {
   float: left;
 }
 
-/* line 58, ../../sass/style.scss */
+/* line 59, ../../sass/style.scss */
 .button-right {
   float: right;
 }
 
-/* line 63, ../../sass/style.scss */
+/* line 64, ../../sass/style.scss */
 .scroll-wrapper {
   position: fixed;
   top: 0px;
@@ -190,14 +296,14 @@ a {
   display: none;
 }
 
-/* line 73, ../../sass/style.scss */
+/* line 74, ../../sass/style.scss */
 .qr {
   width: 100%;
   text-align: center;
   margin: 30px 0 15px 0;
 }
 
-/* line 79, ../../sass/style.scss */
+/* line 80, ../../sass/style.scss */
 h2 {
   text-transform: uppercase;
   font-size: 120%;
@@ -206,33 +312,33 @@ h2 {
   margin-top: 5px;
 }
 
-/* line 87, ../../sass/style.scss */
+/* line 88, ../../sass/style.scss */
 ul.deck li {
   color: black;
   background-color: #dddddd;
   border-bottom: 1px dotted gray;
   padding: 7px;
 }
-/* line 92, ../../sass/style.scss */
+/* line 93, ../../sass/style.scss */
 ul.deck li:first-child {
   /*border-top-left-radius: $corner-radius-horz $corner-radius-vert;*/
   /*border-top-right-radius: $corner-radius-horz $corner-radius-vert;*/
 }
-/* line 96, ../../sass/style.scss */
+/* line 97, ../../sass/style.scss */
 ul.deck li:last-child {
   /*border-bottom-left-radius: $corner-radius-horz $corner-radius-vert;*/
   /*border-bottom-right-radius: $corner-radius-horz $corner-radius-vert;*/
 }
-/* line 102, ../../sass/style.scss */
+/* line 103, ../../sass/style.scss */
 ul.deck li .selected {
   background-color: lightgreen;
 }
-/* line 106, ../../sass/style.scss */
+/* line 107, ../../sass/style.scss */
 ul.deck li .replacement {
   background-color: lightblue;
 }
 
-/* line 112, ../../sass/style.scss */
+/* line 113, ../../sass/style.scss */
 .cardSet, .deckSets {
   font-family: monospace;
   font-weight: bold;
@@ -240,75 +346,75 @@ ul.deck li .replacement {
   margin-right: 2px;
   display: block;
 }
-/* line 119, ../../sass/style.scss */
+/* line 120, ../../sass/style.scss */
 ul.deck .cardSet, ul.deck .deckSets {
   float: left;
 }
-/* line 122, ../../sass/style.scss */
+/* line 123, ../../sass/style.scss */
 ul.list .cardSet, ul.list .deckSets {
   float: right;
 }
-/* line 126, ../../sass/style.scss */
+/* line 127, ../../sass/style.scss */
 .cardSet.Dominion, .deckSets.Dominion {
   color: black;
 }
-/* line 129, ../../sass/style.scss */
+/* line 130, ../../sass/style.scss */
 .cardSet.Intrigue, .deckSets.Intrigue {
   color: blue;
 }
-/* line 132, ../../sass/style.scss */
+/* line 133, ../../sass/style.scss */
 .cardSet.Seaside, .deckSets.Seaside {
   color: #ff4500;
 }
-/* line 135, ../../sass/style.scss */
+/* line 136, ../../sass/style.scss */
 .cardSet.Alchemy, .deckSets.Alchemy {
   color: #aa00aa;
 }
-/* line 138, ../../sass/style.scss */
+/* line 139, ../../sass/style.scss */
 .cardSet.Promo, .deckSets.Promo {
   color: #888888;
 }
-/* line 141, ../../sass/style.scss */
+/* line 142, ../../sass/style.scss */
 .cardSet.Prosperity, .deckSets.Prosperity {
   color: #005500;
 }
-/* line 144, ../../sass/style.scss */
+/* line 145, ../../sass/style.scss */
 .cardSet.Cornucopia, .deckSets.Cornucopia {
   color: #ff4500;
 }
 
-/* line 149, ../../sass/style.scss */
+/* line 150, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 154, ../../sass/style.scss */
+/* line 155, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 157, ../../sass/style.scss */
+/* line 158, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 160, ../../sass/style.scss */
+/* line 161, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 163, ../../sass/style.scss */
+/* line 164, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 166, ../../sass/style.scss */
+/* line 167, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 169, ../../sass/style.scss */
+/* line 170, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 174, ../../sass/style.scss */
+/* line 175, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -316,11 +422,11 @@ ul.list .cardSet, ul.list .deckSets {
   text-align: right;
 }
 
-/* line 181, ../../sass/style.scss */
+/* line 182, ../../sass/style.scss */
 ul.list {
   margin: 10px 0;
 }
-/* line 184, ../../sass/style.scss */
+/* line 185, ../../sass/style.scss */
 ul.list li {
   color: black;
   background-color: #dddddd;
@@ -329,22 +435,22 @@ ul.list li {
   cursor: pointer;
 }
 
-/* line 193, ../../sass/style.scss */
+/* line 194, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 199, ../../sass/style.scss */
+/* line 200, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 201, ../../sass/style.scss */
+/* line 202, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 205, ../../sass/style.scss */
+/* line 206, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -352,14 +458,14 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 213, ../../sass/style.scss */
+/* line 214, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
   margin: 10px;
   font-weight: bold;
 }
-/* line 223, ../../sass/style.scss */
+/* line 224, ../../sass/style.scss */
 ul.fieldset li > .iPhoneCheckContainer,
 ul.fieldset li > select,
 ul.fieldset li > input,
@@ -368,13 +474,13 @@ ul.fieldset li > .input {
   float: right;
 }
 
-/* line 230, ../../sass/style.scss */
+/* line 231, ../../sass/style.scss */
 .button, .button-left, .button-right {
   z-index: 10;
   text-decoration: none;
 }
 
-/* line 238, ../../sass/style.scss */
+/* line 239, ../../sass/style.scss */
 footer {
   position: absolute;
   z-index: 2;
@@ -385,27 +491,27 @@ footer {
   border-top: 1px solid #444;
   background-color: #222;
 }
-/* line 248, ../../sass/style.scss */
+/* line 249, ../../sass/style.scss */
 footer .footer-button, footer .footer-button-left, footer .footer-button-right, footer .footer-button-center {
   z-index: 3;
   text-align: center;
   width: 30%;
   border: 1px solid red;
 }
-/* line 256, ../../sass/style.scss */
+/* line 257, ../../sass/style.scss */
 footer .footer-button-left {
   float: left;
 }
-/* line 260, ../../sass/style.scss */
+/* line 261, ../../sass/style.scss */
 footer .footer-button-right {
   float: right;
 }
 
-/* line 270, ../../sass/style.scss */
+/* line 271, ../../sass/style.scss */
 nav ul {
   text-align: center;
 }
-/* line 273, ../../sass/style.scss */
+/* line 274, ../../sass/style.scss */
 nav ul li {
   display: inline-table;
   list-style: none;
@@ -414,16 +520,16 @@ nav ul li {
   text-align: center;
   width: 30%;
 }
-/* line 281, ../../sass/style.scss */
+/* line 282, ../../sass/style.scss */
 nav ul li a {
   text-decoration: none;
 }
-/* line 285, ../../sass/style.scss */
+/* line 286, ../../sass/style.scss */
 nav ul li span {
   vertical-align: top;
 }
 
-/* line 292, ../../sass/style.scss */
+/* line 293, ../../sass/style.scss */
 .iScrollPullDown {
   font-weight: bold;
 }

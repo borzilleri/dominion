@@ -3,14 +3,18 @@ window.Deck_View = Backbone.View.extend({
 	deck: null,
   error: null,
 	events: {
-		'click .newDeck': 'newDeck'
+		'click .newDeck': 'newDeck',
+	  'click .deck li': 'selectCard',
+    'click .replaceCard': 'replaceCard'
 	},
 	initialize: function(options) {
 		_(this).bindAll(
 			'render',
 			'output',
 			'newDeck',
-			'loadDeck'
+			'loadDeck',
+			'selectCard',
+			'replaceCard'
 		);
 		this.loadDeck(options.deck);
 		this.template = _.template($('#template-deck').html());
@@ -18,6 +22,21 @@ window.Deck_View = Backbone.View.extend({
 		this.render();
 		this.output();
 	},
+  selectCard: function(e) {
+    var $li = $(e.currentTarget);
+    var $selected = $li.closest('div').find('.selected');
+    if( 0 != $selected.length ) {
+      $selected.removeClass('selected');
+    }
+    else {
+      $li.addClass('selected');
+    }
+    return false;
+  },
+  replaceCard: function(e) {
+    alert('test');
+    return false;
+  },
 	render: function(refresh) {
 	  var self = this;
 	  if( this.deck ) {

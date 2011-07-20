@@ -264,7 +264,7 @@ html {
 body {
   color: lightgray;
   font-size: 100%;
-  font-family: Helvetica, Verdana, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
   margin: 0;
   padding-bottom: 10px;
@@ -312,35 +312,32 @@ h2 {
   margin-top: 5px;
 }
 
-/* line 88, ../../sass/style.scss */
+/* line 89, ../../sass/style.scss */
 .deck li, .no-deck li {
   color: black;
   background-color: #dddddd;
   border-bottom: 1px dotted gray;
-  padding: 7px;
+  padding: 12px 7px;
+  line-height: 20px;
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-duration: 250ms;
+  -webkit-transform: translate(0, 0);
 }
-/* line 93, ../../sass/style.scss */
-.deck li:first-child, .no-deck li:first-child {
-  /*border-top-left-radius: $corner-radius-horz $corner-radius-vert;*/
-  /*border-top-right-radius: $corner-radius-horz $corner-radius-vert;*/
-}
-/* line 97, ../../sass/style.scss */
-.deck li:last-child, .no-deck li:last-child {
-  /*border-bottom-left-radius: $corner-radius-horz $corner-radius-vert;*/
-  /*border-bottom-right-radius: $corner-radius-horz $corner-radius-vert;*/
-}
-/* line 103, ../../sass/style.scss */
+/* line 100, ../../sass/style.scss */
 .deck li.selected, .no-deck li.selected {
-  background-color: lightgreen;
-  position: relative;
-  left: 100px;
+  -webkit-transform: translate(100px, 0);
 }
-/* line 109, ../../sass/style.scss */
+/* line 104, ../../sass/style.scss */
 .deck li.replacement, .no-deck li.replacement {
   background-color: lightblue;
 }
 
-/* line 115, ../../sass/style.scss */
+/* line 110, ../../sass/style.scss */
+.cardName {
+  font-size: 20px;
+}
+
+/* line 114, ../../sass/style.scss */
 .cardSet, .deckSets {
   font-family: monospace;
   font-weight: bold;
@@ -348,75 +345,75 @@ h2 {
   margin-right: 2px;
   display: block;
 }
-/* line 122, ../../sass/style.scss */
+/* line 121, ../../sass/style.scss */
 ul.deck .cardSet, ul.deck .deckSets {
   float: left;
 }
-/* line 125, ../../sass/style.scss */
+/* line 124, ../../sass/style.scss */
 ul.list .cardSet, ul.list .deckSets {
   float: right;
 }
-/* line 129, ../../sass/style.scss */
+/* line 128, ../../sass/style.scss */
 .cardSet.Dominion, .deckSets.Dominion {
   color: black;
 }
-/* line 132, ../../sass/style.scss */
+/* line 131, ../../sass/style.scss */
 .cardSet.Intrigue, .deckSets.Intrigue {
   color: blue;
 }
-/* line 135, ../../sass/style.scss */
+/* line 134, ../../sass/style.scss */
 .cardSet.Seaside, .deckSets.Seaside {
   color: #ff4500;
 }
-/* line 138, ../../sass/style.scss */
+/* line 137, ../../sass/style.scss */
 .cardSet.Alchemy, .deckSets.Alchemy {
   color: #aa00aa;
 }
-/* line 141, ../../sass/style.scss */
+/* line 140, ../../sass/style.scss */
 .cardSet.Promo, .deckSets.Promo {
   color: #888888;
 }
-/* line 144, ../../sass/style.scss */
+/* line 143, ../../sass/style.scss */
 .cardSet.Prosperity, .deckSets.Prosperity {
   color: #005500;
 }
-/* line 147, ../../sass/style.scss */
+/* line 146, ../../sass/style.scss */
 .cardSet.Cornucopia, .deckSets.Cornucopia {
   color: #ff4500;
 }
 
-/* line 152, ../../sass/style.scss */
+/* line 151, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 157, ../../sass/style.scss */
+/* line 156, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 160, ../../sass/style.scss */
+/* line 159, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 163, ../../sass/style.scss */
+/* line 162, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 166, ../../sass/style.scss */
+/* line 165, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 169, ../../sass/style.scss */
+/* line 168, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 172, ../../sass/style.scss */
+/* line 171, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 177, ../../sass/style.scss */
+/* line 176, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -424,11 +421,35 @@ ul.list .cardSet, ul.list .deckSets {
   text-align: right;
 }
 
-/* line 184, ../../sass/style.scss */
+/* line 183, ../../sass/style.scss */
+.replaceCard {
+  position: absolute;
+  left: -95px;
+  margin-top: -4px;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px 0 #333;
+  border: 1px solid #282726;
+  border-radius: 4px;
+  background: -webkit-linear-gradient(pink, red);
+  -webkit-background-origin: padding-box;
+  -webkit-background-clip: border-box;
+}
+
+/* line 203, ../../sass/style.scss */
+.replaceCard:active {
+  color: #ddd;
+  background: -webkit-linear-gradient(darkred, #4b0000);
+}
+
+/* line 208, ../../sass/style.scss */
 ul.list {
   margin: 10px 0;
 }
-/* line 187, ../../sass/style.scss */
+/* line 211, ../../sass/style.scss */
 ul.list li {
   color: black;
   background-color: #dddddd;
@@ -437,22 +458,22 @@ ul.list li {
   cursor: pointer;
 }
 
-/* line 196, ../../sass/style.scss */
+/* line 220, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 202, ../../sass/style.scss */
+/* line 226, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 204, ../../sass/style.scss */
+/* line 228, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 208, ../../sass/style.scss */
+/* line 232, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -460,14 +481,14 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 216, ../../sass/style.scss */
+/* line 240, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
   margin: 10px;
   font-weight: bold;
 }
-/* line 226, ../../sass/style.scss */
+/* line 250, ../../sass/style.scss */
 ul.fieldset li > .iPhoneCheckContainer,
 ul.fieldset li > select,
 ul.fieldset li > input,
@@ -476,13 +497,13 @@ ul.fieldset li > .input {
   float: right;
 }
 
-/* line 233, ../../sass/style.scss */
+/* line 257, ../../sass/style.scss */
 .button, .button-left, .button-right {
   z-index: 10;
   text-decoration: none;
 }
 
-/* line 241, ../../sass/style.scss */
+/* line 265, ../../sass/style.scss */
 footer {
   position: absolute;
   z-index: 2;
@@ -493,27 +514,27 @@ footer {
   border-top: 1px solid #444;
   background-color: #222;
 }
-/* line 251, ../../sass/style.scss */
+/* line 275, ../../sass/style.scss */
 footer .footer-button, footer .footer-button-left, footer .footer-button-right, footer .footer-button-center {
   z-index: 3;
   text-align: center;
   width: 30%;
   border: 1px solid red;
 }
-/* line 259, ../../sass/style.scss */
+/* line 283, ../../sass/style.scss */
 footer .footer-button-left {
   float: left;
 }
-/* line 263, ../../sass/style.scss */
+/* line 287, ../../sass/style.scss */
 footer .footer-button-right {
   float: right;
 }
 
-/* line 273, ../../sass/style.scss */
+/* line 297, ../../sass/style.scss */
 nav ul {
   text-align: center;
 }
-/* line 276, ../../sass/style.scss */
+/* line 300, ../../sass/style.scss */
 nav ul li {
   display: inline-table;
   list-style: none;
@@ -522,16 +543,16 @@ nav ul li {
   text-align: center;
   width: 30%;
 }
-/* line 284, ../../sass/style.scss */
+/* line 308, ../../sass/style.scss */
 nav ul li a {
   text-decoration: none;
 }
-/* line 288, ../../sass/style.scss */
+/* line 312, ../../sass/style.scss */
 nav ul li span {
   vertical-align: top;
 }
 
-/* line 295, ../../sass/style.scss */
+/* line 319, ../../sass/style.scss */
 .iScrollPullDown {
   font-weight: bold;
 }

@@ -89,25 +89,25 @@
 			Unable to generate new deck:<br><%=error%>
 		</div>
 	<% } else if( !deck || 0 >= deck.length ) { %>
-		<ul class="deck">
+		<ul class="no-deck">
 			<li>No deck generated, select a saved deck,
 			or pull down to generate a new deck.</li>
 		</ul>
 	<% } else { %>
-		<ul class="deck">
+		<ul class="deck" data-deck-type="deck">
 			<% _(deck).each(function(item) {
 				print(card({card:item,options:options}));
 			}); %>
 		</ul>
 		<% if( bane ) { %>
 			<h2>Bane</h2>
-			<ul class="deck">
+			<ul class="deck" data-deck-type="bane">
 				<%=card({card:bane,options:options})%>
 			</ul>
 		<% } %>
 		<% if( blackMarket ) { %>
 			<h2>Black Market</h2>
-			<ul class="deck">
+			<ul class="deck" data-deck-type="blackmarket">
 			<% _(blackMarket).each(function(item) {
 				print( card({card:item,options:options}) );
 			}); %>
@@ -121,7 +121,7 @@
 	<% } %>
 </script>
 <script id="template-card" type="text/x-underscore-template">
-	<li>
+	<li class="selected">
 	<% if( options.display.set ) { %>
 		<span class="cardSet <%= card.set %>">[<%=DATA_SETS[card.set].symbol%>]</span>
 		<% } %>

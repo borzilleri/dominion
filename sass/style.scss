@@ -84,7 +84,7 @@ h2 {
 	margin-left: $corner-radius-horz;
 	margin-top: 5px;
 }
-ul.deck {
+.deck, .no-deck {
 	li {
 		color: $text-color-dark;
 		background-color: #dddddd;
@@ -100,11 +100,13 @@ ul.deck {
 			//border-bottom: 1px dotted gray;
 		}
 
-		.selected {
+		&.selected {
 			background-color: lightgreen;
+			position: relative;
+			left: 100px;
 		}
 
-		.replacement {
+		&.replacement {
 			background-color: lightblue;
 		}
 	}

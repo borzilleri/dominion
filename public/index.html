@@ -76,9 +76,9 @@
 <footer>
 	<nav>
 		<ul>
-			<li><a href="#deck" class=".newDeck"><span>Deck</span></a></li>
-			<li><a href="#list"><span>Saved</span></a></li>
-			<li><a href="#options"><span>Options</span></a></li>
+			<li><a href="#deck"><div class="deck-icon"></div></a></li>
+			<li><a href="#list"><div class="list-icon"></div></a></li>
+			<li><a href="#options"><div class="options-icon"></div></a></li>
 		</ul>
 	</nav>
 </footer>
@@ -122,7 +122,7 @@
 </script>
 <script id="template-card" type="text/x-underscore-template">
 	<li>
-		<button class="replaceCard">Replace</button>
+		<button class="action-button replace-card">Replace</button>
 	<% if( options.display.set ) { %>
 		<span class="cardSet <%= card.set %>">[<%=DATA_SETS[card.set].symbol%>]</span>
 		<% } %>
@@ -222,11 +222,11 @@
 				name="prosperity_random_basics" value="true"
 				<%=options.prosperity_random_basics?'checked':''%>>
 		</li>
-		<li data-card="Black Market">
+		<li data-promos="Black Market">
 			<label>Black Market Size</label>
 			<input type="number" min="10" max="<%=constants.blackmarket_max%>"
 				size="3" maxlength="3" id="blackmarket_size" name="blackmarket_size" 
-				value="<%=options.blackmarket_size%>" 
+				value="<%=options.blackmarket_size%>" pattern="[0-9]*"
 				<%=(options.promos['Black Market']?'':'disabled')%>>
 		</li>
 	</ul>

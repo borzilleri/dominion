@@ -3,9 +3,8 @@ window.Deck_View = Backbone.View.extend({
 	deck: null,
   error: null,
 	events: {
-		'click .newDeck': 'newDeck',
 	  'click .deck li': 'selectCard',
-    'click .replaceCard': 'replaceCard'
+    'click .replace-card': 'replaceCard'
 	},
 	initialize: function(options) {
 		_(this).bindAll(
@@ -34,7 +33,6 @@ window.Deck_View = Backbone.View.extend({
     return false;
   },
   replaceCard: function(e) {
-    alert('test');
     return false;
   },
 	render: function(refresh) {

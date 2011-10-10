@@ -98,7 +98,7 @@ h2 {
 		-webkit-transform: translate(0,0);
 
 		&.selected {
-			-webkit-transform: translate(100px,0);
+			-webkit-transform: translate(80px,0);
 		}
 
 		&.replacement {
@@ -180,29 +180,73 @@ h2 {
 	text-align: right;
 }
 
-.replaceCard {
-	position: absolute;
-	left: -95px;
-
-	margin-top: -4px;
-	padding:5px 10px;
-
-	font-size: 16px;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
+.button-old {
+	font-size: 16px/20px;
 	font-weight: bold;
+	text-shadow: 1px 1px 1px black;
 	color: white;
-	text-shadow: 0 1px 0 #333;
 
-	border: 1px solid #282726;
-	border-radius: 4px;
-	background: -webkit-linear-gradient(pink, red);
-	-webkit-background-origin: padding-box;
-	-webkit-background-clip: border-box;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
 }
 
-.replaceCard:active {
-	color: #ddd;
-	background: -webkit-linear-gradient(darkred,#4b0000);
+.button {
+	width: auto;
+	min-width: 40px;
+	max-width: 60px;
+	height: 30px; 
+	margin: 0;
+	padding: 0 5px;
+	overflow: hidden;
+
+	cursor: pointer;
+
+	font-size: 12px;
+	line-height: 30px;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	text-align: center;
+	white-space: nowrap;
+	background: none;
+	border-radius: 6px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.cancel-button {
+	@extend .button;
+}
+
+.action-button {
+	@extend .button;
+	color: white;
+	border: 1px solid #45505D;
+
+	background-image: -webkit-gradient(linear, left top, left bottom, 
+	color-stop(0, #8ea4c1),
+	color-stop(0.5, #5877a2), 
+	color-stop(0.5, #476999),
+	color-stop(1, #4a6c9b)
+	);
+}
+
+.action-button:active {
+	@extend .action-button;
+
+	background-image: -webkit-gradient(linear, left top, left bottom,
+	color-stop(0, #7d88a5),
+	color-stop(0.5, #3a4e78),
+	color-stop(0.5, #273f6d),
+	color-stop(1, #273f6d));
+}
+
+.replace-card {
+	position: absolute;
+	left: -70px;
+	top: 7px;
 }
 
 ul.list {
@@ -261,60 +305,79 @@ ul.fieldset {
 .button:active {
 }
 
-
 footer {
 	position: absolute;
 	z-index: 2;
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 48px;
+	height: 40px;
 	border-top: 1px solid #444;
-	background-color: #222;
+	//background-color: #222;
 
-	.footer-button {
-		z-index: 3;
-		text-align: center;
-		width: 30%;
-
-		border: 1px solid red;
-	}
-
-	.footer-button-left {
-		@extend .footer-button;
-		float: left;
-	}
-	.footer-button-right {
-		@extend .footer-button;
-		float: right;
-	}
-	.footer-button-center {
-		@extend .footer-button;
-	}
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(74,74,74,0.85)),
+  color-stop(0.5, rgba(20,20,20,0.75)),
+  color-stop(0.5, rgba(2,2,2,0.75)), to(rgba(14,14,14,0.75)));
 
 }
 nav {
 	ul {
 		text-align: center;
+		margin: 0;
+		padding: 0;
 
 		li {
+			margin: 0;
+			padding: 0;
+			cursor: pointer;
+			font-size: 12px;
+			font-weight: bold;
+
 			display: inline-table;
 			list-style: none;
 			-webkit-tap-hilight-color: transparent;
-			border-radius: 4px;
 			text-align: center;
 			width: 30%;
-
-			a {
-				text-decoration: none;
-			}
-
-			span {
-				vertical-align: top;
-			}
 		}
 	}
 }
+
+
+.footer-button {
+	margin: 4px auto;
+	display: block;
+	text-align: center;
+}
+.deck-icon {
+	@extend .footer-button;
+	width: 30px; height: 28px;
+	background: url('../images/icons/cards.png') 0 0px no-repeat;
+	background-size: 30px 27px;
+}
+.list-icon {
+	@extend .footer-button;
+	width: 20px; height: 21px;
+	background: url('../images/icons/list.png') 0 0 no-repeat;
+	background-size: 20px 14px;
+}
+.options-icon {
+	@extend .footer-button;
+	width: 26px; height: 28px;
+	background: url('../images/icons/gear-2.png') 0 0 no-repeat;
+	background-size: 26px 28px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:2) {
+	.deck-icon {
+		background: url('../images/icons/cards@2x.png') 0 0 no-repeat;
+	}
+	.list-icon {
+		background: url('../images/icons/list@2x.png') 0 0 no-repeat;
+	}
+	.options-icon {
+		background: url('../images/icons/gear-2@2x.png') 0 0 no-repeat;
+	}
+}
+
 
 .iScrollPullDown {
 	font-weight:bold;

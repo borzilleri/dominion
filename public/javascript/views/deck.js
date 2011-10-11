@@ -7,14 +7,7 @@ window.Deck_View = Backbone.View.extend({
     'click .replace-card': 'replaceCard'
 	},
 	initialize: function(options) {
-		_(this).bindAll(
-			'render',
-			'output',
-			'newDeck',
-			'loadDeck',
-			'selectCard',
-			'replaceCard'
-		);
+		_(this).bindAll();
 		this.loadDeck(options.deck);
 		this.template = _.template($('#template-deck').html());
 		this.template_card = _.template($('#template-card').html());

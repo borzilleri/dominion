@@ -1,4 +1,4 @@
-window.Dominion_Controller = Backbone.Router.extend({
+window.Dominion_Router = Backbone.Router.extend({
 	lastDeck: null,
 	backTarget: null,
 	routes: {
@@ -8,12 +8,7 @@ window.Dominion_Controller = Backbone.Router.extend({
 		'*default': 'defaultAction'
 	},
 	initialize: function(options) {
-		_(this).bindAll(
-			'showOptions',
-			'showDeck',
-			'showList',
-			'defaultAction'
-			);
+		_(this).bindAll();
 		window.library = new Library_Collection(window.DATA_CARDS);
 	},
 	showOptions: function() {

@@ -4,7 +4,7 @@ window.List_View = Backbone.View.extend({
     'click li': 'loadDeck'
   },
   initialize: function(options) {
-    _(this).bindAll('render','loadDeck');
+    _(this).bindAll();
 
     this.template = _.template($('#template-list').html());
     this.render();

@@ -13,6 +13,6 @@ $(function() {
   window.options = new Config_Model({
     'librarySize': window.DATA_CARDS.length
   });
-  window.app = new Dominion_Controller();
+  window.app = new Dominion_Router();
   Backbone.history.start();
 });

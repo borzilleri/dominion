@@ -1,7 +1,7 @@
 window.Base_View = Backbone.View.extend({
 	initialize: function(options) {
 		if( !(options && 'object' === typeof options) ) options = {};
-		_(this).bindAll('render','init');
+		_(this).bindAll();
 		this.init(options);
 
 		if( options.template ) {

@@ -85,7 +85,6 @@ h2 {
 	margin-top: 5px;
 }
 .deck, .no-deck {
-
 	li {
 		color: $text-color-dark;
 		background-color: #dddddd;
@@ -105,6 +104,19 @@ h2 {
 			background-color: lightblue;
 		}
 	}
+}
+
+.offscreen {
+	-webkit-transition-property:-webkit-transform;
+	-webkit-transition-duration: 250ms;
+}
+.offscreen-left {
+	@extend .offscreen;
+	-webkit-transform:translate(-100%,0);
+}
+.offscreen-right {
+	@extend .offscreen;
+	-webkit-transform:translate(-100%,0);
 }
 
 .cardName {

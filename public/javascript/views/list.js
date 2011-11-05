@@ -10,9 +10,28 @@ window.List_View = Backbone.View.extend({
     this.render();
   },
   render: function() {
+    var toDirection, fromDirection,
+        fromId = $('.scroll-wrapper:visible').attr('id');
+    if( 'deck-wrapper' == fromId ) {
+      toDirection = 'left';
+      fromDirection = 'right';
+    }
+    else {
+      toDirection = 'right';
+      fromDirection = 'left';
+    }
+
+    if( $('#list-wrapper').hasClass('offscreen-'+toDirection) ) {
+      $('#list-wrapper')
+        .removeClass('offscreen-'+toDirection)
+        .addClass('offscreen-'+fromDirection);
+    }
+
     $(this.el).html(this.template());
-    $('.scroll-wrapper').hide();
-    $('#list-wrapper').find('.scroller').html(this.el).parent().show();
+    $('.scroll-wrapper:visible').addClass('offscreen-'+toDirection).hide();
+    $('#list-wrapper')
+      .find('.scroller').html(this.el)
+      .parent().show().removeClass('offscreen-'+fromDirection);
     this.scroller = new iScroll('list-wrapper', {
       hScroll: false
     });

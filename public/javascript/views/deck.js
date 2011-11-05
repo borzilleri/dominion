@@ -51,8 +51,10 @@ window.Deck_View = Backbone.View.extend({
 	},
 	output: function() {
     var self = this;
-    $('.scroll-wrapper').hide();
-    $('#deck-wrapper').find('.scroller').html(this.el).parent().show();
+    $('.scroll-wrapper:visible').addClass('offscreen-right').hide();
+    $('#deck-wrapper')
+      .find('.scroller').html(this.el)
+      .parent().show().removeClass('offscreen-left');
 		this.scroller = new iScroll('deck-wrapper', {
       hScroll: false,
       pullToRefresh: 'down',

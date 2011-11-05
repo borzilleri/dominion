@@ -15,8 +15,12 @@ window.Options_View = Backbone.View.extend({
 			backTarget: window.app.backTarget,
 			constants: window.options.constants
 		}));
-    $('.scroll-wrapper').hide();
-    $('#options-wrapper').find('.scroller').html(this.el).parent().show();
+
+    $('.scroll-wrapper').addClass('offscreen-left').hide();
+    $('#options-wrapper')
+      .find('.scroller').html(this.el)
+      .parent().show().removeClass('offscreen-right');
+
     $(':checkbox').iphoneStyle();
 		this.scroller = new iScroll('options-wrapper', {
       hScroll: false

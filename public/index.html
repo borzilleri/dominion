@@ -158,13 +158,13 @@
 		<% if( current ) { %>
 			<li data-deck="<%=current%>">
 				<span class="deckName">Currently: <%=current%></span>
-				<span class="deckSets">[n/a]</span>
+				<span class="deckSets">[<%=currentSets.symbols%>]</span>
 			</li>
 		<% } %>
 		<% if( generated && generated != current ) { %>
 			<li data-deck="last">
 				<span class="deckName">Last Generated Deck</span>
-				<span class="deckSets">[n/a]</span>
+				<span class="deckSets">[<%=generatedSets.symbols%>]</span>
 			</li>
 		<% } %>
 	</ul>

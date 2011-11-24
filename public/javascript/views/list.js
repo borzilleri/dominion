@@ -15,7 +15,9 @@ window.List_View = Backbone.View.extend({
 			this.template(
 				{
 					generated: app.generatedDeck ? app.generatedDeck.name : null,
+					generatedSets: app.generatedDeck ? app.generatedDeck.getSetData() : '',
 					current: app.currentDeck ? app.currentDeck.name : null,
+					currentSets: app.currentDeck ? app.currentDeck.getSetData() : ''
 				}
 			)
 		);

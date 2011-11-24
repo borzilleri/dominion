@@ -9,14 +9,36 @@ window.Deck_Collection = Card_Collection.extend({
     _(this).bindAll();
   },
 	toJSON: function() {
+		var data = this.getSetData();
 		return {
 			error: this.error,
 			name: this.name,
 			prosperity: this.prosperity_basics,
 			bane: this.bane ? this.bane.toJSON() : null,
 			blackMarket: this.black_market ? this.black_market.toJSON() : null,
-			cards: Card_Collection.prototype.toJSON.call(this)
+			cards: Card_Collection.prototype.toJSON.call(this),
+			setClasses: data.classes,
+			setSymbols: data.symbols
 		};
+	},
+	getSetData: function() {
+		var sets = [],
+				data = {symbols:'',classes:''};
+
+		this.each(function(card) {
+			var set = card.get('set');
+			if( -1 === _(sets).indexOf(set) ) {
+				sets.push(set);
+			}
+		});
+
+		sets.sort();
+		data.classes = sets.join(' ');
+		_(sets).each(function(name) {
+			data.symbols += DATA_SETS[name].symbol;
+		});
+
+		return data;
 	},
   load: function(deck) {
 		// First, check the DATA_DECKS array to see if this

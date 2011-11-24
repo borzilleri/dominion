@@ -1,5 +1,5 @@
 window.Options_View = Backbone.View.extend({
-  className: 'content',
+	el: '#options',
 	events: {
 		'change input': 'updateOption',
 		'change select': 'updateOption'
@@ -12,17 +12,11 @@ window.Options_View = Backbone.View.extend({
 	render: function() {
 		$(this.el).html(this.template({
 			options: window.options.toJSON(),
-			backTarget: window.app.backTarget,
 			constants: window.options.constants
 		}));
 
-    $('.scroll-wrapper').addClass('offscreen-left').hide();
-    $('#options-wrapper')
-      .find('.scroller').html(this.el)
-      .parent().show().removeClass('offscreen-right');
-
     $(':checkbox').iphoneStyle();
-		this.scroller = new iScroll('options-wrapper', {
+		this.iscroll = new iScroll('options-wrapper', {
       hScroll: false
     });
 	},

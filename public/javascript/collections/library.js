@@ -1,6 +1,6 @@
 window.Library_Collection = Card_Collection.extend({
   initialize: function(models) {
-    _(this).bindAll('random');
+    _(this).bindAll();
     Card_Collection.prototype.initialize.call(this, models);
   },
   random: function() {

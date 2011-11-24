@@ -10,19 +10,34 @@ window.Dominion_Router = Backbone.Router.extend({
 	initialize: function(options) {
 		_(this).bindAll();
 		window.library = new Library_Collection(window.DATA_CARDS);
-	},
-	showOptions: function() {
-		var options = new Options_View(this.backTarget);
-	},
-	showDeck: function(name) {
-		this.backTarget = '#deck';
-		var deck = new Deck_View({
-      deck: name
+
+		this.optionsView = new Options_View();
+		this.deckView = new Deck_View({
+				deck: 'last'
 		});
 	},
+	showPanelView: function(view) {
+		$('.panel').hide();
+		$(view.el).show();
+	},
+	showOptions: function() {
+		if( !this.optionsView ) {
+			this.optionsView = new Options_View();
+		}
+		this.showPanelView(this.optionsView);
+	},
+	showDeck: function(name) {
+		if( !this.deckView ) {
+			this.deckView = new DeckView({deck: name});
+		}
+		this.deckView.loadDeck(name);
+		this.showPanelView(this.deckView);
+	},
 	showList: function() {
-		this.backTarget = '#list';
-		var list = new List_View();
+		if( !this.listView ) {
+			this.listView = new List_View();
+		}
+		this.showPanelView(this.listView);
 	},
 	defaultAction: function(path) {
 		this.showDeck();

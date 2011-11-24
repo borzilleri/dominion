@@ -1,15 +1,11 @@
 window.Deck_Collection = Card_Collection.extend({
+	name: null,
   default_size: 10,
   bane: null,
   black_market: null,
   prosperity_basics: false,
   initialize: function(models) {
-    _(this).bindAll(
-      'load',
-      'generate',
-      'selectBaneCard',
-      'buildBlackMarket'
-    );
+    _(this).bindAll();
   },
   load: function(deck) {
     if( !(deck in window.DATA_DECKS) ) throw "Deck '"+deck+"' not found.";
@@ -22,6 +18,7 @@ window.Deck_Collection = Card_Collection.extend({
       if( !card ) throw "Card: '"+cardName+"' not found.";
       self.add(card);
     });
+    this.name = deck;
     window.app.lastDeck = this;
   },
   generate: function() {

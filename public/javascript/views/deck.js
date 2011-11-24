@@ -1,95 +1,94 @@
 window.Deck_View = Backbone.View.extend({
-  className: 'content',
+	el: '#deck',
 	deck: null,
-  error: null,
+	error: null,
+	nav: null,
+	iscroll: null,
 	events: {
-	  'click .deck li': 'selectCard',
-    'click .replace-card': 'replaceCard'
+		//'click .deck li': 'selectCard',
+		//'click .replace-card': 'replaceCard'
 	},
 	initialize: function(options) {
 		_(this).bindAll();
 		this.loadDeck(options.deck);
-		this.template = _.template($('#template-deck').html());
-		this.template_card = _.template($('#template-card').html());
-		this.render();
-		this.output();
-	},
-  selectCard: function(e) {
-    var $li = $(e.currentTarget);
-    var $selected = $li.closest('div').find('.selected');
-    if( 0 != $selected.length ) {
-      $selected.removeClass('selected');
-    }
-    else {
-      $li.addClass('selected');
-    }
-    return false;
-  },
-  replaceCard: function(e) {
-    return false;
-  },
-	render: function(refresh) {
-	  var self = this;
-	  if( this.deck ) {
-		  this.deck.orderBy(window.options.get('sort'));
-      if( this.deck.black_market ) {
-        this.deck.black_market.orderBy(window.options.get('sort'));
-      }
-    }
-		$(this.el).html(this.template({
-      card: this.template_card,
-			options: window.options.toJSON(),
-			error: this.error,
-			deck: (this.deck ? this.deck.toJSON() : []),
-			bane: (this.deck && this.deck.bane ? this.deck.bane.toJSON() : null),
-		  blackMarket: (this.deck && this.deck.black_market ? this.deck.black_market.toJSON() : null)
-		}));
 
-		if( refresh ) {
-		  setTimeout(function() { self.scroller.refresh(); }, 0);
-    }
+		this.template = _.template($('#template-deck').html());
+		//this.template_card = _.template($('#template-card').html());
+
+		this.render();
 	},
-	output: function() {
-    var self = this;
-    $('.scroll-wrapper:visible').addClass('offscreen-right').hide();
-    $('#deck-wrapper')
-      .find('.scroller').html(this.el)
-      .parent().show().removeClass('offscreen-left');
-		this.scroller = new iScroll('deck-wrapper', {
-      hScroll: false,
-      pullToRefresh: 'down',
-      onPullDown: function() { self.newDeck(); }
-    });
+	renderDeck: function() {
+		// Really, this is a convenience method to let us
+		// render the scroller view
+		this.scrollerView.render({error: this.error, deck: this.deck},this.iscroll);
+		this.$('h1').text(this.deck?(this.deck.name?this.deck.name:'Generated Deck'):'');
+		return this;
+	},
+	render: function(refresh) {
+		var self = this;
+
+		$(this.el).html(this.template());
+		if( !this.scrollerView ) {
+			this.scrollerView = new DeckScroller_View();
+		}
+		this.renderDeck();
+
+		this.iscroll = new iScroll('deck-wrapper', {
+				hScroll: false,
+				pullToRefresh: 'down',
+				onPullDown: function() { self.newDeck(); }
+		});
+		return this;
+	},
+	selectCard: function(e) {
+		var $li = $(e.currentTarget);
+		var $selected = $li.closest('div').find('.selected');
+		if( 0 != $selected.length ) {
+			$selected.removeClass('selected');
+		}
+		else {
+			$li.addClass('selected');
+		}
+		return false;
+	},
+	replaceCard: function(e) {
+		return false;
 	},
 	newDeck: function(e) {
 		var deck = new Deck_Collection();
 		try {
-		  deck.generate();
-      this.deck = deck;
-      this.error = null;
-    }
+			deck.generate();
+			this.deck = deck;
+			this.error = null;
+		}
 		catch( error ) {
-		  this.deck = null;
-		  this.error = error;
-    }
-		this.render(true);
+			this.deck = null;
+			this.error = error;
+		}
+		this.renderDeck();
 		return false;
 	},
-	loadDeck: function(name) {
+	loadDeck: function(name, norender) {
 		if( !name || 'last' == name ) {
-			this.deck = window.app.lastDeck;
+			// TODO
+			// Uh, fix this?
+			this.deck = null;
 			return;
 		}
 
-    var deck = new Deck_Collection();
-    try {
-      deck.load(name);
-      this.deck = deck;
-      this.error = null;
-    }
-    catch( error ) {
-      this.deck = null;
-      this.error = error;
-    }
+		var deck = new Deck_Collection();
+		try {
+			deck.load(name);
+			this.deck = deck;
+			this.error = null;
+		}
+		catch( error ) {
+			this.deck = null;
+			this.error = error;
+		}
+		if( !norender ) {
+			this.renderDeck();
+		}
+		return this;
 	}
 });

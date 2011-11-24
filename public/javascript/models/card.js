@@ -1,5 +1,6 @@
 window.Card_Model = Backbone.Model.extend({
 initialize: function(data) {
+	_(this).bindAll();
   this.id = this.get('name');
 },
 toJSON: function() {

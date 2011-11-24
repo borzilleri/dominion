@@ -6,7 +6,7 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" 
-		content="width=devicewidth; initial-scale=1.0; maximum-scale=1; user-scalable=0;">
+		content="width=device-width; height=device-height initial-scale=1.0; maximum-scale=1; user-scalable=0;">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="default">
 
@@ -59,6 +59,8 @@
 		type="text/javascript" charset="utf-8"></script>
 	<script src="javascript/views/list.js" 
 		type="text/javascript" charset="utf-8"></script>
+	<script src="javascript/views/deckScroller.js" 
+		type="text/javascript" charset="utf-8"></script>
 
 	<script src="javascript/routers/dominion.js"
 		type="text/javascript" charset="utf-8"></script>
@@ -68,57 +70,56 @@
 		type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-
-<div id="deck-wrapper" class="scroll-wrapper"><div class="scroller"></div></div>
-<div id="list-wrapper" class="scroll-wrapper"><div class="scroller"></div></div>
-<div id="options-wrapper" class="scroll-wrapper"><div class="scroller"></div></div>
-
-<footer>
-	<nav>
-		<ul>
-			<li><a href="#deck"><div class="deck-icon"></div></a></li>
-			<li><a href="#list"><div class="list-icon"></div></a></li>
-			<li><a href="#options"><div class="options-icon"></div></a></li>
-		</ul>
-	</nav>
-</footer>
+<div id="deck" class="panel"></div>
+<div id="options" class="panel"></div>
+<div id="list" class="panel"></div>
 
 <script id="template-deck" type="text/x-underscore-template">
-	<% if( error ) { %>
-		<div class="error">
-			Unable to generate new deck:<br><%=error%>
-		</div>
-	<% } else if( !deck || 0 >= deck.length ) { %>
-		<ul class="no-deck">
-			<li>No deck generated, select a saved deck,
-			or pull down to generate a new deck.</li>
-		</ul>
-	<% } else { %>
-		<ul class="deck" data-deck-type="deck">
-			<% _(deck).each(function(item) {
-				print(card({card:item,options:options}));
-			}); %>
-		</ul>
-		<% if( bane ) { %>
-			<h2>Bane</h2>
-			<ul class="deck" data-deck-type="bane">
-				<%=card({card:bane,options:options})%>
-			</ul>
-		<% } %>
-		<% if( blackMarket ) { %>
-			<h2>Black Market</h2>
-			<ul class="deck" data-deck-type="blackmarket">
-			<% _(blackMarket).each(function(item) {
-				print( card({card:item,options:options}) );
-			}); %>
-			</ul>
-		<% } %>
+<header>
+<a href="#" class="download-icon left">Save</a>
+<a href="#options" class="options-icon right">Options</a>
+<a href="#list"><h1>Generated Deck</h1></a>
+</header>
+<div id="deck-wrapper" class="scroll-wrapper">
+	<div class="scroller"><div id="card-list"></div></div>
+</div>
+</script>
+<script id="template-deck-scroller" type="text/x-underscore-template">
+<% if( error ) { %>
+<div class="error">
+	Unable to generate new deck:<br><%=error%>
+</div>
+<% } else if( !deck || 0 >= deck.length ) { %>
+	<ul class="no-deck">
+		<li>No deck generated, select a saved deck,
+		or pull down to generate a new deck.</li>
+	</ul>
+<% } else { %>
+	<ul class="deck" data-deck-type="deck">
+		<% _(deck).each(function(item) {
+			print(card({card:item,options:options}));
+		}); %>
+	</ul>
+	<% if( bane ) { %>
+	<h2>Bane</h2>
+	<ul class="deck" data-deck-type="bane">
+		<%=card({card:bane,options:options})%>
+	</ul>
 	<% } %>
-	<% if( !window.isMobile ) { %>
-		<div class="qr">
-			<img src="http://lilqr.com/qr">
-		</div>
+	<% if( blackMarket ) { %>
+	<h2>Black Market</h2>
+	<ul class="deck" data-deck-type="blackmarket">
+		<% _(blackMarket).each(function(item) {
+			print( card({card:item,options:options}) );
+		}); %>
+	</ul>
 	<% } %>
+<% } %>
+<% if( !window.isMobile ) { %>
+<div class="qr">
+	<img src="http://lilqr.com/qr">
+</div>
+<% } %>
 </script>
 <script id="template-card" type="text/x-underscore-template">
 	<li>
@@ -147,6 +148,23 @@
 	</li>
 </script>
 <script id="template-list" type="text/x-underscore-template">
+<header>
+<h1>Saved Decks</h1>
+</header>
+<div id="list-wrapper" class="scroll-wrapper"><div class="scroller">
+	<h2>Current</h2>
+	<ul class="list">
+		<li data-deck="last">
+			<span class="deckName">Last Generated</span>
+			<span class="deckSets">[n/a]</span>
+		</li>
+		<% if( recent ) { %>
+			<li data-deck="<%=recent%>">
+			<span class="deckName"><%=recent%></span>
+			<span class="deckSets">[n/a]</span>
+		</li>
+		<% } %>
+	</ul>
 	<h2>Recommended Sets</h2>
 	<ul class="list">
 	<% _(window.DATA_DECKS).each(function(deck, name) { %>
@@ -158,8 +176,14 @@
 		</li>
 	<% }); %>
 	</ul>
+</div></div>
 </script>
 <script id="template-options" type="text/x-underscore-template">
+<header>
+	<a href="#" class="action-button right">Done</a>
+	<h1>Options</h1>
+</header>
+<div id="options-wrapper" class="scroll-wrapper"><div class="scroller">
 	<h2>Deck Display</h2>
 	<ul class="fieldset">
 	<% _(options.display).each(function(on, key) { %>
@@ -230,6 +254,7 @@
 				<%=(options.promos['Black Market']?'':'disabled')%>>
 		</li>
 	</ul>
+</div></div>
 </script>
 </body>
 </html>

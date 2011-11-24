@@ -248,18 +248,18 @@ label.iPhoneCheckLabelOff span {
   background: url("../images/iphone-style-checkboxes/slider_center.png?1282083753");
 }
 
-/* line 31, ../../sass/style.scss */
+/* line 34, ../../sass/style.scss */
 * {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
 }
 
-/* line 36, ../../sass/style.scss */
+/* line 39, ../../sass/style.scss */
 html {
   background: url("../images/black_linen_v2.png");
 }
 
-/* line 39, ../../sass/style.scss */
+/* line 42, ../../sass/style.scss */
 body {
   color: lightgray;
   font-size: 100%;
@@ -267,42 +267,68 @@ body {
   text-rendering: optimizeLegibility;
   margin: 0;
   padding-bottom: 10px;
+  width: 100%;
+  height: 100%;
 }
 
-/* line 51, ../../sass/style.scss */
+/* line 54, ../../sass/style.scss */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  border-top: 1px solid #444;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(74, 74, 74, 0.85)), color-stop(0.5, rgba(20, 20, 20, 0.75)), color-stop(0.5, rgba(2, 2, 2, 0.75)), to(rgba(14, 14, 14, 0.75)));
+}
+/* line 69, ../../sass/style.scss */
+header a {
+  text-decoration: none;
+}
+/* line 71, ../../sass/style.scss */
+header a.right {
+  float: right;
+  margin-right: 10px;
+}
+/* line 75, ../../sass/style.scss */
+header a.left {
+  float: left;
+  margin-left: 10px;
+}
+/* line 81, ../../sass/style.scss */
+header .button, header .cancel-button, header .action-button, header .action-button:active, header .icon-button, header .deck-icon, header .list-icon, header .options-icon, header .download-icon {
+  margin-top: 3px;
+}
+/* line 85, ../../sass/style.scss */
+header h1 {
+  font-weight: bold;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 3px;
+}
+
+/* line 92, ../../sass/style.scss */
+.scroll-wrapper {
+  position: absolute;
+  width: 100%;
+  top: 40px;
+  bottom: 0;
+  overflow: auto;
+}
+
+/* line 100, ../../sass/style.scss */
 a {
   color: lightgray;
 }
 
-/* line 55, ../../sass/style.scss */
-.button-left {
-  float: left;
-}
-
-/* line 59, ../../sass/style.scss */
-.button-right {
-  float: right;
-}
-
-/* line 64, ../../sass/style.scss */
-.scroll-wrapper {
-  position: fixed;
-  top: 0px;
-  bottom: 48px;
-  width: 100%;
-  z-index: 1;
-  overflow: auto;
-  display: none;
-}
-
-/* line 74, ../../sass/style.scss */
+/* line 104, ../../sass/style.scss */
 .qr {
   width: 100%;
   text-align: center;
   margin: 30px 0 15px 0;
 }
 
-/* line 80, ../../sass/style.scss */
+/* line 110, ../../sass/style.scss */
 h2 {
   text-transform: uppercase;
   font-size: 120%;
@@ -311,7 +337,7 @@ h2 {
   margin-top: 5px;
 }
 
-/* line 88, ../../sass/style.scss */
+/* line 118, ../../sass/style.scss */
 .deck li, .no-deck li {
   color: black;
   background-color: #dddddd;
@@ -322,37 +348,21 @@ h2 {
   -webkit-transition-duration: 250ms;
   -webkit-transform: translate(0, 0);
 }
-/* line 99, ../../sass/style.scss */
+/* line 129, ../../sass/style.scss */
 .deck li.selected, .no-deck li.selected {
   -webkit-transform: translate(80px, 0);
 }
-/* line 103, ../../sass/style.scss */
+/* line 133, ../../sass/style.scss */
 .deck li.replacement, .no-deck li.replacement {
   background-color: lightblue;
 }
 
-/* line 109, ../../sass/style.scss */
-.offscreen, .offscreen-left, .offscreen-right {
-  -webkit-transition-property: -webkit-transform;
-  -webkit-transition-duration: 250ms;
-}
-
-/* line 113, ../../sass/style.scss */
-.offscreen-left {
-  -webkit-transform: translate(-100%, 0);
-}
-
-/* line 117, ../../sass/style.scss */
-.offscreen-right {
-  -webkit-transform: translate(-100%, 0);
-}
-
-/* line 122, ../../sass/style.scss */
+/* line 138, ../../sass/style.scss */
 .cardName {
   font-size: 20px;
 }
 
-/* line 126, ../../sass/style.scss */
+/* line 142, ../../sass/style.scss */
 .cardSet, .deckSets {
   font-family: monospace;
   font-weight: bold;
@@ -360,75 +370,75 @@ h2 {
   margin-right: 2px;
   display: block;
 }
-/* line 133, ../../sass/style.scss */
+/* line 149, ../../sass/style.scss */
 ul.deck .cardSet, ul.deck .deckSets {
   float: left;
 }
-/* line 136, ../../sass/style.scss */
+/* line 152, ../../sass/style.scss */
 ul.list .cardSet, ul.list .deckSets {
   float: right;
 }
-/* line 140, ../../sass/style.scss */
+/* line 156, ../../sass/style.scss */
 .cardSet.Dominion, .deckSets.Dominion {
   color: black;
 }
-/* line 143, ../../sass/style.scss */
+/* line 159, ../../sass/style.scss */
 .cardSet.Intrigue, .deckSets.Intrigue {
   color: blue;
 }
-/* line 146, ../../sass/style.scss */
+/* line 162, ../../sass/style.scss */
 .cardSet.Seaside, .deckSets.Seaside {
   color: #ff4500;
 }
-/* line 149, ../../sass/style.scss */
+/* line 165, ../../sass/style.scss */
 .cardSet.Alchemy, .deckSets.Alchemy {
   color: #aa00aa;
 }
-/* line 152, ../../sass/style.scss */
+/* line 168, ../../sass/style.scss */
 .cardSet.Promo, .deckSets.Promo {
   color: #888888;
 }
-/* line 155, ../../sass/style.scss */
+/* line 171, ../../sass/style.scss */
 .cardSet.Prosperity, .deckSets.Prosperity {
   color: #005500;
 }
-/* line 158, ../../sass/style.scss */
+/* line 174, ../../sass/style.scss */
 .cardSet.Cornucopia, .deckSets.Cornucopia {
   color: #ff4500;
 }
 
-/* line 163, ../../sass/style.scss */
+/* line 179, ../../sass/style.scss */
 .cardType {
   font-family: monospace;
   margin-left: 1px;
   float: right;
 }
-/* line 168, ../../sass/style.scss */
+/* line 184, ../../sass/style.scss */
 .cardType .action {
   color: black;
 }
-/* line 171, ../../sass/style.scss */
+/* line 187, ../../sass/style.scss */
 .cardType .attack {
   color: red;
 }
-/* line 174, ../../sass/style.scss */
+/* line 190, ../../sass/style.scss */
 .cardType .defense {
   color: blue;
 }
-/* line 177, ../../sass/style.scss */
+/* line 193, ../../sass/style.scss */
 .cardType .duration {
   color: #ff4500;
 }
-/* line 180, ../../sass/style.scss */
+/* line 196, ../../sass/style.scss */
 .cardType .treasure {
   color: #ac853f;
 }
-/* line 183, ../../sass/style.scss */
+/* line 199, ../../sass/style.scss */
 .cardType .victory {
   color: #006400;
 }
 
-/* line 188, ../../sass/style.scss */
+/* line 204, ../../sass/style.scss */
 .cardCost {
   font-family: monospace;
   margin-left: 1px;
@@ -436,7 +446,7 @@ ul.list .cardSet, ul.list .deckSets {
   text-align: right;
 }
 
-/* line 195, ../../sass/style.scss */
+/* line 211, ../../sass/style.scss */
 .button-old {
   font-size: 16px/20px;
   font-weight: bold;
@@ -447,13 +457,13 @@ ul.list .cardSet, ul.list .deckSets {
   cursor: pointer;
 }
 
-/* line 206, ../../sass/style.scss */
-.button, .button-left, .button-right, .cancel-button, .action-button, .action-button:active {
+/* line 222, ../../sass/style.scss */
+.button, .cancel-button, .action-button, .action-button:active, .icon-button, .deck-icon, .list-icon, .options-icon, .download-icon {
+  display: block;
   width: auto;
   min-width: 40px;
   max-width: 60px;
   height: 30px;
-  margin: 0;
   padding: 0 5px;
   overflow: hidden;
   cursor: pointer;
@@ -471,30 +481,30 @@ ul.list .cardSet, ul.list .deckSets {
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-/* line 235, ../../sass/style.scss */
+/* line 251, ../../sass/style.scss */
 .action-button, .action-button:active {
   color: white;
   border: 1px solid #45505D;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #8ea4c1), color-stop(0.5, #5877a2), color-stop(0.5, #476999), color-stop(1, #4a6c9b));
 }
 
-/* line 248, ../../sass/style.scss */
+/* line 264, ../../sass/style.scss */
 .action-button:active {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #7d88a5), color-stop(0.5, #3a4e78), color-stop(0.5, #273f6d), color-stop(1, #273f6d));
 }
 
-/* line 258, ../../sass/style.scss */
+/* line 274, ../../sass/style.scss */
 .replace-card {
   position: absolute;
   left: -70px;
   top: 7px;
 }
 
-/* line 264, ../../sass/style.scss */
+/* line 280, ../../sass/style.scss */
 ul.list {
   margin: 10px 0;
 }
-/* line 267, ../../sass/style.scss */
+/* line 283, ../../sass/style.scss */
 ul.list li {
   color: black;
   background-color: #dddddd;
@@ -503,22 +513,22 @@ ul.list li {
   cursor: pointer;
 }
 
-/* line 276, ../../sass/style.scss */
+/* line 292, ../../sass/style.scss */
 ul.fieldset {
   margin: 5px;
   border-radius: 5px;
   background-color: #555;
   border: 1px solid black;
 }
-/* line 282, ../../sass/style.scss */
+/* line 298, ../../sass/style.scss */
 ul.fieldset li {
   border-bottom: 1px solid black;
 }
-/* line 284, ../../sass/style.scss */
+/* line 300, ../../sass/style.scss */
 ul.fieldset li:last-child {
   border: none;
 }
-/* line 288, ../../sass/style.scss */
+/* line 304, ../../sass/style.scss */
 ul.fieldset li:after {
   clear: both;
   content: "&nbsp;";
@@ -526,14 +536,14 @@ ul.fieldset li:after {
   height: 0;
   visibility: hidden;
 }
-/* line 296, ../../sass/style.scss */
+/* line 312, ../../sass/style.scss */
 ul.fieldset li > label {
   float: left;
   display: block;
   margin: 10px;
   font-weight: bold;
 }
-/* line 306, ../../sass/style.scss */
+/* line 322, ../../sass/style.scss */
 ul.fieldset li > .iPhoneCheckContainer,
 ul.fieldset li > select,
 ul.fieldset li > input,
@@ -542,92 +552,71 @@ ul.fieldset li > .input {
   float: right;
 }
 
-/* line 313, ../../sass/style.scss */
-.button, .button-left, .button-right, .cancel-button, .action-button, .action-button:active {
-  z-index: 10;
-  text-decoration: none;
-}
-
-/* line 320, ../../sass/style.scss */
-footer {
-  position: absolute;
-  z-index: 2;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  border-top: 1px solid #444;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(74, 74, 74, 0.85)), color-stop(0.5, rgba(20, 20, 20, 0.75)), color-stop(0.5, rgba(2, 2, 2, 0.75)), to(rgba(14, 14, 14, 0.75)));
-}
-
-/* line 336, ../../sass/style.scss */
-nav ul {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-/* line 341, ../../sass/style.scss */
-nav ul li {
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  display: inline-table;
-  list-style: none;
-  -webkit-tap-hilight-color: transparent;
-  text-align: center;
-  width: 30%;
-}
-
-/* line 358, ../../sass/style.scss */
-.footer-button, .deck-icon, .list-icon, .options-icon {
+/* line 330, ../../sass/style.scss */
+.icon-button, .deck-icon, .list-icon, .options-icon, .download-icon {
   margin: 4px auto;
+  padding: 2px;
   display: block;
-  text-align: center;
+  text-indent: -3000px;
+  white-space: nowrap;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-/* line 363, ../../sass/style.scss */
+/* line 340, ../../sass/style.scss */
 .deck-icon {
   width: 30px;
   height: 28px;
-  background: url("../images/icons/cards.png") 0 0px no-repeat;
+  background-image: url("../images/icons/cards.png");
   background-size: 30px 27px;
 }
 
-/* line 369, ../../sass/style.scss */
+/* line 346, ../../sass/style.scss */
 .list-icon {
   width: 20px;
   height: 21px;
-  background: url("../images/icons/list.png") 0 0 no-repeat;
+  background-image: url("../images/icons/list.png");
   background-size: 20px 14px;
 }
 
-/* line 375, ../../sass/style.scss */
+/* line 352, ../../sass/style.scss */
 .options-icon {
   width: 26px;
   height: 28px;
-  background: url("../images/icons/gear-2.png") 0 0 no-repeat;
+  background-image: url("../images/icons/gear-2.png");
   background-size: 26px 28px;
 }
 
+/* line 358, ../../sass/style.scss */
+.download-icon {
+  width: 20px;
+  height: 24px;
+  background-image: url("../images/icons/download.png");
+  background-size: 20px 24px;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:2) {
-  /* line 382, ../../sass/style.scss */
+  /* line 365, ../../sass/style.scss */
   .deck-icon {
-    background: url("../images/icons/cards@2x.png") 0 0 no-repeat;
+    background-image: url("../images/icons/cards@2x.png");
   }
 
-  /* line 385, ../../sass/style.scss */
+  /* line 368, ../../sass/style.scss */
   .list-icon {
-    background: url("../images/icons/list@2x.png") 0 0 no-repeat;
+    background-image: url("../images/icons/list@2x.png");
   }
 
-  /* line 388, ../../sass/style.scss */
+  /* line 371, ../../sass/style.scss */
   .options-icon {
-    background: url("../images/icons/gear-2@2x.png") 0 0 no-repeat;
+    background-image: url("../images/icons/gear-2@2x.png");
+  }
+
+  /* line 374, ../../sass/style.scss */
+  .download-icon {
+    background-image: url("../images/icons/download@2x.png");
   }
 }
-/* line 394, ../../sass/style.scss */
+/* line 380, ../../sass/style.scss */
 .iScrollPullDown {
   font-weight: bold;
 }

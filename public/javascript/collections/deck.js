@@ -1,31 +1,61 @@
 window.Deck_Collection = Card_Collection.extend({
-	name: null,
   default_size: 10,
+	name: null,
+	error: '',
   bane: null,
   black_market: null,
   prosperity_basics: false,
-  initialize: function(models) {
+  initialize: function() {
     _(this).bindAll();
   },
+	toJSON: function() {
+		return {
+			error: this.error,
+			name: this.name,
+			prosperity: this.prosperity_basics,
+			bane: this.bane ? this.bane.toJSON() : null,
+			blackMarket: this.black_market ? this.black_market.toJSON() : null,
+			cards: Card_Collection.prototype.toJSON.call(this)
+		};
+	},
   load: function(deck) {
-    if( !(deck in window.DATA_DECKS) ) throw "Deck '"+deck+"' not found.";
+		// First, check the DATA_DECKS array to see if this
+		// is a deck preset.
+		if( deck in window.DATA_DECKS ) {
+			this.loadPreset(deck);
+		}
+		else if( false ) {
+			// Next, try to load this from LocalStorage
+			// TODO: Implement this.
+		}
+		else {
+			// If that didn't work, generate an error.
+			this.error += "Deck '"+deck+"' not found.<br>";
+		}
 
-    var self = this,
-        deckInfo = window.DATA_DECKS[deck],
-        card;
-    _(deckInfo.cards).each(function(cardName) {
-      card = window.library.get(cardName);
-      if( !card ) throw "Card: '"+cardName+"' not found.";
-      self.add(card);
-    });
-    this.name = deck;
-    window.app.lastDeck = this;
+		if( this.error ) {
+			throw this.error;
+		}
   },
+	loadPreset: function(deck) {
+		var info = window.DATA_DECKS[deck],
+				self = this;
+		this.name = deck;
+		_(info.cards).each(function(name) {
+				var card = window.library.get(name);
+				if( !card ) {
+					this.error += "Card: '"+name+"' not found.<br>";
+				}
+				self.add(card);
+		});
+	},
   generate: function() {
+  	// Generate a new deck
     var self = this,
         defenseRequired = false,
-        defenseAdded = false;
-    //console.log('[ begin deck generation ]');
+				defenseAdded = false,
+				potCards = 0;
+		this.name = 'Generated Deck';
 
     // If we're using Alchemy, select the min number of potion cards.
     if( window.options.get('sets').Alchemy ) {
@@ -43,47 +73,52 @@ window.Deck_Collection = Card_Collection.extend({
         }
       }
     }
-    //console.log('[ finished adding potion cards ]');
 
-    var potCards = this.length;
+    potCards = this.length;
 
-    // Then add the remaining number of cards, if any
-    if( this.length < this.default_size ) {
-      var selection = new Library_Collection(
-        window.library.filter(function(model) { 
-          return model.isSelectable() && !self.get(model.get('name'));
-        })
-      );
+		try {
 
-      while( this.length < this.default_size ) {
-        // If we've maxed out our potion cards,
-        // filter them out from the selection library
-        if( potCards >= window.options.get('alchemy_max') ) {
-          selection = new Library_Collection(selection.filter(function(model) {
-            return !model.get('potion');
-          }));
-        }
+			// Then add the remaining number of cards, if any
+			if( this.length < this.default_size ) {
+				var selection = new Library_Collection(
+					window.library.filter(function(model) { 
+							return model.isSelectable() && !self.get(model.get('name'));
+					})
+				);
 
-        // We have no cards left to select from, bail out, this is
-        // an error condition
-        if( 0 >= selection.length ) throw "Too few cards to select from.";
+				while( this.length < this.default_size ) {
+					// If we've maxed out our potion cards,
+					// filter them out from the selection library
+					if( potCards >= window.options.get('alchemy_max') ) {
+						selection = new Library_Collection(selection.filter(function(model) {
+									return !model.get('potion');
+						}));
+					}
 
-        var model = selection.random();
-        //console.log('[ adding: '+model.get('name')+','+model.get('potion')+' ]');
-        this.add(model);
-        selection.remove(model);
+					// We have no cards left to select from, bail out, this is
+					// an error condition
+					if( 0 >= selection.length ) throw "Too few cards to select from.";
 
-        if( model.get('potion') ) potCards += 1;
-        if( model.get('type').attack && 
-            window.options.get('require_defense') && 
-            !defenseAdded ) {
-          defenseRequired = true;
-        }
-        if( model.get('type').defense ) {
-          defenseAdded = true;
-        }
-      }
-    }
+					var model = selection.random();
+					//console.log('[ adding: '+model.get('name')+','+model.get('potion')+' ]');
+					this.add(model);
+					selection.remove(model);
+
+					if( model.get('potion') ) potCards += 1;
+					if( model.get('type').attack && 
+						window.options.get('require_defense') && 
+						!defenseAdded ) {
+						defenseRequired = true;
+					}
+					if( model.get('type').defense ) {
+						defenseAdded = true;
+					}
+				}
+			}
+		}
+		catch( error ) {
+			this.error += error;
+		}
 
     if( defenseRequired && !defenseAdded ) {
       var reactions = new Library_Collection(window.library.filter(function(model) {
@@ -110,8 +145,6 @@ window.Deck_Collection = Card_Collection.extend({
     if( true === this.black_market ) {
       this.buildBlackMarket();
     }
-
-    window.app.lastDeck = this;
   },
   selectBaneCard: function() {
     var self = this;
@@ -124,7 +157,7 @@ window.Deck_Collection = Card_Collection.extend({
       this.black_market = true;
     }
 
-    if( false === this.bane ) throw "No valid Bane cards available.";
+    if( false === this.bane ) this.error += "No valid Bane cards available.";
   },
   buildBlackMarket: function() {
     var self = this,
@@ -137,13 +170,14 @@ window.Deck_Collection = Card_Collection.extend({
 
     
     if( cards.length < size ) {
-      throw "Insufficient cards remaining for Black Market";
+    	this.error += "Insufficient cards remaining for Black Market";
+    	return;
     }
     else if( cards.length === size ) {
       blackMarket = cards;
     }
     else {
-      blackMarket = new Deck_Collection();
+      blackMarket = new Card_Collection();
       while( blackMarket.length < size ) {
         var model = cards.random();
         blackMarket.add(model);
@@ -151,31 +185,5 @@ window.Deck_Collection = Card_Collection.extend({
       }
     }
     this.black_market = blackMarket;
-  },
-  compare_Name: function(card) {
-    return card.get('name');
-  },
-  compare_Set: function(card) {
-    var set = card.get('set') === 'Promo' ? '~' : '';
-    set += card.get('set');
-    return set+'_'+
-      card.get('name');
-  },
-  compare_Cost: function(card) {
-    return card.get('cost')+'_'+
-      (card.get('potion')?'1':'0')+'_'+
-			card.get('name');
-  },
-  orderBy: function(sort) {
-    if( 'name' === sort ) {
-      this.comparator = this.compare_Name;
-    }
-    else if( 'set' === sort ) {
-      this.comparator = this.compare_Set;
-    }
-    else if( 'cost' === sort ) {
-      this.comparator = this.compare_Cost;
-    }
-    this.sort();
   }
 });

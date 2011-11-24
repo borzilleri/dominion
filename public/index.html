@@ -78,38 +78,38 @@
 <header>
 <a href="#" class="download-icon left">Save</a>
 <a href="#options" class="options-icon right">Options</a>
-<a href="#list"><h1>Generated Deck</h1></a>
+<a href="#list"><h1></h1></a>
 </header>
 <div id="deck-wrapper" class="scroll-wrapper">
 	<div class="scroller"><div id="card-list"></div></div>
 </div>
 </script>
 <script id="template-deck-scroller" type="text/x-underscore-template">
-<% if( error ) { %>
+<% if( deck.error ) { %>
 <div class="error">
-	Unable to generate new deck:<br><%=error%>
+	Unable to generate new deck:<br><%=deck.error%>
 </div>
-<% } else if( !deck || 0 >= deck.length ) { %>
+<% } else if( !deck.cards || 0 >= deck.cards.length ) { %>
 	<ul class="no-deck">
 		<li>No deck generated, select a saved deck,
 		or pull down to generate a new deck.</li>
 	</ul>
 <% } else { %>
 	<ul class="deck" data-deck-type="deck">
-		<% _(deck).each(function(item) {
+		<% _(deck.cards).each(function(item) {
 			print(card({card:item,options:options}));
 		}); %>
 	</ul>
-	<% if( bane ) { %>
+	<% if( deck.bane ) { %>
 	<h2>Bane</h2>
 	<ul class="deck" data-deck-type="bane">
-		<%=card({card:bane,options:options})%>
+		<%=card({card:deck.bane,options:options})%>
 	</ul>
 	<% } %>
-	<% if( blackMarket ) { %>
+	<% if( deck.blackMarket ) { %>
 	<h2>Black Market</h2>
 	<ul class="deck" data-deck-type="blackmarket">
-		<% _(blackMarket).each(function(item) {
+		<% _(deck.blackMarket).each(function(item) {
 			print( card({card:item,options:options}) );
 		}); %>
 	</ul>
@@ -152,19 +152,23 @@
 <h1>Saved Decks</h1>
 </header>
 <div id="list-wrapper" class="scroll-wrapper"><div class="scroller">
+<% if( current || generated ) { %>
 	<h2>Current</h2>
 	<ul class="list">
-		<li data-deck="last">
-			<span class="deckName">Last Generated</span>
-			<span class="deckSets">[n/a]</span>
-		</li>
-		<% if( recent ) { %>
-			<li data-deck="<%=recent%>">
-			<span class="deckName"><%=recent%></span>
-			<span class="deckSets">[n/a]</span>
-		</li>
+		<% if( current ) { %>
+			<li data-deck="<%=current%>">
+				<span class="deckName">Currently: <%=current%></span>
+				<span class="deckSets">[n/a]</span>
+			</li>
+		<% } %>
+		<% if( generated && generated != current ) { %>
+			<li data-deck="last">
+				<span class="deckName">Last Generated Deck</span>
+				<span class="deckSets">[n/a]</span>
+			</li>
 		<% } %>
 	</ul>
+<% } %>
 	<h2>Recommended Sets</h2>
 	<ul class="list">
 	<% _(window.DATA_DECKS).each(function(deck, name) { %>

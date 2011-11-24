@@ -8,23 +8,12 @@ window.Deck_View = Backbone.View.extend({
 		//'click .deck li': 'selectCard',
 		//'click .replace-card': 'replaceCard'
 	},
-	initialize: function(options) {
+	initialize: function() {
 		_(this).bindAll();
-		this.loadDeck(options.deck);
-
 		this.template = _.template($('#template-deck').html());
-		//this.template_card = _.template($('#template-card').html());
-
 		this.render();
 	},
-	renderDeck: function() {
-		// Really, this is a convenience method to let us
-		// render the scroller view
-		this.scrollerView.render({error: this.error, deck: this.deck},this.iscroll);
-		this.$('h1').text(this.deck?(this.deck.name?this.deck.name:'Generated Deck'):'');
-		return this;
-	},
-	render: function(refresh) {
+	render: function() {
 		var self = this;
 
 		$(this.el).html(this.template());
@@ -38,6 +27,16 @@ window.Deck_View = Backbone.View.extend({
 				pullToRefresh: 'down',
 				onPullDown: function() { self.newDeck(); }
 		});
+		this.scrollerView.iscroll = this.iscroll;
+		return this;
+	},
+	renderDeck: function() {
+		// This method wraps the scrollerView.render method
+		// in order to properly set the page's h1.
+		this.scrollerView.render();
+
+		var deck = _.isUndefined(window.app) ? null : app.currentDeck;
+		this.$('h1').text( deck ? deck.name : '' );
 		return this;
 	},
 	selectCard: function(e) {
@@ -55,20 +54,19 @@ window.Deck_View = Backbone.View.extend({
 		return false;
 	},
 	newDeck: function(e) {
-		var deck = new Deck_Collection();
+		app.generatedDeck = new Deck_Collection();
 		try {
-			deck.generate();
-			this.deck = deck;
-			this.error = null;
+			app.generatedDeck.generate();
 		}
 		catch( error ) {
-			this.deck = null;
-			this.error = error;
+			console.log('Error Generating Deck: '+error);
 		}
+		app.currentDeck = app.generatedDeck;
 		this.renderDeck();
 		return false;
 	},
 	loadDeck: function(name, norender) {
+		// DEPRECATED
 		if( !name || 'last' == name ) {
 			// TODO
 			// Uh, fix this?

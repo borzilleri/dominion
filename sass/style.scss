@@ -52,6 +52,7 @@ body {
 }
 
 header {
+	text-align: center;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -78,15 +79,12 @@ header {
 		}
 	}
 
-	.button {
-		margin-top: 3px;
-	}
-
 	h1 {
+		display: inline-block;
+		vertical-align: middle;
 		font-weight: bold;
 		font-size: 24px;
-		text-align: center;
-		margin-top: 3px;
+		margin-right: 5px;
 	}
 }
 .scroll-wrapper {
@@ -219,57 +217,6 @@ h2 {
 	cursor: pointer;
 }
 
-.button {
-	display: block;
-	width: auto;
-	min-width: 40px;
-	max-width: 60px;
-	height: 30px; 
-	padding: 0 5px;
-	overflow: hidden;
-
-	cursor: pointer;
-
-	font-size: 12px;
-	line-height: 30px;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
-	font-weight: bold;
-	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
-	text-overflow: ellipsis;
-	text-decoration: none;
-	text-align: center;
-	white-space: nowrap;
-	background: none;
-	border-radius: 6px;
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-
-.cancel-button {
-	@extend .button;
-}
-
-.action-button {
-	@extend .button;
-	color: white;
-	border: 1px solid #45505D;
-
-	background-image: -webkit-gradient(linear, left top, left bottom, 
-	color-stop(0, #8ea4c1),
-	color-stop(0.5, #5877a2), 
-	color-stop(0.5, #476999),
-	color-stop(1, #4a6c9b)
-	);
-}
-
-.action-button:active {
-	@extend .action-button;
-
-	background-image: -webkit-gradient(linear, left top, left bottom,
-	color-stop(0, #7d88a5),
-	color-stop(0.5, #3a4e78),
-	color-stop(0.5, #273f6d),
-	color-stop(1, #273f6d));
-}
 
 .replace-card {
 	position: absolute;
@@ -326,12 +273,66 @@ ul.fieldset {
 	}
 }
 
+.button {
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
+	min-width: 40px;
+	max-width: 60px;
+	height: 30px; 
+	margin: 2px 0;
+	overflow: hidden;
+
+	cursor: pointer;
+
+	font-size: 12px;
+	line-height: 30px;
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-weight: bold;
+	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0;
+	text-overflow: ellipsis;
+	text-decoration: none;
+	text-align: center;
+	white-space: nowrap;
+	background: none;
+	border-radius: 6px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .25), 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.cancel-button {
+	@extend .button;
+}
+
+.action-button {
+	@extend .button;
+	padding: 0 4px;
+	color: white;
+	border: 1px solid #45505D;
+
+	background-image: -webkit-gradient(linear, left top, left bottom, 
+	color-stop(0, #8ea4c1),
+	color-stop(0.5, #5877a2), 
+	color-stop(0.5, #476999),
+	color-stop(1, #4a6c9b)
+	);
+
+	header & {
+	}
+}
+
+.action-button:active {
+	@extend .action-button;
+
+	background-image: -webkit-gradient(linear, left top, left bottom,
+	color-stop(0, #7d88a5),
+	color-stop(0.5, #3a4e78),
+	color-stop(0.5, #273f6d),
+	color-stop(1, #273f6d));
+}
 
 .icon-button {
 	@extend .button;
-	margin: 4px auto;
-	padding: 2px;
-	display: block;
+	padding: 2px 0;
 	text-indent: -3000px;
 	white-space: nowrap;
 	background-repeat: no-repeat;
@@ -339,25 +340,25 @@ ul.fieldset {
 }
 .deck-icon {
 	@extend .icon-button;
-	width: 30px; height: 28px;
+	width: 30px;
 	background-image: url('../images/icons/cards.png');
 	background-size: 30px 27px;
 }
 .list-icon {
 	@extend .icon-button;
-	width: 20px; height: 21px;
+	width: 20px;
 	background-image: url('../images/icons/list.png');
 	background-size: 20px 14px;
 }
 .options-icon {
 	@extend .icon-button;
-	width: 26px; height: 28px;
+	width: 26px;
 	background-image: url('../images/icons/gear-2.png');
 	background-size: 26px 28px;
 }
 .download-icon {
 	@extend .icon-button;
-	width: 20px; height: 24px;
+	width: 20px;
 	background-image: url('../images/icons/download.png');
 	background-size: 20px 24px;
 }

@@ -76,10 +76,10 @@
 
 <script id="template-deck" type="text/x-underscore-template">
 <header>
-<a href="#" class="download-icon left">Save</a>
+<a href="#list" class="list-icon left">List Decks</a>
 <a href="#options" class="options-icon right">Options</a>
+<a href="#" class="save-deck download-icon">Save</a>
 <h1></h1>
-<a href="#list" class="list-icon">&nbsp;</a>
 </header>
 <div id="deck-wrapper" class="scroll-wrapper">
 	<div class="scroller"><div id="card-list"></div></div>
@@ -162,7 +162,7 @@
 				<span class="deckSets">[<%=currentSets.symbols%>]</span>
 			</li>
 		<% } %>
-		<% if( generated && generated != current ) { %>
+		<% if( generated ) { %>
 			<li data-deck="last">
 				<span class="deckName">Last Generated Deck</span>
 				<span class="deckSets">[<%=generatedSets.symbols%>]</span>

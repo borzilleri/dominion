@@ -5,6 +5,7 @@ window.Deck_View = Backbone.View.extend({
 	nav: null,
 	iscroll: null,
 	events: {
+		'click .save-deck': 'saveDeck'
 		//'click .deck li': 'selectCard',
 		//'click .replace-card': 'replaceCard'
 	},
@@ -35,9 +36,14 @@ window.Deck_View = Backbone.View.extend({
 		// in order to properly set the page's h1.
 		this.scrollerView.render();
 
-		var deck = _.isUndefined(window.app) ? null : app.currentDeck;
-		this.$('h1').text( deck ? deck.name : '' );
+		var deck = (_.isUndefined(window.app) ? null : app.currentDeck),
+				isGenerated = (deck && !deck.name);
+		this.$('h1').text(!deck||isGenerated?'':deck.name);
+		this.$('.download-icon').toggle(deck && isGenerated);
 		return this;
+	},
+	saveDeck: function(e) {
+		return false;
 	},
 	selectCard: function(e) {
 		var $li = $(e.currentTarget);
@@ -63,6 +69,7 @@ window.Deck_View = Backbone.View.extend({
 		}
 		app.currentDeck = app.generatedDeck;
 		this.renderDeck();
+		app.navigate('deck');
 		return false;
 	},
 	loadDeck: function(name, norender) {

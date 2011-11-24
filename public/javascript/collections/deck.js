@@ -1,6 +1,6 @@
 window.Deck_Collection = Card_Collection.extend({
   default_size: 10,
-	name: null,
+	name: '',
 	error: '',
   bane: null,
   black_market: null,
@@ -77,7 +77,6 @@ window.Deck_Collection = Card_Collection.extend({
         defenseRequired = false,
 				defenseAdded = false,
 				potCards = 0;
-		this.name = 'Generated Deck';
 
     // If we're using Alchemy, select the min number of potion cards.
     if( window.options.get('sets').Alchemy ) {

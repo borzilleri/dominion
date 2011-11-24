@@ -302,7 +302,7 @@ header h1 {
   vertical-align: middle;
   font-weight: bold;
   font-size: 24px;
-  margin-right: 5px;
+  margin: 6px 5px;
 }
 
 /* line 90, ../../sass/style.scss */
@@ -515,7 +515,7 @@ ul.fieldset li > .input {
 }
 
 /* line 276, ../../sass/style.scss */
-.button, .cancel-button, .action-button, .action-button:active, .icon-button, .deck-icon, .list-icon, .options-icon, .download-icon {
+.button, .cancel-button, .action-button, .icon-button, .deck-icon, .list-icon, .options-icon, .download-icon {
   display: inline-block;
   vertical-align: middle;
   width: auto;
@@ -540,7 +540,7 @@ ul.fieldset li > .input {
 }
 
 /* line 306, ../../sass/style.scss */
-.action-button, .action-button:active {
+.action-button {
   padding: 0 4px;
   color: white;
   border: 1px solid #45505D;
@@ -552,7 +552,7 @@ ul.fieldset li > .input {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #7d88a5), color-stop(0.5, #3a4e78), color-stop(0.5, #273f6d), color-stop(1, #273f6d));
 }
 
-/* line 333, ../../sass/style.scss */
+/* line 331, ../../sass/style.scss */
 .icon-button, .deck-icon, .list-icon, .options-icon, .download-icon {
   padding: 2px 0;
   text-indent: -3000px;
@@ -561,28 +561,28 @@ ul.fieldset li > .input {
   background-position: center;
 }
 
-/* line 341, ../../sass/style.scss */
+/* line 339, ../../sass/style.scss */
 .deck-icon {
   width: 30px;
   background-image: url("../images/icons/cards.png");
   background-size: 30px 27px;
 }
 
-/* line 347, ../../sass/style.scss */
+/* line 345, ../../sass/style.scss */
 .list-icon {
   width: 20px;
   background-image: url("../images/icons/list.png");
   background-size: 20px 14px;
 }
 
-/* line 353, ../../sass/style.scss */
+/* line 351, ../../sass/style.scss */
 .options-icon {
   width: 26px;
   background-image: url("../images/icons/gear-2.png");
   background-size: 26px 28px;
 }
 
-/* line 359, ../../sass/style.scss */
+/* line 357, ../../sass/style.scss */
 .download-icon {
   width: 20px;
   background-image: url("../images/icons/download.png");
@@ -590,27 +590,27 @@ ul.fieldset li > .input {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:2) {
-  /* line 366, ../../sass/style.scss */
+  /* line 364, ../../sass/style.scss */
   .deck-icon {
     background-image: url("../images/icons/cards@2x.png");
   }
 
-  /* line 369, ../../sass/style.scss */
+  /* line 367, ../../sass/style.scss */
   .list-icon {
     background-image: url("../images/icons/list@2x.png");
   }
 
-  /* line 372, ../../sass/style.scss */
+  /* line 370, ../../sass/style.scss */
   .options-icon {
     background-image: url("../images/icons/gear-2@2x.png");
   }
 
-  /* line 375, ../../sass/style.scss */
+  /* line 373, ../../sass/style.scss */
   .download-icon {
     background-image: url("../images/icons/download@2x.png");
   }
 }
-/* line 381, ../../sass/style.scss */
+/* line 379, ../../sass/style.scss */
 .iScrollPullDown {
   font-weight: bold;
 }

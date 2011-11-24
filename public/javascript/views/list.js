@@ -11,12 +11,13 @@ window.List_View = Backbone.View.extend({
 	},
 	render: function() {
 		var self = this;
+
 		$(this.el).html(
 			this.template(
 				{
-					generated: app.generatedDeck ? app.generatedDeck.name : null,
+					generated: !_(app.generatedDeck).isNull(),
 					generatedSets: app.generatedDeck ? app.generatedDeck.getSetData() : '',
-					current: app.currentDeck ? app.currentDeck.name : null,
+					current: (app.currentDeck && app.currentDeck.name ? app.currentDeck.name : null),
 					currentSets: app.currentDeck ? app.currentDeck.getSetData() : ''
 				}
 			)
